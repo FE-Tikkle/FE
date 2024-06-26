@@ -1,9 +1,3 @@
-declare global {
-  interface Window {
-    Kakao: any
-  }
-}
-
 const KakaoLogin = () => {
   const REST_API_KEY = import.meta.env.VITE_KAKAO_JS_SDK_KEY
   const REDIRECT_URI = 'http://localhost:5173/oauth'

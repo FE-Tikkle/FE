@@ -25,7 +25,6 @@ const router = createMemoryRouter([
 ])
 
 function App() {
-  console.log(import.meta.env.VITE_KAKAO_JS_SDK_KEY)
   return <RouterProvider router={router} />
 }
 

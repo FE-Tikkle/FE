@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
 const KakaoRedirectHandler = () => {
+  const navigate = useNavigate()
+
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const code = params.get('code')
@@ -9,6 +12,7 @@ const KakaoRedirectHandler = () => {
     const client_id = import.meta.env.VITE_KAKAO_JS_SDK_KEY
     const redirect_uri = 'http://localhost:5173/oauth'
     const postUrl = 'https://kauth.kakao.com/oauth/token'
+
     const getToken = async () => {
       try {
         const response = await axios.post(
@@ -26,17 +30,26 @@ const KakaoRedirectHandler = () => {
           }
         )
         console.log('TokenGet', response)
+        //response.data.access_token을 백엔드로 넘기기
+        window.location.href = '/'
       } catch (error) {
         console.log('ERROR:', error)
       }
     }
+
     getToken()
-  }, [])
+  }, [navigate])
 
   return (
     <div>
       kakao login 완료
-      <Link to="/">메인으로 이동</Link>
+      <button
+        onClick={() => {
+          window.location.href = '/'
+        }}
+      >
+        메인으로 이동
+      </button>
     </div>
   )
 }
