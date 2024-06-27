@@ -2,6 +2,8 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import Home from './Pages/Home'
 import KakaoLogin from './Pages/KakaoLogin'
 import KakaoRedirectHandler from './Pages/KakaoRedirectHandler'
+import { Provider } from 'react-redux'
+import store from './Redux/store'
 
 const ROUTE_PATH = {
   HOME: '/',
@@ -25,7 +27,11 @@ const router = createMemoryRouter([
 ])
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  )
 }
 
 export default App
