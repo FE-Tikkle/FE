@@ -1,10 +1,6 @@
-// // App.tsx
-// import { Provider } from 'react-redux'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
-// import store from './Redux/store'
 import Home from './Pages/Home'
 import KakaoRedirectHandler from './Pages/KakaoRedirectHandler'
-
 const ROUTE_PATH = {
   HOME: '/',
   LOGIN: '/login',

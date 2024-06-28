@@ -7,11 +7,5 @@
     "newtab": "index.html"
   },
   "permissions": ["scripting"],
-  "host_permissions": ["http://localhost/*"],
-  "content_scripts": [
-    {
-      "matches": ["http://localhost/*"],
-      "js": ["content.js"]
-    }
-  ]
+  "host_permissions": ["http://localhost/*"]
 }
