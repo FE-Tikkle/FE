@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import { kakaoLogin } from '../store/slices/authslice'
 import LoginModal from '../Components/modal/Loginmodal'
 import { postsign } from '../api'
-
 const Home: React.FC = () => {
   const params = new URLSearchParams(location.search)
   const code = params.get('code')
@@ -21,19 +20,21 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (code) {
       postsign(code, 'kakao')
-        .then(() => {
-          dispatch(kakaoLogin())
-        })
-        .catch(error => {
-          console.error('Postsign error:', error)
-        })
     }
-  }, [code, dispatch])
+  }, [code])
 
   const handleKakaoLogin = () => {
+    closeModal
     dispatch(kakaoLogin())
   }
-
+  window.addEventListener('message', function (event) {
+    const authData = event.data
+    console.log('Received auth data from popup:', authData)
+    localStorage.setItem('access_token', authData.access_token)
+    localStorage.setItem('refresh_token', authData.refresh_token)
+    localStorage.setItem('is_new', authData.is_new.toString())
+    console.log('Data saved to localStorage.')
+  })
   return (
     <div>
       {code ? (
