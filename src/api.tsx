@@ -20,9 +20,11 @@ export function postsign(code: string, provider: string) {
       }
       window.opener.postMessage(authData, '*')
       console.log('Auth data sent to parent window:', authData)
+      window.close()
     })
     .catch(error => {
       alert('로그인을 다시 시도해주세요.')
+      window.close()
       throw error
     })
 }
