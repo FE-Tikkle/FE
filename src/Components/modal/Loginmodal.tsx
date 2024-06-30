@@ -1,12 +1,14 @@
-// LoginModal.tsx
 import React from 'react'
 import Modal from './modal'
 import { motion } from 'framer-motion'
 import './modal.css'
+import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
+import { postsign } from '../../api'
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void
   onKakaoLogin: () => void
+  onNaverLogin: () => void
 }
 
 const container = {
@@ -29,7 +31,21 @@ const LoginModal: React.FC<LoginModalProps> = ({
   isOpen,
   onClose,
   onKakaoLogin,
+  onNaverLogin,
 }) => {
+  const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
+    if (credentialResponse.credential) {
+      console.log(credentialResponse)
+      postsign(credentialResponse.credential, 'google')
+    } else {
+      console.error('No credential found in the response.')
+    }
+  }
+
+  const handleGoogleError = () => {
+    console.error('Failed Login..')
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <motion.div
@@ -43,6 +59,16 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <motion.button variants={item} onClick={onKakaoLogin}>
           카카오 로그인
         </motion.button>
+        <motion.button variants={item} onClick={onNaverLogin}>
+          네이버 로그인
+        </motion.button>
+        <motion.div className="google-login-container" variants={item}>
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            useOneTap
+          />
+        </motion.div>
       </motion.div>
     </Modal>
   )

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { kakaoLogin } from '../store/slices/authslice'
+import { kakaoLogin, naverLogin } from '../store/slices/authslice'
 import LoginModal from '../Components/modal/Loginmodal'
 import { postsign } from '../api'
 import Loading from '../Components/Loading'
@@ -10,6 +10,7 @@ import InfoModal from '../Components/modal/infomodal'
 const Home: React.FC = () => {
   const params = new URLSearchParams(location.search)
   const code = params.get('code')
+  const state = params.get('state')
   const dispatch = useDispatch()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
@@ -32,8 +33,9 @@ const Home: React.FC = () => {
     setIsInfoModalOpen(false)
   }
   useEffect(() => {
-    if (code) {
-      postsign(code, 'kakao')
+    if (code && state) {
+      if (state.includes('kakao')) postsign(code, 'kakao')
+      else if (state.includes('naver')) postsign(code, 'naver')
     }
   }, [code])
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +53,10 @@ const Home: React.FC = () => {
   }
   const handleKakaoLogin = () => {
     dispatch(kakaoLogin())
+    closeModal()
+  }
+  const handleNaverLogin = () => {
+    dispatch(naverLogin())
     closeModal()
   }
   const receiveAuthData = (authData: any) => {
@@ -71,6 +77,7 @@ const Home: React.FC = () => {
             isOpen={isModalOpen}
             onClose={closeModal}
             onKakaoLogin={handleKakaoLogin}
+            onNaverLogin={handleNaverLogin}
           />
           {inNew && (
             <InfoModal
