@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import './modal.css'
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
 import { postsign } from '../../api'
+import DataListener from '../Login/DataListener'
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void
@@ -35,7 +36,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
 }) => {
   const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
     if (credentialResponse.credential) {
-      console.log(credentialResponse)
+      console.log(credentialResponse.credential)
       postsign(credentialResponse.credential, 'google')
     } else {
       console.error('No credential found in the response.')
@@ -45,7 +46,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
   const handleGoogleError = () => {
     console.error('Failed Login..')
   }
-
+  const receiveAuthData = (authData: any) => {
+    console.log('Received auth data in Home component:', authData)
+  }
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <motion.div
@@ -66,9 +69,11 @@ const LoginModal: React.FC<LoginModalProps> = ({
           <GoogleLogin
             onSuccess={handleGoogleSuccess}
             onError={handleGoogleError}
+            type="icon"
             useOneTap
           />
         </motion.div>
+        <DataListener onReceiveAuthData={receiveAuthData} />
       </motion.div>
     </Modal>
   )
