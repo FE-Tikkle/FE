@@ -2,14 +2,13 @@ import React from 'react'
 import Modal from './modal'
 import { motion } from 'framer-motion'
 import './modal.css'
-import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
-import { postsign } from '../../api'
 import DataListener from '../Login/DataListener'
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void
   onKakaoLogin: () => void
   onNaverLogin: () => void
+  onGoogleLogin: () => void
 }
 
 const container = {
@@ -33,19 +32,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
   onClose,
   onKakaoLogin,
   onNaverLogin,
+  onGoogleLogin,
 }) => {
-  const handleGoogleSuccess = (credentialResponse: CredentialResponse) => {
-    if (credentialResponse.credential) {
-      console.log(credentialResponse.credential)
-      postsign(credentialResponse.credential, 'google')
-    } else {
-      console.error('No credential found in the response.')
-    }
-  }
-
-  const handleGoogleError = () => {
-    console.error('Failed Login..')
-  }
   const receiveAuthData = (authData: any) => {
     console.log('Received auth data in Home component:', authData)
   }
@@ -65,14 +53,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <motion.button variants={item} onClick={onNaverLogin}>
           네이버 로그인
         </motion.button>
-        <motion.div className="google-login-container" variants={item}>
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleError}
-            type="icon"
-            useOneTap
-          />
-        </motion.div>
+        <motion.button variants={item} onClick={onGoogleLogin}>
+          구글 로그인
+        </motion.button>
         <DataListener onReceiveAuthData={receiveAuthData} />
       </motion.div>
     </Modal>

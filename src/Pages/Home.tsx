@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { kakaoLogin, naverLogin } from '../store/slices/authslice'
+import { kakaoLogin, naverLogin, googleLogin } from '../store/slices/authslice'
 import LoginModal from '../Components/modal/Loginmodal'
 import { postsign } from '../api'
 import Loading from '../Components/Loading'
@@ -36,6 +36,7 @@ const Home: React.FC = () => {
     if (code && state) {
       if (state.includes('kakao')) postsign(code, 'kakao')
       else if (state.includes('naver')) postsign(code, 'naver')
+      else if (state.includes('google')) postsign(code, 'google')
     }
   }, [code])
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +60,10 @@ const Home: React.FC = () => {
     dispatch(naverLogin())
     closeModal()
   }
+  const handleGoogleLogin = () => {
+    dispatch(googleLogin())
+    closeModal()
+  }
   const receiveAuthData = (authData: any) => {
     console.log('Received auth data in Home component:', authData)
   }
@@ -78,6 +83,7 @@ const Home: React.FC = () => {
             onClose={closeModal}
             onKakaoLogin={handleKakaoLogin}
             onNaverLogin={handleNaverLogin}
+            onGoogleLogin={handleGoogleLogin}
           />
           {inNew && (
             <InfoModal
