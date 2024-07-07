@@ -1,6 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { REST_API_KEY, REDIRECT_URI, NAVER_ID, GOOGLE_ID } from './constant.jsx'
-const initialState = {}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+  REST_API_KEY,
+  REDIRECT_URI,
+  NAVER_ID,
+  GOOGLE_ID,
+  GOOGLE_SECRET_ID,
+} from './constant.jsx'
+
+interface GoogleAuthBody {
+  client_id: string
+  client_secret: string
+  code: string
+  grant_type: string
+  redirect_uri: string
+  state: string
+}
+
+interface AuthState {
+  googleAuthData: GoogleAuthBody
+}
+
+const initialState: AuthState = {
+  googleAuthData: {
+    client_id: GOOGLE_ID,
+    client_secret: GOOGLE_SECRET_ID,
+    code: '',
+    grant_type: 'authorization_code',
+    redirect_uri: REDIRECT_URI,
+    state: 'Campusnow-google',
+  },
+}
 
 const authSlice = createSlice({
   name: 'auth',
@@ -18,9 +47,15 @@ const authSlice = createSlice({
       const link = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=profile+email+openid&state=Campusnow-google`
       window.open(link, 'googleLogin', 'width=500,height=600')
     },
+    GoogleAuthData: (state, action: PayloadAction<{ code: string | null }>) => {
+      console.log('GoogleAuthData reducer called:', action.payload)
+      state.googleAuthData.code = action.payload.code || ''
+      console.log('Updated state:', state.googleAuthData)
+    },
   },
 })
 
-export const { kakaoLogin, naverLogin, googleLogin } = authSlice.actions
+export const { kakaoLogin, naverLogin, googleLogin, GoogleAuthData } =
+  authSlice.actions
 
 export default authSlice.reducer

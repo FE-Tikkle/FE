@@ -1,0 +1,222 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+.Login-button {
+  cursor: pointer;
+}
+.login-modal-content {
+  width: 90vw;
+  min-height: 95vh;
+  max-width: 1561px;
+  min-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: radial-gradient(
+    181.33% 98.07% at 9.51% 23.67%,
+    #f9fbff 0%,
+    #eaeff5 31.85%,
+    #f0f5fd 68.35%,
+    #f2f2f4 100%
+  );
+  box-shadow: 0px 0.5px 20px 0px rgba(125, 125, 125, 0.2);
+  gap: 100px;
+}
+.Login-left {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 65px;
+  width: 100%;
+  margin-left: 30px;
+}
+.Login-maintext {
+  color: #484848;
+  font-size: 2.7vw;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 55px;
+}
+.Login-Image {
+  width: 90%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+.Login-right {
+  margin-right: 30px;
+}
+.Login-rightText {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.Login-rightText-Title {
+  color: #484848;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 55px;
+}
+.Login-rightText-EX {
+  color: #484848;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 30px;
+}
+.Login-social-button {
+  display: flex;
+  flex-direction: column;
+  gap: 23.26px;
+  margin-top: 120px;
+}
+.Login-google,
+.Login-kakao,
+.Login-naver {
+  width: 454.591px;
+  height: 72.471px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #484848;
+  cursor: pointer;
+}
+.Login-google {
+  border: 1px solid #d9d9d9;
+  background: #fff;
+}
+.Login-kakao {
+  background: #fce700;
+}
+.Login-naver {
+  background: #79d25a;
+  color: #fff;
+}
+.Login-info-right {
+  margin-right: 30px;
+}
+.Login-info-left {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 100px;
+  width: 100%;
+  margin-left: 50px;
+}
+.Login-input {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #484848;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+}
+.Login-form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.Login-form-input {
+  width: 433.924px;
+  height: 52.999px;
+  border-radius: 10px;
+  background: #fff;
+  border: none;
+  font-size: 25px;
+  font-family: 'Pretendard';
+  padding-left: 20px;
+  transition: border-color 0.3s ease-in-out;
+}
+.Login-form-input:focus {
+  outline: none;
+}
+.Login-terms {
+  width: 455.273px;
+  height: 227.857px;
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+}
+.term-item {
+  display: flex;
+  gap: 17px;
+}
+.terms-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-left: 24px;
+}
+.term-item label {
+  color: #484848;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+}
+.term-item input[type='checkbox'] {
+  display: none;
+}
+.term-item:first-child label {
+  font-size: 18px;
+  font-weight: 700;
+}
+input + label {
+  width: 50.28px;
+  height: 24.939px;
+  background: #f0f1f3;
+  display: inline-block;
+  cursor: pointer;
+}
+input:checked + label {
+  background: rgb(34, 41, 255);
+}
+.submit-btn {
+  width: 455.273px;
+  height: 50.5px;
+  border-radius: 5px;
+  background: #3c3f4f;
+  margin-top: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  cursor: pointer;
+}
+@media (max-width: 1100px) {
+  .login-modal-content {
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+  }
+  .Login-left {
+    display: none;
+  }
+  .Login-right {
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-top: -60px;
+  }
+  .Login-info-right {
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-top: -60px;
+  }
+  .Login-info-left {
+    display: none;
+  }
+}

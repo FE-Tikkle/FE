@@ -1,98 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { kakaoLogin, naverLogin, googleLogin } from '../store/slices/authslice'
-import LoginModal from '../Components/modal/Loginmodal'
-import { postsign } from '../api'
+import React from 'react'
+import Header from '../Components/Header/Header'
 import Loading from '../Components/Loading'
-import LoginButton from '../Components/Login/Loginbutton'
-import DataListener from '../Components/Login/DataListener'
-import InfoModal from '../Components/modal/infomodal'
+import Footer from '../Components/Footer/Footer'
+import AuthHandler from '../Components/Login/AuthHandler'
 const Home: React.FC = () => {
   const params = new URLSearchParams(location.search)
   const code = params.get('code')
-  const state = params.get('state')
-  const dispatch = useDispatch()
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
-  const [inNew, setInNew] = useState(false)
-  const [formData, setFormData] = useState({})
-  useEffect(() => {
-    // 로컬 스토리지에서 in_new 값 확인하여 설정
-    const inNewValue = localStorage.getItem('is_new') === 'true'
-    setInNew(inNewValue)
-    openInfoModal()
-  }, [])
-
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
-  const openInfoModal = () => {
-    setIsInfoModalOpen(true)
-  }
-
-  const closeInfoModal = () => {
-    setIsInfoModalOpen(false)
-  }
-  useEffect(() => {
-    if (code && state) {
-      if (state.includes('kakao')) postsign(code, 'kakao')
-      else if (state.includes('naver')) postsign(code, 'naver')
-      else if (state.includes('google')) postsign(code, 'google')
-    }
-  }, [code])
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSubmit = () => {
-    // localStorage.setItem('is_new', 'false') -> post하면 하는걸로 변경하기
-    console.log('Form Data:', formData)
-    closeInfoModal()
-  }
-  const handleKakaoLogin = () => {
-    dispatch(kakaoLogin())
-    closeModal()
-  }
-  const handleNaverLogin = () => {
-    dispatch(naverLogin())
-    closeModal()
-  }
-  const handleGoogleLogin = () => {
-    dispatch(googleLogin())
-    closeModal()
-  }
-  const receiveAuthData = (authData: any) => {
-    console.log('Received auth data in Home component:', authData)
-  }
   return (
     <div>
-      <DataListener onReceiveAuthData={receiveAuthData} />
       {code ? (
         <div>
           <Loading />
+          <AuthHandler />
         </div>
       ) : (
         <div>
-          <h2>홈 페이지</h2>
-          <LoginButton onClick={openModal} />
-          <LoginModal
-            isOpen={isModalOpen}
-            onClose={closeModal}
-            onKakaoLogin={handleKakaoLogin}
-            onNaverLogin={handleNaverLogin}
-            onGoogleLogin={handleGoogleLogin}
-          />
-          {inNew && (
-            <InfoModal
-              isOpen={isInfoModalOpen}
-              onClose={closeInfoModal}
-              onSubmit={handleSubmit}
-              onChange={handleInputChange}
-            />
-          )}
+          <Header />
+          <Footer />
         </div>
       )}
     </div>

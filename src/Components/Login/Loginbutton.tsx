@@ -1,11 +1,15 @@
 import React from 'react'
-
+import './Login.css'
 interface LoginButtonProps {
-  onClick: () => void;
+  onClick: () => void
 }
 
 const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
-  return <button onClick={onClick}>로그인하기</button>
+  return (
+    <div className="Login-button" onClick={onClick}>
+      로그인하기
+    </div>
+  )
 }
 
 export default LoginButton

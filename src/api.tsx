@@ -1,10 +1,20 @@
 import axios from 'axios'
+import GoogleAuthBody from './store/slices/authslice'
 
 const BASE_URL =
   'https://oqn4jdpa4pvtyeodmh5odzofke0ofmje.lambda-url.ap-northeast-3.on.aws'
 
+const Google_BASE_URL = 'https://oauth2.googleapis.com/token'
+
 interface Postsign {
   code: string
+}
+interface GoogleAuthBody {
+  client_id: string
+  client_secret: string
+  code: string
+  grant_type: string
+  redirect_uri: string
 }
 
 export function postsign(code: string, provider: string) {
@@ -29,7 +39,22 @@ export function postsign(code: string, provider: string) {
     })
     .catch(error => {
       alert('로그인을 다시 시도해주세요.')
-      window.close()
+      // window.close()
       throw error
+    })
+}
+export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
+  if (!googleAuthData) {
+    console.log('Google authentication data is missing')
+  }
+  return axios
+    .post(`${Google_BASE_URL}`, googleAuthData)
+    .then(res => {
+      console.log('Token', res.data)
+      postsign(res.data.access_token, 'google')
+    })
+    .catch(error => {
+      alert('로그인을 다시 시도해주세요')
+      console.error(error)
     })
 }

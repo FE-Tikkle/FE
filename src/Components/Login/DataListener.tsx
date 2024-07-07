@@ -25,6 +25,7 @@ const DataListener: React.FC<DataListenerProps> = ({ onReceiveAuthData }) => {
 
         // 부모 컴포넌트로 인증 데이터 전달
         onReceiveAuthData(authData)
+        window.location.reload()
       } else {
         console.warn('Invalid auth data received:', authData)
       }
