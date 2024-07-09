@@ -4,6 +4,10 @@ import GoogleAuthBody from './store/slices/authslice'
 const BASE_URL =
   'https://oqn4jdpa4pvtyeodmh5odzofke0ofmje.lambda-url.ap-northeast-3.on.aws'
 
+const axiosInstance = axios.create({
+  baseURL: `${BASE_URL}`,
+})
+
 const Google_BASE_URL = 'https://oauth2.googleapis.com/token'
 
 interface Postsign {
@@ -18,10 +22,18 @@ interface GoogleAuthBody {
 }
 
 export function postsign(code: string, provider: string) {
-  const postData: Postsign = { code }
+  const postCode: Postsign = { code }
 
   return axios
-    .post(`${BASE_URL}/auth/sign?provider=${provider}`, postData)
+    .post(
+      `${BASE_URL}/auth/sign?provider=${provider}`,
+      {},
+      {
+        headers: {
+          Authorization: `${postCode.code}`, // postCode 객체의 code 속성 사용
+        },
+      }
+    )
     .then(res => {
       const authData = {
         access_token: res.data.access_token,
@@ -58,3 +70,17 @@ export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
       console.error(error)
     })
 }
+
+axiosInstance.interceptors.request.use(
+  request => {
+    const accessToken = localStorage.getItem('access_token')
+    console.log(accessToken)
+    if (accessToken) {
+      request.headers.Authorization = `Bearer ${accessToken}` // Authorization 헤더 설정
+    }
+    return request
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)

@@ -4,4 +4,6 @@ body {
   margin: 0;
   font-family: 'Pretendard';
   user-select: none;
+  background: #f5f3f0;
+  overflow-x: hidden;
 }
