@@ -6,14 +6,8 @@
   border: 1px solid #fff;
 
   opacity: 0.95;
-  background: conic-gradient(
-    from 107deg at 45.62% 65.84%,
-    #f9fbff 0deg,
-    #f6ceb3 114.66499328613281deg,
-    #dbecef 246.04843139648438deg,
-    #f3f4f4 360deg
-  );
-
+  background: var(--main-container-background);
+  transition: 0.3s ease;
   box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
     0px 1px 10px 0px rgba(255, 255, 255, 0.25);
 }

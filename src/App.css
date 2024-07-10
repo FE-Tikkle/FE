@@ -1,9 +1,24 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
+:root {
+  --main-background-color: #f5f3f0;
+  --searchbar-background-color: #dbd7d4;
+  --searchbar-font-color: rgba(35, 35, 35, 0.5);
+  --button-background-color: #fff;
+  --button-border: none;
+  --main-container-background: conic-gradient(
+    from 107deg at 45.62% 65.84%,
+    #f9fbff 0deg,
+    #f6ceb3 114.66499328613281deg,
+    #dbecef 246.04843139648438deg,
+    #f3f4f4 360deg
+  );
+}
+
 body {
   margin: 0;
   font-family: 'Pretendard';
   user-select: none;
-  background: #f5f3f0;
+  background: var(--main-background-color);
   overflow-x: hidden;
 }

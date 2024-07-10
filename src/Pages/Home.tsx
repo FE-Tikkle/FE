@@ -4,9 +4,9 @@ import Loading from '../Components/Loading'
 import Footer from '../Components/Footer/Footer'
 import AuthHandler from '../Components/Login/AuthHandler'
 import Search from '../Components/Search/Searchbar'
-import { ThemeProvider } from '../assets/Theme/ThemeContext'
 import Main from '../Components/Main/main'
 import ThemeSelector from '../assets/Theme/ThemeSelector'
+
 const Home: React.FC = () => {
   const params = new URLSearchParams(location.search)
   const code = params.get('code')
@@ -19,13 +19,11 @@ const Home: React.FC = () => {
         </div>
       ) : (
         <div>
-          <ThemeProvider>
-            <Header />
-            <Search />
-            <ThemeSelector />
-            <Main />
-            <Footer />
-          </ThemeProvider>
+          <Header />
+          <Search />
+          <ThemeSelector />
+          <Main />
+          <Footer />
         </div>
       )}
     </div>

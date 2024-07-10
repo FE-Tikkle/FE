@@ -1,4 +1,3 @@
-// Modal.tsx
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './modal.css' // Import CSS file for styling
@@ -7,9 +6,15 @@ interface ModalProps {
   isOpen: boolean
   onClose: () => void
   children: React.ReactNode
+  customCloseButton?: React.ReactNode // Optional custom close button
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  customCloseButton,
+}) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -32,14 +37,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
               exit={{ y: 20, opacity: 0 }}
             >
               {children}
-              <motion.button
-                className="close-button"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={onClose}
-              >
-                닫기
-              </motion.button>
+              {customCloseButton ? (
+                customCloseButton
+              ) : (
+                <motion.button
+                  className="close-button"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={onClose}
+                >
+                  닫기
+                </motion.button>
+              )}
             </motion.div>
           </motion.div>
         </motion.div>

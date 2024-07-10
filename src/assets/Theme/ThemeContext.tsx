@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
-type Theme = 'light' | 'dark' | 'blue' | 'green'
+type Theme = 'light' | 'navy'
 
 interface ThemeContextProps {
   theme: Theme
@@ -26,32 +26,22 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   const themeStyles = {
     light: {
-      '--background-color': '#dbd7d4',
+      '--main-background-color': '#F5F3F0',
+      '--searchbar-background-color': '#dbd7d4',
+      '--searchbar-font-color': 'rgba(35, 35, 35, 0.50)',
       '--button-background-color': '#fff',
-      '--button-text-color': '#484848',
-      '--button-hover-border-color': '#dbd7d4',
-      '--button-hover-shadow-color': '#dbd7d4',
+      '--button-border': 'none',
+      '--main-container-background':
+        'conic-gradient(from 107deg at 45.62% 65.84%, #f9fbff 0deg, #f6ceb3 114.66499328613281deg, #dbecef 246.04843139648438deg, #f3f4f4 360deg)',
     },
-    dark: {
-      '--background-color': '#333',
-      '--button-background-color': '#555',
-      '--button-text-color': '#fff',
-      '--button-hover-border-color': '#444',
-      '--button-hover-shadow-color': '#444',
-    },
-    blue: {
-      '--background-color': '#e0f7fa',
-      '--button-background-color': '#4fc3f7',
-      '--button-text-color': '#fff',
-      '--button-hover-border-color': '#29b6f6',
-      '--button-hover-shadow-color': '#29b6f6',
-    },
-    green: {
-      '--background-color': '#e8f5e9',
-      '--button-background-color': '#66bb6a',
-      '--button-text-color': '#fff',
-      '--button-hover-border-color': '#43a047',
-      '--button-hover-shadow-color': '#43a047',
+    navy: {
+      '--main-background-color': ' #FBF9F6',
+      '--searchbar-background-color': '#101B49',
+      '--searchbar-font-color': 'rgba(255, 255, 255, 0.50)',
+      '--button-background-color': '#FFFFFF',
+      '--button-border': '1px solid #D9D9D9',
+      '--main-container-background':
+        'conic-gradient(from 122deg at 47.97% 52.33%, #EEEEFD 27.67605721950531deg, #DDE7F4 114.66499328613281deg, #E9F2FF 246.04843139648438deg)',
     },
   }
 

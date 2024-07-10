@@ -1,18 +1,10 @@
-:root {
-  --background-color: #dbd7d4;
-  --button-background-color: #fff;
-  --button-text-color: #484848;
-  --button-hover-border-color: #dbd7d4;
-  --button-hover-shadow-color: #dbd7d4;
-}
-
 .Search-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 47.3px;
-  margin-bottom: 31.54px;
+  margin-bottom: -10.54px;
   gap: 49px;
 }
 
@@ -20,14 +12,18 @@
   width: 554px;
   height: 61px;
   border-radius: 50px;
-  background: var(--background-color);
-  border: none;
+  background: var(--searchbar-background-color);
+  color: var(--searchbar-font-color);
+  border: var(--button-border);
   font-size: 15px;
   font-family: 'Pretendard';
   padding-left: 60px;
-  transition: border-color 0.3s ease-in-out;
+  transition: 0.3s ease;
 }
-
+.Search-bar::placeholder {
+  color: var(--searchbar-font-color);
+  transition: all 0.3s ease;
+}
 .Search-bar:focus {
   outline: none;
 }
@@ -39,15 +35,19 @@
 
 .Search-img {
   position: absolute;
-  top: 25%;
-  left: 19px;
+  top: 31%;
+  left: 22px;
 }
 
 .Search-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 54px;
+  justify-content: center;
 }
-
+.Search-Each-button-container {
+  border-radius: 20px;
+}
 .Search-Each-button,
 .Search-Each-button_add {
   width: 103.869px;
@@ -56,8 +56,8 @@
   border-radius: 20px;
   background: var(--button-background-color);
   box-shadow: 0px 2px 4px 0px rgba(255, 255, 255, 0.25);
-  border: none;
-  color: var(--button-text-color);
+  border: var(--button-border);
+  color: #484848;
   text-align: center;
   font-family: 'Pretendard';
   font-size: 11px;
@@ -70,6 +70,7 @@
   gap: 4px;
   align-items: center;
   padding-top: 14px;
+  cursor: pointer;
 }
 
 .Search-Each-button_add {
@@ -77,10 +78,10 @@
   padding-top: 24px;
 }
 
-.Search-Each-button:hover,
+.Search-Each-button-container:hover,
 .Search-Each-button_add:hover {
-  border: 1px solid var(--button-hover-border-color);
-  box-shadow: 0px 1px 10px 0px var(--button-hover-shadow-color);
+  outline: 1px solid #dbd7d4;
+  box-shadow: 0px 1px 10px 0px #dbd7d4;
 }
 
 .Platform-icon {
@@ -91,4 +92,118 @@
 .Favicon-icon {
   width: 30px;
   height: 30px;
+}
+.Delete-button {
+  position: absolute;
+  display: none;
+  top: 30%;
+  transform: translateX(315%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.Search-Each-button-container:hover .Delete-button {
+  display: block;
+  transition: all 0.3s ease;
+}
+.Add-platform-form {
+  width: 613px;
+  height: 401.792px;
+  border-radius: 15px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+.Add-platform-form label {
+  background: none;
+  color: #000;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 10px;
+  margin-left: 3px;
+}
+.Add-plaform-maintxt {
+  color: #000;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-self: flex-start;
+  margin-left: 35px;
+}
+.Search-new-platform {
+  display: flex;
+  flex-direction: column;
+}
+.Search-new-platform-name,
+.Search-new-platform-URL {
+  width: 519.295px;
+  height: 54.817px;
+  border-radius: 15px;
+  background: #ffeee3;
+  border: none;
+  padding-left: 20px;
+  font-size: 15px;
+}
+.Search-new-platform input:focus {
+  outline: 1px solid rgba(143, 143, 143, 0.5);
+}
+.Search-newplatfrom-sumbit {
+  width: 117.115px;
+  height: 38.301px;
+  border-radius: 15px;
+  background: #ffeee3;
+  border: none;
+  color: #000;
+
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 26%;
+}
+.Search-newplatfrom-sumbit:hover {
+  background-color: #bbbbbb;
+}
+.custom-close-button {
+  width: 117.115px;
+  height: 38.301px;
+  border-radius: 15px;
+  background: #f0f1f3;
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border: none;
+  position: absolute;
+  top: 84%;
+  left: 75%;
+}
+.custom-close-button:hover {
+  background: rgb(192, 192, 192);
+}
+@media (max-width: 800px) {
+  .Search-bar {
+    width: 354px;
+  }
+  .Search-buttons {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Search-bar {
+    width: 254px;
+  }
 }

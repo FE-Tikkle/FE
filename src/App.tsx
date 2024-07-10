@@ -1,6 +1,7 @@
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 import Home from './Pages/Home'
 import './App.css'
+import { ThemeProvider } from './assets/Theme/ThemeContext'
 const ROUTE_PATH = {
   HOME: '/',
   LOGIN: '/login',
@@ -13,7 +14,11 @@ const router = createMemoryRouter([
 ])
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  )
 }
 
 export default App

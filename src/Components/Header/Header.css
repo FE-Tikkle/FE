@@ -24,11 +24,10 @@
   font-weight: 700;
   line-height: normal;
   gap: 2vw;
-  cursor: pointer;
 }
 .Header-text {
   color: #6f6f6f;
-  font-size: 25px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;

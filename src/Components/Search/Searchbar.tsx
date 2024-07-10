@@ -1,7 +1,9 @@
 import { useState, ChangeEvent } from 'react'
-import Modal from '../modal/modal' // 모달 컴포넌트 임포트
+import Modal from '../modal/modal'
+import { motion } from 'framer-motion'
+import { useTheme } from '../../assets/Theme/ThemeContext'
 import './Searchbar.css'
-
+import '../../App.css'
 interface Platform {
   name: string
   url: string
@@ -29,6 +31,9 @@ const Searchbar = () => {
   const [newPlatformUrl, setNewPlatformUrl] = useState('')
   const [showAddPlatformModal, setShowAddPlatformModal] = useState(false)
 
+  const { theme } = useTheme()
+  const imageSrc =
+    theme === 'light' ? 'img/Logo/searchiocn1.svg' : 'img/Logo/searchiocn2.svg'
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
       const searchUrl = `${platforms[0].url}/search?q=${encodeURIComponent(
@@ -43,6 +48,10 @@ const Searchbar = () => {
   }
 
   const handleAddPlatform = () => {
+    if (!newPlatformName || !newPlatformUrl) {
+      alert('이름과 URL을 모두 입력해주세요.')
+      return
+    }
     if (newPlatformName && newPlatformUrl) {
       const newPlatform = { name: newPlatformName, url: newPlatformUrl }
       setPlatforms([...platforms, newPlatform])
@@ -51,7 +60,10 @@ const Searchbar = () => {
       setShowAddPlatformModal(false)
     }
   }
-
+  const handleDeletePlatform = (url: string) => {
+    const filteredPlatforms = platforms.filter(platform => platform.url !== url)
+    setPlatforms(filteredPlatforms)
+  }
   return (
     <div className="Search-main">
       <div className="Search-container">
@@ -65,55 +77,90 @@ const Searchbar = () => {
         <img
           className="Search-img"
           alt="Search icon"
-          src="img/Searchicon.png"
+          src={imageSrc}
           onClick={handleSearch}
         />
       </div>
       <div className="Search-buttons">
         {platforms.map(platform => (
-          <button
-            key={platform.url}
-            onClick={() => window.open(platform.url, '_blank')}
-            className="Search-Each-button"
-          >
-            <img
-              src={
-                platform.imgSrc ||
-                `https://www.google.com/s2/favicons?domain=${platform.url}`
-              }
-              alt={`${platform.name} logo`}
-              className="Platform-icon"
-            />
-            {platform.name}
-          </button>
+          <div key={platform.url} className="Search-Each-button-container">
+            <button
+              onClick={() => window.open(platform.url, '_blank')}
+              className="Search-Each-button"
+            >
+              <img
+                src={
+                  platform.imgSrc ||
+                  `https://www.google.com/s2/favicons?domain=${platform.url}`
+                }
+                alt={`${platform.name} logo`}
+                className={platform.imgSrc ? 'Platform-icon' : 'Favicon-icon'}
+              />
+              {platform.name}
+            </button>
+            <button
+              className="Delete-button"
+              onClick={() => handleDeletePlatform(platform.url)}
+            >
+              <img
+                src="img/delete.svg"
+                alt="삭제"
+                onClick={() => handleDeletePlatform(platform.url)}
+              />
+            </button>
+          </div>
         ))}
-        <button
-          className="Search-Each-button_add"
-          onClick={() => setShowAddPlatformModal(true)}
-        >
-          {' '}
-          <img src="img/Logo/Vector.svg" alt="add_button" />
-          바로가기 추가
-        </button>
+        {platforms.length < 6 && (
+          <button
+            className="Search-Each-button_add"
+            onClick={() => setShowAddPlatformModal(true)}
+          >
+            {' '}
+            <img src="img/Logo/Vector.svg" alt="add_button" />
+            바로가기 추가
+          </button>
+        )}
       </div>
       <Modal
         isOpen={showAddPlatformModal}
         onClose={() => setShowAddPlatformModal(false)}
+        customCloseButton={
+          <motion.button
+            className="custom-close-button"
+            onClick={() => setShowAddPlatformModal(false)}
+          >
+            취소
+          </motion.button>
+        }
       >
         <div className="Add-platform-form">
-          <input
-            type="text"
-            placeholder="새 플랫폼 명"
-            value={newPlatformName}
-            onChange={e => setNewPlatformName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="새 플랫폼 URL"
-            value={newPlatformUrl}
-            onChange={e => setNewPlatformUrl(e.target.value)}
-          />
-          <button onClick={handleAddPlatform}>플랫폼 추가</button>
+          <div className="Add-plaform-maintxt">바로가기 추가</div>
+          <div className="Search-new-platform">
+            <label>이름</label>
+            <input
+              type="text"
+              placeholder="새 플랫폼 이름"
+              value={newPlatformName}
+              onChange={e => setNewPlatformName(e.target.value)}
+              className="Search-new-platform-name"
+            />
+          </div>
+          <div className="Search-new-platform">
+            <label>URL</label>
+            <input
+              type="text"
+              placeholder="새 플랫폼 URL"
+              value={newPlatformUrl}
+              onChange={e => setNewPlatformUrl(e.target.value)}
+              className="Search-new-platform-URL"
+            />
+          </div>
+          <button
+            className="Search-newplatfrom-sumbit"
+            onClick={handleAddPlatform}
+          >
+            저장
+          </button>
         </div>
       </Modal>
     </div>
