@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-const MainContainer: React.FC = () => {
+interface MainConatainerProps {
+  children: ReactNode
+}
+
+const MainContainer: React.FC<MainConatainerProps> = ({ children }) => {
   return (
     <>
-      <div className="main-conatainer"></div>
+      <div className="main-conatainer">{children}</div>
       <div className="main-bottom-container"></div>
     </>
   )

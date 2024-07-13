@@ -1,11 +1,7 @@
 import React from 'react'
-
+import './calendar.css'
 const Calendar: React.FC = () => {
-  return (
-    <div>
-      <p>로그인 중입니다. 잠시만 기다려주세요...</p>
-    </div>
-  )
+  return <div className="Calendar-Container"></div>
 }
 
 export default Calendar

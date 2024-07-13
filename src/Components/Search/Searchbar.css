@@ -1,3 +1,7 @@
+:root {
+  --Search-new-platform: #ffeee3;
+}
+
 .Search-main {
   display: flex;
   flex-direction: column;
@@ -96,7 +100,7 @@
 .Delete-button {
   position: absolute;
   display: none;
-  top: 30%;
+  top: 220px;
   transform: translateX(315%);
   background: none;
   border: none;
@@ -146,7 +150,7 @@
   width: 519.295px;
   height: 54.817px;
   border-radius: 15px;
-  background: #ffeee3;
+  background: var(--Search-new-platform);
   border: none;
   padding-left: 20px;
   font-size: 15px;
@@ -158,7 +162,7 @@
   width: 117.115px;
   height: 38.301px;
   border-radius: 15px;
-  background: #ffeee3;
+  background: var(--Search-new-platform);
   border: none;
   color: #000;
 
@@ -192,6 +196,20 @@
 }
 .custom-close-button:hover {
   background: rgb(192, 192, 192);
+}
+
+.SearchBoxConatiner {
+  width: 138px;
+  height: 30.353px;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.SearchBoxicon {
+  margin-right: 10px;
 }
 @media (max-width: 800px) {
   .Search-bar {
