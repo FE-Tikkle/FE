@@ -3,7 +3,7 @@ import './Searchbar.css'
 const SearchBox: React.FC = () => {
   return (
     <div className="SearchBoxConatiner">
-      <img src="img\SearchBOX.svg" alt="삭제" className="SearchBoxicon" />
+      <img src="img\SearchBOX.svg" alt="검색" className="SearchBoxicon" />
     </div>
   )
 }

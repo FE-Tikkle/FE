@@ -30,7 +30,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       '--searchbar-background-color': '#dbd7d4',
       '--searchbar-font-color': 'rgba(35, 35, 35, 0.50)',
       '--button-background-color': '#fff',
-      '--button-border': 'none',
+      '--button-border': '1px solid transparent',
       '--main-container-background':
         'conic-gradient(from 107deg at 45.62% 65.84%, #f9fbff 0deg, #f6ceb3 114.66499328613281deg, #dbecef 246.04843139648438deg, #f3f4f4 360deg)',
       '--Schedule-recnet-icon-color': '#ffb281',

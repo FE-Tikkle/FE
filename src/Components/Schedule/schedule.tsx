@@ -13,6 +13,9 @@ const Schedule: React.FC = () => {
         <div className="Schedule-time">10:00 P.M. ~ 12:00 P.M.</div>
       </div>
       <div className="Schedule-emptycontainer"></div>
+      <div className="Schedule-emptycontainer"></div>
+      <div className="Schedule-emptycontainer"></div>
+      <div className="Schedule-emptycontainer"></div>
     </div>
   )
 }

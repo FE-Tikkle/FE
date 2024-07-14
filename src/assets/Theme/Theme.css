@@ -4,6 +4,7 @@
   border-radius: 50px;
   margin-left: 10px;
   margin-bottom: 8px;
+
   background: conic-gradient(
     from 107deg at 45.62% 65.84%,
     #f9fbff 0deg,
@@ -21,7 +22,7 @@
   align-items: center;
   gap: 10px;
   overflow: hidden;
-  transition: width 0.3s ease, height 0.3s ease;
+  transition: width 0.5s ease, height 0.5s ease;
   padding-left: 3px;
   cursor: pointer;
 }
@@ -37,7 +38,7 @@
 }
 .Themecontainer:hover label {
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
   transition-delay: 0.2s;
 }
 

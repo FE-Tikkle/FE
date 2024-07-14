@@ -35,6 +35,7 @@
 }
 .NoticeSelector-main2 {
   display: flex;
+  margin-top: 10px;
 }
 .tab {
   padding: 10px 20px;
@@ -52,4 +53,122 @@
 
 .tab:not(.active):hover {
   color: #2d2d2d;
+}
+
+.Noticelist {
+  width: 1090.304px;
+  height: 30.353px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 22px;
+  margin-bottom: 15px;
+}
+.Noticelist-item {
+  text-align: center;
+  font-weight: bold;
+  color: #a3a3a3;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.Noticelist-item.department {
+  flex: 1;
+}
+
+.Noticelist-item.title {
+  flex: 10;
+  margin-left: 80px;
+}
+
+.Noticelist-item.date {
+  flex: 2;
+  margin-right: 77px;
+}
+
+.notice {
+  width: 1089px;
+  height: 52.999px;
+  border-radius: 10px;
+  background: #fff;
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.department {
+  width: 130px;
+  flex: 1;
+  margin-left: 40px;
+}
+.title {
+  width: 580px;
+  margin-left: 30px;
+  flex: 3;
+}
+.date {
+  width: 110px;
+  flex: 0.64;
+}
+.bookmark-icon {
+  cursor: pointer;
+  margin-right: 25px;
+}
+.notice-all-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notice-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.pagination img {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination img.disabled {
+  opacity: 0.3;
+}
+
+.pagination span {
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.pagination span.active {
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.pagination span.disabled {
+  opacity: 0.3;
 }
