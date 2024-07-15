@@ -1,0 +1,98 @@
+.recruitment-Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  grid-auto-rows: 200px;
+}
+
+.recruitment-mainBox {
+  width: 350px;
+  height: 198px;
+  border-radius: 30px;
+  background: #fff;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.recruitment-Box1 {
+  display: flex;
+  margin-left: 15px;
+}
+.recruitment-company {
+  width: 86px;
+  height: 54px;
+  border-radius: 10px;
+  background: rgb(224, 224, 224);
+  margin-right: 20px;
+}
+
+.recruitment-dday {
+  width: 68px;
+  height: 19px;
+  border-radius: 5px;
+  background: #dbd7d4;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+.bookmark-icon1 {
+  margin-left: 110px;
+  margin-top: -35px;
+  cursor: pointer;
+}
+.recruitment-Box2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+.recruitment-title {
+  color: #3c332b;
+
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+.recruitment-Box3 {
+  display: flex;
+  gap: 45px;
+  margin-left: 25px;
+}
+.recruitment-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65.806px;
+  height: 19px;
+  border-radius: 5px;
+  background: rgba(255, 178, 129, 0.24);
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+}
+.recruitment-Box4 {
+  display: flex;
+  justify-content: space-around;
+}
+.recruitment-info1,
+.recruitment-info2 {
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+}
+.recruitment-info2 {
+  font-weight: 400;
+}

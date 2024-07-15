@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Notice from './notice'
-import Pagination from './pagination'
+import Pagination from '../pagination'
 
 interface NoticeData {
   department: string

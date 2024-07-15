@@ -1,0 +1,102 @@
+.Activities-Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.Activities-Card {
+  width: 350.278px;
+  height: 196.452px;
+  border-radius: 30px;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.Activities-Card-title {
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin-top: 15px;
+  margin-left: 25px;
+}
+.Activities-Card-main {
+  width: 350.278px;
+  height: 148.415px;
+  border-radius: 0px 0px 30px 30px;
+  background: #fff;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+.Activities-Card-img {
+  width: 100px;
+  height: 132.148px;
+  border-radius: 10px;
+  background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  margin-left: 25px;
+}
+.Activities-Card-main-title {
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13px;
+}
+.Activities-Card-main-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.Activities-Card-main-dday {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.Activities-Card-main-ddaybox,
+.Activities-Card-main-ddaybox2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 58.691px;
+  height: 19px;
+  border-radius: 5px;
+  background: #ffb687;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 12px;
+}
+.Activities-Card-main-ddaybox2 {
+  background: rgba(255, 182, 135, 0.24);
+  color: #463d36;
+  font-size: 8px;
+  font-weight: 500;
+}
+.Activities-Card-main-text {
+  display: flex;
+}
+.Activities-Card-main-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+.Activities-Card-main-info1,
+.Activities-Card-main-info2 {
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 13px;
+}
+.Activities-Card-main-info2 {
+  font-weight: 400;
+  margin-bottom: 7px;
+}

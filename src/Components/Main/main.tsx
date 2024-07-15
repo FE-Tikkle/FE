@@ -4,9 +4,8 @@ import './main.css'
 import SearchBox from '../Search/Searchbox'
 import Calendar from '../Calendar/calendar'
 import Schedule from '../Schedule/schedule'
-import NoticeSelector from '../Notice/noticeselector'
-import Noticelist from '../Notice/noticelist'
-import Noticemain from '../Notice/noticemain'
+import ContentSelector from '../MainContent/Contentselector'
+
 const Main: React.FC = () => {
   return (
     <>
@@ -17,9 +16,7 @@ const Main: React.FC = () => {
         </div>
         <div className="Noice">
           <SearchBox />
-          <NoticeSelector />
-          <Noticelist />
-          <Noticemain />
+          <ContentSelector />
         </div>
       </MainContainer>
     </>

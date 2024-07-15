@@ -1,5 +1,5 @@
 import React from 'react'
-import './notice.css'
+import './Content.css'
 interface PaginationProps {
   noticesPerPage: number
   totalNotices: number
