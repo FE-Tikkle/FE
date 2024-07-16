@@ -20,6 +20,7 @@ const Home: React.FC = () => {
       ) : (
         <div>
           <Header />
+          <AuthHandler />
           <Search />
           <ThemeSelector />
           <Main />

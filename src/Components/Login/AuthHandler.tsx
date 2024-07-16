@@ -23,13 +23,15 @@ const AuthHandler: React.FC = () => {
   )
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
-  const [inNew, setInNew] = useState(false)
   const [formData, setFormData] = useState({})
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     const inNewValue = localStorage.getItem('is_new') === 'true'
-    setInNew(inNewValue)
-    openInfoModal()
+    if (inNewValue) openInfoModal()
+
+    const accessToken = localStorage.getItem('access_token')
+    setIsLoggedIn(!!accessToken)
   }, [])
 
   useEffect(() => {
@@ -104,28 +106,21 @@ const AuthHandler: React.FC = () => {
   return (
     <div>
       <DataListener onReceiveAuthData={receiveAuthData} />
-      {code ? (
-        <div></div>
-      ) : (
-        <div>
-          <LoginButton onClick={openModal} />
-          <LoginModal
-            isOpen={isModalOpen}
-            onClose={closeModal}
-            onKakaoLogin={handleKakaoLogin}
-            onNaverLogin={handleNaverLogin}
-            onGoogleLogin={handleGoogleLogin}
-          />
-          {inNew && (
-            <InfoModal
-              isOpen={isInfoModalOpen}
-              onClose={closeInfoModal}
-              onSubmit={handleSubmit}
-              onChange={handleInputChange}
-            />
-          )}
-        </div>
-      )}
+
+      {!isLoggedIn && <LoginButton onClick={openModal} />}
+      <LoginModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onKakaoLogin={handleKakaoLogin}
+        onNaverLogin={handleNaverLogin}
+        onGoogleLogin={handleGoogleLogin}
+      />
+      <InfoModal
+        isOpen={isInfoModalOpen}
+        onClose={closeInfoModal}
+        onSubmit={handleSubmit}
+        onChange={handleInputChange}
+      />
     </div>
   )
 }
