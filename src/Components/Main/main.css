@@ -1,6 +1,6 @@
 .main-conatainer {
   width: 100%;
-  height: 650.596px;
+  height: 1174.07px;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   border: 1px solid #fff;
@@ -12,6 +12,7 @@
     0px 1px 10px 0px rgba(255, 255, 255, 0.25);
   display: flex;
   justify-content: center;
+  gap: 40px;
 }
 
 .main-bottom-container {
@@ -23,9 +24,23 @@
 .Noice {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 }
 
 .main-left {
   display: flex;
-  margin-top: 40px;
+  flex-direction: column;
+  margin-top: 10px;
+}
+@media (max-width: 1366px) {
+  .main-conatainer {
+    flex-direction: column-reverse;
+    height: 1500px;
+    align-items: center;
+    justify-content: start;
+  }
+  .main-left {
+    flex-direction: row-reverse;
+    gap: 100px;
+  }
 }

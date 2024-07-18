@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import Notice from './notice'
-import Pagination from '../pagination'
-
+import Notice from '../Notice/notice'
+import './scholarshop.css'
 interface NoticeData {
   department: string
   title: string
   date: string
 }
 
-const Noticemain: React.FC = () => {
+const Scholarship: React.FC = () => {
   const [notices, setNotices] = useState<NoticeData[]>([
     {
       department: '디자인융합',
@@ -80,7 +78,7 @@ const Noticemain: React.FC = () => {
   ])
 
   return (
-    <div className="notice-all-container">
+    <div className="scholar-all-container">
       {notices.length > 0 ? (
         notices.map((notice, index) => <Notice key={index} notice={notice} />)
       ) : (
@@ -90,4 +88,4 @@ const Noticemain: React.FC = () => {
   )
 }
 
-export default Noticemain
+export default Scholarship

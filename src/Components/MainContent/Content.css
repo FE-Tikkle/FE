@@ -1,3 +1,7 @@
+.Contetn-selecter {
+  display: flex;
+  flex-direction: column;
+}
 .Content-Selector-main {
   display: flex;
   width: 1090px;
@@ -32,6 +36,9 @@
 }
 .Content-Selector-sector:not(.selected):hover {
   background-color: #e6e6e6;
+}
+.Counter-main2 {
+  position: relative;
 }
 .Content-Selector-main2 {
   display: flex;

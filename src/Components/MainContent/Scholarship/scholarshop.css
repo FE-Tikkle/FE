@@ -1,0 +1,25 @@
+.scholar-all-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 740px;
+  gap: 15px;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  padding-right: 10px;
+  margin-top: 18.5px;
+}
+.scholar-all-container::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 10px;
+}
+
+.scholar-all-container::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+
+.scholar-all-container::-webkit-scrollbar-thumb {
+  background-color: var(--Srollbar);
+  border-radius: 5px;
+}

@@ -1,13 +1,17 @@
-.recruitment-Container {
+.recruitment-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   grid-auto-rows: 200px;
+  margin-top: 50px;
+  height: 740px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 .recruitment-mainBox {
-  width: 350px;
-  height: 198px;
+  width: 352px;
+  height: 206.617px;
   border-radius: 30px;
   background: #fff;
   margin-top: 25px;
@@ -21,22 +25,23 @@
   margin-left: 15px;
 }
 .recruitment-company {
-  width: 86px;
-  height: 54px;
+  width: 89.743px;
+  height: 56.35px;
   border-radius: 10px;
   background: rgb(224, 224, 224);
   margin-right: 20px;
+  box-shadow: 0px 1.044px 10.435px 0px rgba(0, 0, 0, 0.25);
 }
 
 .recruitment-dday {
-  width: 68px;
-  height: 19px;
+  width: 70.96px;
+  height: 19.827px;
   border-radius: 5px;
   background: #dbd7d4;
   color: #fff;
   text-align: center;
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
@@ -49,13 +54,13 @@
 .recruitment-Box2 {
   display: flex;
   flex-direction: column;
-  margin-left: 25px;
+  margin-left: 20px;
 }
 .recruitment-title {
   color: #3c332b;
 
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
@@ -63,36 +68,51 @@
 .recruitment-Box3 {
   display: flex;
   gap: 45px;
-  margin-left: 25px;
+  margin-left: 15px;
 }
 .recruitment-tag {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65.806px;
-  height: 19px;
+  width: 78.67px;
+  height: 19.827px;
   border-radius: 5px;
   background: rgba(255, 178, 129, 0.24);
   color: #3c332b;
   font-family: Pretendard;
-  font-size: 8px;
+  font-size: 12px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 12px;
 }
 .recruitment-Box4 {
   display: flex;
-  justify-content: space-around;
+  gap: 50px;
+  margin-left: 25px;
 }
 .recruitment-info1,
 .recruitment-info2 {
   color: #3c332b;
   font-family: Pretendard;
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 700;
   line-height: 12px;
+  width: 70px;
 }
 .recruitment-info2 {
   font-weight: 400;
+}
+.recruitment-container::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 10px;
+}
+
+.recruitment-container::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+.recruitment-container::-webkit-scrollbar-thumb {
+  background-color: var(--Srollbar);
+  border-radius: 5px;
 }

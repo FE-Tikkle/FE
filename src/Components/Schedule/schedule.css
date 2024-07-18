@@ -7,42 +7,39 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-left: 19.72px;
-  margin-right: 32.08px;
+  margin-left: 80px;
+  margin-top: 20px;
+  overflow-y: auto;
+  height: 340px;
+  direction: rtl;
+  padding-left: 20px;
 }
 
 .Schedule-maincontainer,
 .Schedule-emptycontainer {
   display: flex;
-  width: 126px;
-  height: 72.35px;
+  flex-shrink: 0;
+  width: 237px;
+  height: 98.105px;
   border-radius: 15px;
   background: #fff;
   flex-direction: column;
   justify-content: center;
+  direction: ltr;
 }
 .Schedule-emptycontainer {
   opacity: 0.6;
 }
 .Schedule-recnet-icon {
-  width: 39.345px;
-  height: 13.669px;
-  border-radius: 12.753px;
-  background: var(--Schedule-recnet-icon-color);
-  color: var(--Schedule-text-icon-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Pretendard;
-  font-size: 5.951px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  width: 9px;
+  height: 9px;
+  background: #101b49;
+  border-radius: 50%;
 }
 .Schedule-date {
   color: #858585;
   font-family: Pretendard;
-  font-size: 7px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -50,28 +47,46 @@
 .Schedule-title {
   color: var(--Schedule-text-icon-color);
   font-family: Pretendard;
-  font-size: 10px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   display: flex;
-  align-self: center;
-  margin-top: 5.5px;
+  align-self: flex-end;
+  margin-right: 10px;
   margin-bottom: 4.5px;
+  margin-top: 15px;
 }
 .Schedule-main2conatainer {
   display: flex;
-  flex-direction: column;
-  margin-left: 7.5px;
-  gap: 5px;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15px;
+  gap: 20px;
 }
 .Schedule-time {
   color: #878787;
   text-align: right;
   font-family: Pretendard;
-  font-size: 7px;
+  font-size: 15px;
+  margin-right: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.Schedule::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 10px;
+}
+
+.Schedule::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+
+.Schedule::-webkit-scrollbar-thumb {
+  background-color: var(--Srollbar);
+  border-radius: 5px;
 }

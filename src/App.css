@@ -13,12 +13,13 @@
     #dbecef 246.04843139648438deg,
     #f3f4f4 360deg
   );
+  --Srollbar: #ffeee3;
 }
 
 body {
   margin: 0;
   font-family: 'Pretendard';
   user-select: none;
-  background: var(--main-background-color);
+  background: var(--main-backgrounsd-color);
   overflow-x: hidden;
 }

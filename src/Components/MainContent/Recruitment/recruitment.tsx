@@ -15,7 +15,40 @@ const mockRecruitments: Recruitment[] = [
     company: 'path_to_ABC_logo.png',
     dday: 'D-5',
     titles: ['ABC 기술', '프론트엔드 개발자'],
-    tags: ['React', 'TypeScript', 'Javascript'],
+    tags: ['# React', '# TypeScript', '# Javascript'],
+    info: [
+      { label: '경력', value: '3년 이상' },
+      { label: '급여', value: '연 6,000만원' },
+      { label: '급여', value: '연 6,000만원' },
+    ],
+  },
+  {
+    company: 'path_to_ABC_logo.png',
+    dday: 'D-3',
+    titles: ['XYZ 솔루션', '프론트엔드 개발자'],
+    tags: ['Node.js', 'Python', 'TypeScript'],
+    info: [
+      { label: '경력', value: '3년 이상' },
+      { label: '급여', value: '연 6,000만원' },
+      { label: '급여', value: '연 6,000만원' },
+    ],
+  },
+  {
+    company: 'path_to_ABC_logo.png',
+    dday: 'D-3',
+    titles: ['XYZ 솔루션', '프론트엔드 개발자'],
+    tags: ['Node.js', 'Python', 'TypeScript'],
+    info: [
+      { label: '경력', value: '3년 이상' },
+      { label: '급여', value: '연 6,000만원' },
+      { label: '급여', value: '연 6,000만원' },
+    ],
+  },
+  {
+    company: 'path_to_ABC_logo.png',
+    dday: 'D-3',
+    titles: ['XYZ 솔루션', '프론트엔드 개발자'],
+    tags: ['Node.js', 'Python', 'TypeScript'],
     info: [
       { label: '경력', value: '3년 이상' },
       { label: '급여', value: '연 6,000만원' },

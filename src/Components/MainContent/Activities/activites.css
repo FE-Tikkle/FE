@@ -1,13 +1,17 @@
 .Activities-Container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  margin-top: 25px;
+  gap: 20px;
+  grid-auto-rows: 200px;
+  margin-top: 76px;
+  height: 740px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 .Activities-Card {
-  width: 350.278px;
-  height: 196.452px;
+  width: 350px;
+  height: 206.617px;
   border-radius: 30px;
   border: 1px solid #fff;
   background: rgba(255, 255, 255, 0.25);
@@ -18,7 +22,7 @@
 .Activities-Card-title {
   color: #3c332b;
   font-family: Pretendard;
-  font-size: 12px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 700;
   line-height: 20px;
@@ -27,11 +31,11 @@
 }
 .Activities-Card-main {
   width: 350.278px;
-  height: 148.415px;
+  height: 160.415px;
   border-radius: 0px 0px 30px 30px;
   background: #fff;
   display: flex;
-  gap: 25px;
+  gap: 20px;
   align-items: center;
 }
 .Activities-Card-img {
@@ -44,14 +48,15 @@
 .Activities-Card-main-title {
   color: #3c332b;
   font-family: Pretendard;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 13px;
 }
 .Activities-Card-main-right {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  margin-top: 10px;
 }
 .Activities-Card-main-dday {
   display: flex;
@@ -63,21 +68,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 58.691px;
-  height: 19px;
+  width: 68.691px;
+  height: 24px;
   border-radius: 5px;
   background: #ffb687;
   color: #fff;
   font-family: Pretendard;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 12px;
 }
 .Activities-Card-main-ddaybox2 {
   background: rgba(255, 182, 135, 0.24);
   color: #463d36;
-  font-size: 8px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
 }
 .Activities-Card-main-text {
   display: flex;
@@ -85,18 +90,31 @@
 .Activities-Card-main-info {
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
+  margin-left: 25px;
 }
 .Activities-Card-main-info1,
 .Activities-Card-main-info2 {
   color: #3c332b;
   font-family: Pretendard;
-  font-size: 10px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 13px;
 }
 .Activities-Card-main-info2 {
-  font-weight: 400;
-  margin-bottom: 7px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.Activities-Container::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 10px;
+}
+
+.Activities-Container::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+.Activities-Container::-webkit-scrollbar-thumb {
+  background-color: var(--Srollbar);
+  border-radius: 5px;
 }

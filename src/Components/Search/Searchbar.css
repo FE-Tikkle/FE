@@ -13,13 +13,13 @@
 }
 
 .Search-bar {
-  width: 554px;
+  width: 750px;
   height: 61px;
   border-radius: 50px;
   background: var(--searchbar-background-color);
   color: var(--searchbar-font-color);
   border: var(--button-border);
-  font-size: 15px;
+  font-size: 18px;
   font-family: 'Pretendard';
   padding-left: 60px;
   transition: 0.3s ease;
@@ -41,6 +41,7 @@
   position: absolute;
   top: 31%;
   left: 22px;
+  cursor: pointer;
 }
 
 .Search-buttons {
@@ -51,11 +52,12 @@
 }
 .Search-Each-button-container {
   border-radius: 20px;
+  position: relative;
 }
 .Search-Each-button,
 .Search-Each-button_add {
-  width: 103px;
-  height: 88.816px;
+  width: 74px;
+  height: 74px;
   flex-shrink: 0;
   border-radius: 20px;
   background: var(--button-background-color);
@@ -73,13 +75,14 @@
   justify-content: flex-start;
   gap: 4px;
   align-items: center;
-  padding-top: 14px;
+  padding-top: 10px;
   cursor: pointer;
 }
 
 .Search-Each-button_add {
-  gap: 13px;
-  padding-top: 24px;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 }
 
 .Search-Each-button-container:hover,
@@ -89,23 +92,25 @@
 }
 
 .Platform-icon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .Favicon-icon {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 3px;
+  width: 35px;
+  height: 35px;
+  margin-top: 4px;
+  margin-bottom: 1px;
 }
 .Delete-button {
   position: absolute;
-  display: none;
-  top: 20.5%;
-  transform: translateX(315%);
+  top: 7px;
+  right: 0;
+
   background: none;
   border: none;
   cursor: pointer;
+  display: none;
 }
 
 .Search-Each-button-container:hover .Delete-button {
@@ -209,22 +214,24 @@
   align-items: center;
   border-radius: 5px;
   margin-bottom: 10px;
+  position: absolute;
+  top: 13px;
 }
 
 .SearchBoxicon {
   margin-right: 10px;
 }
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
   .Search-bar {
-    width: 354px;
+    width: 554px;
   }
   .Search-buttons {
     gap: 30px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .Search-bar {
-    width: 254px;
+    width: 354px;
   }
 }

@@ -26,16 +26,17 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   const themeStyles = {
     light: {
-      '--main-background-color': '#F5F3F0',
+      '--main-background-color': '#FBF9F',
       '--searchbar-background-color': '#dbd7d4',
       '--searchbar-font-color': 'rgba(35, 35, 35, 0.50)',
       '--button-background-color': '#fff',
-      '--button-border': '1px solid transparent',
+      '--button-border': '1px solid #D9D9D9',
       '--main-container-background':
         'conic-gradient(from 107deg at 45.62% 65.84%, #f9fbff 0deg, #f6ceb3 114.66499328613281deg, #dbecef 246.04843139648438deg, #f3f4f4 360deg)',
       '--Schedule-recnet-icon-color': '#ffb281',
       '--Schedule-text-icon-color': '#3c332b',
       '--Search-new-platform': '#ffeee3',
+      '--Srollbar': '#ffd0b0',
     },
     navy: {
       '--main-background-color': ' #FBF9F6',
@@ -48,6 +49,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       '--Schedule-recnet-icon-color': '#E4EFFC',
       '--Schedule-text-icon-color': '#101B49',
       '--Search-new-platform': '#E4EFFC',
+      '--Srollbar': '#101b49',
     },
   }
 

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, KeyboardEvent } from 'react'
 import Modal from '../modal/modal'
 import { motion } from 'framer-motion'
 import { useTheme } from '../../assets/Theme/ThemeContext'
@@ -36,7 +36,7 @@ const Searchbar = () => {
     theme === 'light' ? 'img/Logo/searchiocn1.svg' : 'img/Logo/searchiocn2.svg'
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      const searchUrl = `${platforms[0].url}/search?q=${encodeURIComponent(
+      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
         searchTerm
       )}`
       window.open(searchUrl, '_blank')
@@ -64,6 +64,11 @@ const Searchbar = () => {
     const filteredPlatforms = platforms.filter(platform => platform.url !== url)
     setPlatforms(filteredPlatforms)
   }
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch()
+    }
+  }
   return (
     <div className="Search-main">
       <div className="Search-container">
@@ -73,6 +78,7 @@ const Searchbar = () => {
           onChange={handleInputChange}
           placeholder="검색어를 입력해주세요."
           className="Search-bar"
+          onKeyDown={handleKeyPress}
         />
         <img
           className="Search-img"
@@ -117,7 +123,6 @@ const Searchbar = () => {
           >
             {' '}
             <img src="img/Logo/Vector.svg" alt="add_button" />
-            바로가기 추가
           </button>
         )}
       </div>

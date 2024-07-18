@@ -17,7 +17,7 @@
 }
 
 .Noticelist {
-  width: 1090.304px;
+  width: 1096.304px;
   height: 30.353px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.24);
@@ -51,10 +51,35 @@
   flex: 2;
   margin-right: 77px;
 }
+.notice-all-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 740px;
+  gap: 15px;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  padding-right: 10px;
+}
+.notice-all-container::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 10px;
+}
+
+.notice-all-container::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+
+.notice-all-container::-webkit-scrollbar-thumb {
+  background-color: var(--Srollbar);
+  border-radius: 5px;
+}
 
 .notice {
-  width: 1089px;
+  width: 1096px;
   height: 52.999px;
+  flex-shrink: 0;
   border-radius: 10px;
   background: #fff;
   color: #3c332b;
