@@ -11,6 +11,7 @@ const Header: React.FC = () => {
     const accessToken = localStorage.getItem('access_token')
     if (accessToken) {
       setIsAuthTokenPresent(true)
+      console.log(accessToken)
     }
   }, [])
   return (

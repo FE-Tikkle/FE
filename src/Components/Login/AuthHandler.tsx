@@ -29,13 +29,11 @@ const AuthHandler: React.FC = () => {
   useEffect(() => {
     const inNewValue = localStorage.getItem('is_new') === 'true'
     if (inNewValue) openInfoModal()
-
-    const accessToken = localStorage.getItem('access_token')
-    setIsLoggedIn(!!accessToken)
   }, [])
 
   useEffect(() => {
     if (code && state) {
+      setIsLoggedIn(true)
       if (state.includes('kakao')) postsign(code, 'kakao')
       else if (state.includes('naver')) postsign(code, 'naver')
       else if (state.includes('google')) {
