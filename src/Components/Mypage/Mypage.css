@@ -1,0 +1,102 @@
+.mypage-modal-content {
+  width: 80vw;
+  height: 800px;
+  border-radius: 28.433px;
+  background: conic-gradient(
+    from 122deg at 47.97% 52.33%,
+    #eeeefd 27.67605721950531deg,
+    #dde7f4 114.66499328613281deg,
+    #e9f2ff 246.04843139648438deg
+  );
+  backdrop-filter: blur(1.8955460786819458px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Mypage-Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+.MyPage-All {
+  display: flex;
+  gap: 40px;
+}
+.MyPage-left {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.Mypage-Profile-img {
+  width: 110px;
+  height: 110px;
+  background-color: rgb(211, 211, 211);
+  border-radius: 50%;
+}
+.Mypage-Profile-name {
+  color: #6f6f6f;
+  font-size: 20px;
+  font-weight: 700;
+}
+.Mypage-Profile-buttons {
+  display: flex;
+  gap: 20px;
+}
+.Mypage-Profile-button {
+  width: 98.555px;
+  height: 28.907px;
+  border-radius: 4.739px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6f6f6f;
+  font-size: 12px;
+  font-weight: 700;
+}
+.Mypage-Selecter {
+  width: 250px;
+  height: 70px;
+  border-radius: 40px;
+  background: #101b49;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.Mypage-Selecter-num {
+  color: #e5effd;
+  font-size: 22px;
+  font-weight: 600;
+}
+.Mypage-Selecter-mainText {
+  color: #e5effd;
+  font-size: 22px;
+  font-weight: 600;
+}
+.Mypage-Selecter-secondText {
+  color: #c0dbff;
+  font-size: 12px;
+  margin-top: 3px;
+}
+.MyPage-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.MyPage-Title {
+  color: #6f6f6f;
+  font-size: 30px;
+  font-weight: 700;
+}
+.MyPage-Content {
+  width: 60vw;
+  height: 627.287px;
+  border-radius: 7.134px;
+  background: #fff;
+
+  box-shadow: 0px 0.713px 21.401px 0px rgba(217, 217, 217, 0.54);
+}
