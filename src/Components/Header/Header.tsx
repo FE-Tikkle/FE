@@ -36,7 +36,11 @@ const Header: React.FC = () => {
           {!isAuthTokenPresent && <AuthHandler />}
         </div>
       </div>
-      <MyPageModal isOpen={isModalOpen} onClose={closeModal} />
+      <MyPageModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        initialSelectedIndex={1}
+      />
     </header>
   )
 }

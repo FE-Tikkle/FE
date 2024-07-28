@@ -1,6 +1,6 @@
 .mypage-modal-content {
-  width: 80vw;
-  height: 800px;
+  width: 85vw;
+  height: 900px;
   border-radius: 28.433px;
   background: conic-gradient(
     from 122deg at 47.97% 52.33%,
@@ -23,7 +23,7 @@
 }
 .MyPage-All {
   display: flex;
-  gap: 40px;
+  gap: 60px;
 }
 .MyPage-left {
   display: flex;
@@ -46,41 +46,63 @@
   gap: 20px;
 }
 .Mypage-Profile-button {
-  width: 98.555px;
-  height: 28.907px;
+  width: 100px;
+  height: 30px;
   border-radius: 4.739px;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #6f6f6f;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
+  cursor: pointer;
+}
+.Mypage-Select {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .Mypage-Selecter {
   width: 250px;
   height: 70px;
   border-radius: 40px;
-  background: #101b49;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 15px;
+  cursor: pointer;
+  color: #101b49;
+}
+.Mypage-Selecter.selected {
+  background: #101b49;
+  color: #e5effd;
+}
+.Mypage-Selecter.selected .Mypage-Selecter-secondText {
+  color: #c0dbff;
 }
 .Mypage-Selecter-num {
-  color: #e5effd;
   font-size: 22px;
   font-weight: 600;
+  width: 30px;
+  margin-left: 10px;
+}
+.Mypage-Selecter-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .Mypage-Selecter-mainText {
-  color: #e5effd;
   font-size: 22px;
   font-weight: 600;
+  width: 100px;
 }
 .Mypage-Selecter-secondText {
-  color: #c0dbff;
   font-size: 12px;
   margin-top: 3px;
+  width: 150px;
 }
 .MyPage-right {
   display: flex;
@@ -94,7 +116,7 @@
 }
 .MyPage-Content {
   width: 60vw;
-  height: 627.287px;
+  height: 670px;
   border-radius: 7.134px;
   background: #fff;
 

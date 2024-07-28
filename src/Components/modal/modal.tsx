@@ -40,14 +40,15 @@ const Modal: React.FC<ModalProps> = ({
               {customCloseButton ? (
                 customCloseButton
               ) : (
-                <motion.button
+                <motion.img
                   className="close-button"
+                  src="img/delete.svg"
+                  alt="Close"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={onClose}
-                >
-                  닫기
-                </motion.button>
+                  style={{ cursor: 'pointer' }}
+                />
               )}
             </motion.div>
           </motion.div>

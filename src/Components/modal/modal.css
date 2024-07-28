@@ -31,24 +31,15 @@
 .close-button {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 3px;
   padding: 8px 16px;
-  border: none;
-  background-color: #007bff;
   color: white;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: pretendard;
+  width: 20px;
 }
 
-.close-button:hover {
-  background-color: #0056b3;
-}
-
-.close-button:focus {
-  outline: none;
-}
 .modal-container::-webkit-scrollbar {
   width: 8px;
   margin-left: 10px;
