@@ -1,0 +1,35 @@
+.History-Container {
+  display: flex;
+  flex-direction: column;
+}
+.History-title {
+  color: #6f6f6f;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+}
+.History-boxs {
+  display: flex;
+}
+.History-box {
+  width: 207.536px;
+  height: 46.039px;
+  border-radius: 9.478px;
+  background: #edf5ff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.History-item {
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  gap: 50px;
+}
+.History-category {
+  color: #6f6f6f;
+  width: 60px;
+}
+.History-count {
+  color: #101b49;
+}
