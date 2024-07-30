@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import Notice from './notice'
-import Pagination from '../pagination'
 
 interface NoticeData {
   department: string
@@ -10,7 +8,7 @@ interface NoticeData {
 }
 
 const Noticemain: React.FC = () => {
-  const [notices, setNotices] = useState<NoticeData[]>([
+  const [notices] = useState<NoticeData[]>([
     {
       department: '디자인융합',
       title:

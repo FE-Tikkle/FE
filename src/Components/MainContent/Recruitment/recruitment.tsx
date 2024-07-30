@@ -78,6 +78,7 @@ const RecruitmentContainer: React.FC = () => {
       ...prev,
       [id]: !prev[id],
     }))
+    setRecruitments
   }
 
   return (

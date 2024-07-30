@@ -1,6 +1,7 @@
 .mypage-modal-content {
-  width: 85vw;
   height: 900px;
+  padding-left: 100px;
+  padding-right: 100px;
   border-radius: 28.433px;
   background: conic-gradient(
     from 122deg at 47.97% 52.33%,
@@ -115,10 +116,11 @@
   font-weight: 700;
 }
 .MyPage-Content {
-  width: 60vw;
   height: 670px;
+  padding-left: 50px;
+  padding-right: 50px;
   border-radius: 7.134px;
   background: #fff;
-
+  overflow: hidden;
   box-shadow: 0px 0.713px 21.401px 0px rgba(217, 217, 217, 0.54);
 }

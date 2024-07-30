@@ -27,6 +27,10 @@ const AuthHandler: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
+    const token = localStorage.getItem('access_token')
+    if (token) {
+      setIsLoggedIn(true)
+    }
     const inNewValue = localStorage.getItem('is_new') === 'true'
     if (inNewValue) openInfoModal()
   }, [])

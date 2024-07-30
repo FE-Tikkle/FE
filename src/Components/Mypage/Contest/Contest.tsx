@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Contest = () => {
+const Contest: React.FC = () => {
   return <div></div>
 }
 

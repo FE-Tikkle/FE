@@ -33,6 +33,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
     privacyPolicy: false,
     promotions: false,
   })
+  const [extraDepartment, setExtraDepartment] = useState('') // 추가된 학과 상태
 
   const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = event.target
@@ -51,10 +52,18 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
       [name]: checked,
     }))
   }
+
+  const handleExtraDepartmentChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setExtraDepartment(event.target.value)
+  }
+
   const handleFormSubmit = () => {
     onSubmit()
     onClose()
   }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <motion.div
@@ -94,6 +103,16 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
                 <div className="Login-form-group">
                   <label className="form-label">학과</label>
                   <input type="text" id="depart" className="Login-form-input" />
+                </div>
+                <div className="Login-form-group">
+                  <label className="form-label">추가 관심 학과</label>
+                  <input
+                    type="text"
+                    id="extra-department"
+                    className="Login-form-input"
+                    value={extraDepartment}
+                    onChange={handleExtraDepartmentChange}
+                  />
                 </div>
                 <div className="Login-terms">
                   <div className="terms-form">

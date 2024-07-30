@@ -32,7 +32,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       '--button-background-color': '#fff',
       '--button-border': '1px solid #D9D9D9',
       '--main-container-background':
-        'conic-gradient(from 107deg at 45.62% 65.84%, #f9fbff 0deg, #f6ceb3 114.66499328613281deg, #dbecef 246.04843139648438deg, #f3f4f4 360deg)',
+        'linear-gradient(112deg, #F9FBFF -9.21%, #FFE5D4 27.95%, #DBECEF 63.6%, #F3F4F4 97.17%)',
       '--Schedule-recnet-icon-color': '#ffb281',
       '--Schedule-text-icon-color': '#3c332b',
       '--Search-new-platform': '#ffeee3',
@@ -45,7 +45,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       '--button-background-color': '#FFFFFF',
       '--button-border': '1px solid #D9D9D9',
       '--main-container-background':
-        'conic-gradient(from 122deg at 47.97% 52.33%, #EEEEFD 27.67605721950531deg, #DDE7F4 114.66499328613281deg, #E9F2FF 246.04843139648438deg)',
+        'linear-gradient(107deg, #EEEEFD 11.23%, #DDE7F4 40.83%, #E9F2FF 65.36%)',
       '--Schedule-recnet-icon-color': '#E4EFFC',
       '--Schedule-text-icon-color': '#101B49',
       '--Search-new-platform': '#E4EFFC',

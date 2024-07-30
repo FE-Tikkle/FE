@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Notice from '../Notice/notice'
 import './scholarshop.css'
 interface NoticeData {
@@ -8,7 +8,7 @@ interface NoticeData {
 }
 
 const Scholarship: React.FC = () => {
-  const [notices, setNotices] = useState<NoticeData[]>([
+  const [notices] = useState<NoticeData[]>([
     {
       department: '디자인융합',
       title:

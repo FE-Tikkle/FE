@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Activites = () => {
+const Activites: React.FC = () => {
   return <div></div>
 }
 

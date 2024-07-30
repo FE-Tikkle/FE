@@ -101,6 +101,10 @@
   width: 580px;
   margin-left: 30px;
   flex: 3;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .date {
   width: 110px;
@@ -157,4 +161,14 @@
 
 .pagination span.disabled {
   opacity: 0.3;
+}
+@media (max-width: 1100px) {
+  .Noticelist,
+  .notice {
+    width: 790px;
+  }
+  .bookmark-icon,
+  .date {
+    display: none;
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Recruit = () => {
+const Recruit: React.FC = () => {
   return <div></div>
 }
 

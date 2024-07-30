@@ -17,6 +17,7 @@ const Header: React.FC = () => {
     if (accessToken) {
       setIsAuthTokenPresent(true)
       console.log(accessToken)
+      console.log(isAuthTokenPresent)
     }
   }, [])
   return (
@@ -33,7 +34,7 @@ const Header: React.FC = () => {
         </div>
         <div className="Header-profile">
           <div className="Header-profile-img" />
-          {!isAuthTokenPresent && <AuthHandler />}
+          <AuthHandler />
         </div>
       </div>
       <MyPageModal
