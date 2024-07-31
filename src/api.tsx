@@ -1,5 +1,6 @@
 import axios from 'axios'
 import GoogleAuthBody from './store/slices/authslice'
+import qs from 'qs'
 
 const BASE_URL =
   'https://oqn4jdpa4pvtyeodmh5odzofke0ofmje.lambda-url.ap-northeast-3.on.aws'
@@ -58,16 +59,23 @@ export function postsign(code: string, provider: string) {
 export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
   if (!googleAuthData) {
     console.log('Google authentication data is missing')
+    return Promise.reject(new Error('Google authentication data is missing'))
   }
+
   return axios
-    .post(`${Google_BASE_URL}`, googleAuthData)
+    .post(`${Google_BASE_URL}`, qs.stringify(googleAuthData), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
     .then(res => {
       console.log('Token', res.data)
-      postsign(res.data.access_token, 'google')
+      return postsign(res.data.access_token, 'google')
     })
     .catch(error => {
+      console.error('Google Auth Error:', error.response?.data || error.message)
       alert('로그인을 다시 시도해주세요')
-      console.error(error)
+      throw error
     })
 }
 
