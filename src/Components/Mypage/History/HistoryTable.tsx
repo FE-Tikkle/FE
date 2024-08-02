@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import './History.css'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 
 interface Item {
   분야: string
@@ -94,30 +92,29 @@ const HistoryTable: React.FC = () => {
     setSelectedItems(new Set())
     setCurrentPage(1)
   }
-
+  const handleDateChange =
+    (isStart: boolean) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const date = new Date(e.target.value)
+      if (isStart) {
+        setStartDate(isNaN(date.getTime()) ? undefined : date)
+      } else {
+        setEndDate(isNaN(date.getTime()) ? undefined : date)
+      }
+    }
   return (
     <div className="history-container">
       <div className="date-header">
         <div className="date-picker">
-          <DatePicker
-            selected={startDate}
-            onChange={date => setStartDate(date || undefined)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            dateFormat="yyyy.MM.dd"
-          />
-          <span> ~ </span>
-          <DatePicker
-            selected={endDate}
-            onChange={date => setEndDate(date || undefined)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            dateFormat="yyyy.MM.dd"
+          <img src="img/calendar_2.svg" />
+          <input
+            type="date"
+            value={startDate ? startDate.toISOString().split('T')[0] : ''}
+            onChange={handleDateChange(true)}
+            max={endDate ? endDate.toISOString().split('T')[0] : undefined}
+            className="date-input"
           />
         </div>
+        <img src="img/delete_2.svg" />
         <button className="delete-button" onClick={handleDelete}>
           삭제
         </button>

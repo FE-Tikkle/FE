@@ -1,0 +1,9 @@
+.Contest-all {
+  width: 1011px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 20px;
+}

@@ -1,0 +1,50 @@
+.Recruit-All {
+}
+.Recruit-title {
+  color: #6f6f6f;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 40px;
+}
+.Recruit-text-Container {
+  display: flex;
+  flex-direction: column;
+}
+.Recruit-Container {
+  margin-top: 80px;
+}
+.Recruit-Conatiner2 {
+  display: flex;
+  gap: 110px;
+}
+.Recruit-text-Container label {
+  color: #6f6f6f;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+.Recruit-text-Container input {
+  height: 45.5px;
+  padding-left: 20px;
+  width: 383px;
+  border-radius: 5px;
+  background: var(--gray3, #f0f1f3);
+  border: none;
+  margin-bottom: 30px;
+}
+.Recruit-text {
+  color: #6f6f6f;
+  font-size: 15px;
+  font-weight: 500;
+}
+.buttons-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 879px;
+  margin-top: 48px;
+}
