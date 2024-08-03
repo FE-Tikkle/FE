@@ -35,12 +35,21 @@
 @media (max-width: 1500px) {
   .main-conatainer {
     flex-direction: column-reverse;
-    height: 1500px;
+    height: 1600px;
     align-items: center;
     justify-content: start;
   }
   .main-left {
-    flex-direction: row-reverse;
-    gap: 100px;
+    flex-direction: row;
+    align-self: start;
+    margin-left: 140px;
+    width: 700px;
+  }
+}
+@media (max-width: 900px) {
+  .main-left {
+    flex-direction: row;
+    align-self: normal;
+    margin-left: 50px;
   }
 }
