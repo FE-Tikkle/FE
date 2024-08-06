@@ -131,22 +131,15 @@
   overflow: hidden;
   box-shadow: 0px 0.713px 21.401px 0px rgba(217, 217, 217, 0.54);
 }
-/* @media (max-width: 1600px) {
-  .mypage-modal-content {
-    width: 1250px;
-  }
-  .MyPage-All {
-    gap: 20px;
-  }
-}
 
-@media (max-width: 1460px) {
+/* @media (max-width: 1570px) {
   .mypage-modal-content {
     padding: 20px;
     width: auto;
   }
   .MyPage-All {
     flex-direction: column;
+    align-items: center;
   }
   .Mypage-Select {
     flex-direction: row;
@@ -156,7 +149,7 @@
     display: flex;
     justify-content: center;
     padding: 0;
-    width: 1100px;
+    width: 850px;
     margin: 0;
   }
   .Mypage-Selecter {
