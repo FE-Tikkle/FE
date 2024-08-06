@@ -7,3 +7,18 @@
   height: 100%;
   font-size: 20px;
 }
+@media (max-height: 900px) {
+  .Contest-all {
+    margin-left: -1.7px;
+    width: 823.8px;
+  }
+  .img404 {
+    width: 85%;
+  }
+}
+@media (max-height: 800px) {
+  .Contest-all {
+    margin-left: -1.7px;
+    width: 694px;
+  }
+}

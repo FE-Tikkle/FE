@@ -221,3 +221,155 @@
 .date-picker input[type='date']::-webkit-datetime-edit-day-field {
   display: inline;
 }
+
+@media (max-height: 900px) {
+  .History-Container {
+    margin-top: 15px;
+  }
+  .History-title {
+    font-size: 17px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .History-boxs {
+    display: flex;
+    gap: 20px;
+  }
+  .History-box {
+    width: 190.536px;
+    height: 46.039px;
+  }
+  .History-item {
+    font-size: 17px;
+    font-weight: 700;
+    display: flex;
+    gap: 40px;
+  }
+  .History-category {
+    width: 60px;
+  }
+  .History-count {
+    color: #101b49;
+  }
+  .Mypage-selector {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  .Mypage-Selector-main2 {
+    display: flex;
+    font-weight: 700;
+  }
+
+  .date-header {
+    justify-content: end;
+    margin-top: 10px;
+  }
+  .history-table th,
+  .history-table td {
+    padding: 5px;
+  }
+  .history-table th {
+    font-size: 14px;
+  }
+  .history-table td {
+    font-size: 15px;
+    height: 45px;
+  }
+  .pagination1 {
+    margin-top: 10px;
+  }
+  .page-number {
+    font-size: 13px;
+    opacity: 0.3;
+    padding: 8px;
+    margin-bottom: 3px;
+  }
+  .checkbox-container {
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .Mypage-main2 .tab {
+    width: 133px;
+    padding: 15px;
+    border-bottom: 3px solid transparent;
+  }
+}
+
+@media (max-height: 800px) {
+  .History-Container {
+    margin-top: 15px;
+  }
+  .History-title {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 18px;
+  }
+  .History-boxs {
+    gap: 30px;
+  }
+  .History-box {
+    width: 150.536px;
+    height: 40.039px;
+  }
+  .History-item {
+    font-size: 13px;
+    font-weight: 700;
+    gap: 20px;
+  }
+  .History-category {
+    width: 60px;
+  }
+  .Mypage-selector {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .Mypage-Selector-main2 {
+    display: flex;
+    font-weight: 700;
+  }
+  .date-header {
+    margin-top: 5px;
+  }
+  .history-table th,
+  .history-table td {
+    padding: 5px;
+  }
+  .history-table th {
+    font-size: 12px;
+  }
+  .history-table td {
+    font-size: 12px;
+    height: 35px;
+  }
+  .pagination1 {
+    margin-top: 5px;
+  }
+  .page-number {
+    font-size: 12px;
+    opacity: 0.3;
+    padding: 5px;
+    margin-bottom: 3px;
+  }
+  .checkbox-container {
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .Mypage-main2 .tab {
+    width: 107px;
+    padding: 15px;
+    border-bottom: 3px solid transparent;
+  }
+  .date-picker {
+    position: relative;
+    width: 120px;
+    display: flex;
+  }
+
+  .date-picker input[type='date'] {
+    font-size: 12px;
+  }
+  .delete-button {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}

@@ -62,3 +62,83 @@
   font-weight: 700;
   line-height: normal;
 }
+@media (max-height: 900px) {
+  .Myschool-All {
+    margin-left: -1.7px;
+    width: 823.8px;
+  }
+  .Myschool-title {
+    font-size: 17px;
+    margin-top: 25px;
+  }
+  .Myschool-text-Container {
+    display: flex;
+    flex-direction: column;
+  }
+  .Myschool-Container {
+    margin-top: 30px;
+  }
+  .Myschool-Conatiner2 {
+    display: flex;
+    gap: 80px;
+  }
+  .Myschool-text-Container label {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .Myschool-text-Container input {
+    height: 45.5px;
+    padding-left: 20px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 659px;
+  }
+}
+@media (max-height: 800px) {
+  .Myschool-All {
+    margin-left: -1.7px;
+    width: 694px;
+  }
+  .Myschool-title {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .Myschool-text-Container {
+    margin-left: 50px;
+  }
+  .Myschool-Container {
+    margin-top: 20px;
+  }
+  .Myschool-Conatiner2 {
+    display: flex;
+    gap: 40px;
+  }
+  .Myschool-text-Container label {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .Myschool-text-Container input {
+    height: 35.5px;
+    padding-left: 20px;
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  .Myschool-text {
+    font-size: 13px;
+    margin-left: 50px;
+  }
+  .buttons {
+    gap: 10px;
+    margin-left: 559px;
+  }
+  .button {
+    width: 102.796px;
+    height: 30.149px;
+    font-size: 13px;
+  }
+}

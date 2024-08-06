@@ -3,7 +3,7 @@ import './Contest.css'
 const Contest: React.FC = () => {
   return (
     <div className="Contest-all">
-      <img src="img/404.svg" />
+      <img src="img/404.svg" className="img404" />
     </div>
   )
 }
