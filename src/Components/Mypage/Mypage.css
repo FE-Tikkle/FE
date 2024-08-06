@@ -1,5 +1,5 @@
 .mypage-modal-content {
-  height: 900px;
+  height: 820px;
   padding-left: 100px;
   padding-right: 100px;
   border-radius: 28.433px;
@@ -31,6 +31,12 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+.Mypage-profile-first {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 .Mypage-Profile-img {
   width: 110px;
