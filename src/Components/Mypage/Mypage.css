@@ -133,7 +133,10 @@
 }
 @media (max-width: 1600px) {
   .mypage-modal-content {
-    width: 85vw;
+    width: 1250px;
+  }
+  .MyPage-All {
+    gap: 20px;
   }
 }
 
@@ -198,5 +201,133 @@
   .Mypage-Profile-img {
     width: 70px;
     height: 70px;
+  }
+}
+@media (max-height: 900px) {
+  .mypage-modal-content {
+    height: 670px;
+    width: 1250px;
+  }
+  .MyPage-All {
+    gap: 40px;
+  }
+  .MyPage-left {
+    gap: 30px;
+  }
+  .Mypage-Profile-img {
+    width: 90px;
+    height: 90px;
+  }
+  .Mypage-Profile-name {
+    font-size: 18px;
+  }
+  .Mypage-Profile-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  .Mypage-Profile-button {
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .Mypage-Profile-buttons {
+    gap: 15px;
+  }
+  .Mypage-Profile-button {
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+  }
+  .Mypage-Select {
+    gap: 5px;
+  }
+  .Mypage-Selecter {
+    width: 200px;
+    height: 60px;
+    gap: 0px;
+  }
+  .Mypage-Selecter-num {
+    font-size: 15px;
+    width: 30px;
+    margin-left: 10px;
+  }
+  .Mypage-Selecter-mainText {
+    font-size: 17px;
+  }
+  .Mypage-Selecter-secondText {
+    font-size: 12px;
+    margin-top: 3px;
+    width: 150px;
+  }
+  .MyPage-right {
+    gap: 10px;
+  }
+  .MyPage-Title {
+    font-size: 25px;
+  }
+  .MyPage-Content {
+    height: 540px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-height: 800px) {
+  .mypage-modal-content {
+    height: 600px;
+    width: 1100px;
+  }
+  .MyPage-All {
+    gap: 10px;
+  }
+  .MyPage-left {
+    gap: 10px;
+  }
+  .Mypage-Profile-img {
+    width: 60px;
+    height: 60px;
+  }
+  .Mypage-Profile-name {
+    font-size: 14px;
+  }
+  .Mypage-Profile-buttons {
+    gap: 10px;
+  }
+  .Mypage-Profile-button {
+    width: 65px;
+    height: 30px;
+    font-size: 10px;
+  }
+  .Mypage-Select {
+    gap: 5px;
+  }
+  .Mypage-Selecter {
+    width: 150px;
+    height: 50px;
+    gap: 0px;
+  }
+  .Mypage-Selecter-num {
+    font-size: 13px;
+    width: 30px;
+    margin-left: 10px;
+  }
+  .Mypage-Selecter-mainText {
+    font-size: 15px;
+  }
+  .Mypage-Selecter-secondText {
+    font-size: 9px;
+    margin-top: 3px;
+    width: 120px;
+  }
+  .MyPage-right {
+    gap: 10px;
+  }
+  .MyPage-Title {
+    font-size: 20px;
+  }
+  .MyPage-Content {
+    height: 430px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
