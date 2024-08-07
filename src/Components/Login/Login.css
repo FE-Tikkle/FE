@@ -5,6 +5,7 @@
 }
 .login-modal-content {
   height: 850px;
+  width: 1430px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,7 +253,8 @@ input:checked + label {
     font-size: 40px;
   }
   .login-modal-content {
-    height: 750px;
+    height: 730px;
+    width: 1300px;
   }
   .Login-info-left {
     gap: 80px;
