@@ -49,16 +49,17 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <motion.div variants={item}>
           <div className="Login-left">
             <div className="Login-maintext">
-              <div>티끌</div>
-              <div>당신의 커리어를 응원합니다.</div>
-              <div>오늘도 행복한 하루되세요.</div>
-            </div>
-            <div className="Login-img">
-              <img
-                className="Login-Image"
-                alt="Login-Img1"
-                src="img\Login_img.png"
-              />
+              <div className="Login-maintext-3">티끌은</div>
+              <div className="Login-maintext-1">
+                <div>
+                  <span>작은 정보</span>를 모아
+                </div>
+                <span>큰 가치</span>를 만들어냅니다.
+              </div>
+              <div className="Login-maintext-2">
+                <div>취업, 대외활동, 공모전을</div> 확인하여 당신의 잠재력을
+                펼쳐보세요
+              </div>
             </div>
           </div>
         </motion.div>

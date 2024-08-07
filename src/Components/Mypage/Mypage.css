@@ -132,9 +132,11 @@
   box-shadow: 0px 0.713px 21.401px 0px rgba(217, 217, 217, 0.54);
 }
 
-/* @media (max-width: 1570px) {
+@media (max-width: 1570px) and (min-height: 901px) {
   .mypage-modal-content {
-    padding: 20px;
+    height: 700px;
+    padding-left: 30px;
+    padding-right: 30px;
     width: auto;
   }
   .MyPage-All {
@@ -153,7 +155,7 @@
     margin: 0;
   }
   .Mypage-Selecter {
-    width: 150px;
+    width: 130px;
     height: 55px;
     border-radius: 40px;
     gap: 5px;
@@ -173,8 +175,7 @@
     display: none;
   }
   .Mypage-Profile {
-    flex-direction: row;
-    gap: 50px;
+    display: none;
   }
   .Mypage-Profile-buttons {
     flex-direction: column;
@@ -195,7 +196,11 @@
     width: 70px;
     height: 70px;
   }
-} */
+  .MyPage-Content {
+    height: 550px;
+  }
+}
+
 @media (max-height: 900px) {
   .mypage-modal-content {
     height: 670px;
@@ -264,7 +269,74 @@
     padding-right: 30px;
   }
 }
-
+@media (max-width: 1270px) and (min-height: 801px) and (max-height: 900px) {
+  .mypage-modal-content {
+    height: 700px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: auto;
+  }
+  .MyPage-All {
+    flex-direction: column;
+    align-items: center;
+  }
+  .Mypage-Select {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .MyPage-Content {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 850px;
+    margin: 0;
+  }
+  .Mypage-Selecter {
+    width: 130px;
+    height: 55px;
+    border-radius: 40px;
+    gap: 5px;
+  }
+  .MyPage-Title {
+    display: none;
+  }
+  .Mypage-Selecter-num {
+    font-size: 17px;
+  }
+  .Mypage-Selecter-mainText {
+    font-size: 17px;
+    font-weight: 600;
+    width: 70px;
+  }
+  .Mypage-Selecter-secondText {
+    display: none;
+  }
+  .Mypage-Profile {
+    display: none;
+  }
+  .Mypage-Profile-buttons {
+    flex-direction: column;
+  }
+  .MyPage-All {
+    gap: 20px;
+  }
+  .Mypage-profile-first {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .MyPage-left {
+    gap: 10px;
+  }
+  .Mypage-Profile-img {
+    width: 70px;
+    height: 70px;
+  }
+  .MyPage-Content {
+    height: 550px;
+  }
+}
 @media (max-height: 800px) {
   .mypage-modal-content {
     height: 540px;
@@ -322,5 +394,74 @@
     height: 430px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+@media (max-width: 1025px) and (max-height: 800px) {
+  .mypage-modal-content {
+    height: 600px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: auto;
+  }
+  .MyPage-All {
+    flex-direction: column;
+    align-items: center;
+  }
+  .Mypage-Select {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .MyPage-Content {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 850px;
+    margin: 0;
+  }
+  .Mypage-Selecter {
+    width: 120px;
+    height: 50px;
+    border-radius: 40px;
+    gap: 0px;
+  }
+  .MyPage-Title {
+    display: none;
+  }
+  .Mypage-Selecter-num {
+    font-size: 15px;
+  }
+  .Mypage-Selecter-mainText {
+    font-size: 15px;
+    font-weight: 600;
+    width: 70px;
+  }
+  .Mypage-Selecter-secondText {
+    display: none;
+  }
+  .Mypage-Profile {
+    display: none;
+  }
+  .Mypage-Profile-buttons {
+    flex-direction: column;
+  }
+  .MyPage-All {
+    gap: 20px;
+  }
+  .Mypage-profile-first {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .MyPage-left {
+    gap: 10px;
+  }
+  .Mypage-Profile-img {
+    width: 70px;
+    height: 70px;
+  }
+  .MyPage-Content {
+    height: 450px;
+    width: 750px;
   }
 }

@@ -75,16 +75,16 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
         <motion.div variants={item}>
           <div className="Login-info-left">
             <div className="Login-maintext">
-              <div>티끌</div>
-              <div>당신의 커리어를 응원합니다.</div>
-              <div>오늘도 행복한 하루되세요.</div>
-            </div>
-            <div className="Login-img">
-              <img
-                className="Login-Image"
-                alt="Login-Img1"
-                src="img\Login_img.png"
-              />
+              <div className="Login-maintext-3">티끌은</div>
+              <div className="Login-maintext-1">
+                <div>
+                  <span>커리어 솔루션</span>을 제안합니다.
+                </div>
+              </div>
+              <div className="Login-maintext-2">
+                <div>티끌은 다양한 정보 시장속에서 </div> 더 넓고 개인 맞춤화된
+                경험과 가치를 만들어갑니다.
+              </div>
             </div>
           </div>
         </motion.div>

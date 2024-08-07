@@ -49,6 +49,43 @@
   margin-left: 879px;
   margin-top: 48px;
 }
+@media (max-width: 1570px) and (min-height: 901px) {
+  .Recruit-All {
+    margin-left: -1.7px;
+    width: 823.8px;
+  }
+  .Recruit-title {
+    font-size: 17px;
+    margin-top: 25px;
+  }
+  .Recruit-text-Container {
+    display: flex;
+    flex-direction: column;
+  }
+  .Recruit-Container {
+    margin-top: 30px;
+  }
+  .Recruit-Conatiner2 {
+    display: flex;
+    gap: 80px;
+  }
+  .Recruit-text-Container label {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .Recruit-text-Container input {
+    height: 45.5px;
+    padding-left: 20px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  .buttons-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 659px;
+  }
+}
 @media (max-height: 900px) {
   .Recruit-All {
     margin-left: -1.7px;
