@@ -13,6 +13,7 @@
   height: 340px;
   direction: rtl;
   padding-left: 20px;
+  overflow-x: hidden;
 }
 
 .Schedule-maincontainer,

@@ -17,7 +17,7 @@
 }
 
 .Noticelist {
-  width: 906.304px;
+  width: 1096px;
   height: 30.353px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.24);
@@ -25,7 +25,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 22px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 .Noticelist-item {
   text-align: center;
@@ -59,7 +59,6 @@
   gap: 15px;
   flex-shrink: 0;
   overflow-x: hidden;
-  padding-right: 10px;
 }
 .notice-all-container::-webkit-scrollbar {
   width: 8px;
@@ -165,7 +164,7 @@
 @media (max-width: 1100px) {
   .Noticelist,
   .notice {
-    width: 790px;
+    width: 780px;
   }
   .bookmark-icon,
   .date {

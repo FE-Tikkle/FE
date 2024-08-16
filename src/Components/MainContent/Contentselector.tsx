@@ -6,6 +6,8 @@ import Recruitment from './Recruitment/recruitment'
 import Activities from './Activities/activities'
 import SearchBox from '../Search/Searchbox'
 import Scholarship from './Scholarship/scholarship'
+import Competition from './Competition/competition'
+import Department from './Department/Department'
 
 const ContentSelector: React.FC = () => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
@@ -35,6 +37,8 @@ const ContentSelector: React.FC = () => {
         return <Recruitment />
       case '대외활동':
         return <Activities />
+      case '공모전':
+        return <Competition />
     }
   }
 
@@ -87,6 +91,7 @@ const ContentSelector: React.FC = () => {
       </div>
 
       <div className="Contents">{renderContent()}</div>
+      <Department />
     </div>
   )
 }

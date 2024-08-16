@@ -5,10 +5,11 @@
   border-radius: 28.433px;
   background: conic-gradient(
     from 122deg at 47.97% 52.33%,
-    #eeeefd 27.67605721950531deg,
-    #dde7f4 114.66499328613281deg,
-    #e9f2ff 246.04843139648438deg
+    #ffe0cb 27.67605721950531deg,
+    #eefcff 114.66499328613281deg,
+    #f1f3f3 246.04843139648438deg
   );
+
   backdrop-filter: blur(1.8955460786819458px);
   display: flex;
   justify-content: center;

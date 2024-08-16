@@ -6,8 +6,7 @@
   gap: 15px;
   flex-shrink: 0;
   overflow-x: hidden;
-  padding-right: 10px;
-  margin-top: 18.5px;
+  margin-top: 3.5px;
 }
 .scholar-all-container::-webkit-scrollbar {
   width: 8px;

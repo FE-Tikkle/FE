@@ -1,0 +1,23 @@
+.Competition-Container {
+  margin-top: 76px;
+  height: 420px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+.later-card {
+  width: 1096px;
+  height: 400px;
+  border-radius: 50px;
+  background: var(--white, #fff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+@media (max-width: 1100px) {
+  .later-card {
+    width: 780px;
+    height: 371.956px;
+  }
+}

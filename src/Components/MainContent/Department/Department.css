@@ -1,0 +1,29 @@
+.department-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  gap: 20px;
+  justify-content: flex-end;
+}
+.department-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 126.33px;
+  height: 30.098px;
+  border-radius: 15px;
+  background: var(--white, #fff);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.department-selector {
+  cursor: pointer;
+}
+
+.department-selector.selected {
+  background-color: #8b8b8b;
+  color: white;
+}

@@ -6,7 +6,6 @@
   margin-top: 50px;
   height: 740px;
   overflow-y: auto;
-  padding-right: 10px;
 }
 
 .recruitment-mainBox {
@@ -115,4 +114,11 @@
 .recruitment-container::-webkit-scrollbar-thumb {
   background-color: var(--Srollbar);
   border-radius: 5px;
+}
+@media (max-width: 1100px) {
+  .recruitment-container {
+    grid-template-columns: 1fr 1fr;
+    padding-right: 0px;
+    margin-left: 20px;
+  }
 }

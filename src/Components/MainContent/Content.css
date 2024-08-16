@@ -48,6 +48,10 @@
 .Contents {
   transition: opacity 0.3s ease-out;
   opacity: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .Contents.hide {
