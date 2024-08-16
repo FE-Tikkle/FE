@@ -1,0 +1,62 @@
+.Mypage-modal-content {
+  width: 535.544px;
+  height: 320.117px;
+  border-radius: 10.541px;
+  background: var(--white, #fff);
+  padding: 20px;
+}
+.Mypage-modal-title {
+  color: var(--gray1, #878787);
+  /* body 1 */
+  font-family: Pretendard;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.Mypage-modal-selecter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 15px;
+  margin-left: 13px;
+}
+.Mypage-modal-select {
+  width: 165.874px;
+  height: 40px;
+  display: flex;
+  color: var(--navy, #3c332b);
+  /* Body5 */
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  gap: 15px;
+  align-items: center;
+  border-radius: 20px;
+  justify-content: center;
+  cursor: pointer;
+}
+.Mypage-modal-select img {
+  width: 20px;
+}
+.Mypage-modal-select.selected {
+  background: var(--navy, #3c332b);
+  color: var(--blue, #ffede1);
+}
+.Mypage-modal-select.selected img {
+  filter: brightness(0) invert(1);
+}
+.Mypage-modal-select-text {
+  width: 110px;
+}
+.Mypage-modal-Content {
+  display: flex;
+}
+.Mypage-modal-right {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

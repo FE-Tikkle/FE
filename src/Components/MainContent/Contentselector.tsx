@@ -91,7 +91,9 @@ const ContentSelector: React.FC = () => {
       </div>
 
       <div className="Contents">{renderContent()}</div>
-      <Department />
+      {selectedNotice !== '대외활동' && selectedNotice !== '공모전' && (
+        <Department />
+      )}
     </div>
   )
 }

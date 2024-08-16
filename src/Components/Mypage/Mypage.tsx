@@ -7,6 +7,7 @@ import Myschool from './Myschool/Myschool'
 import Recruit from './Recruit/Recruit'
 import Activites from './Activites/Activites'
 import Contest from './Contest/Contest'
+import Mypageinfo from '../modal/Mypageinfomodal'
 
 interface MyPageModalProps {
   isOpen: boolean
@@ -92,6 +93,9 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
       : { title: '', content: null }
   const SelectedComponent = selectedData.content || null
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <motion.div
@@ -108,9 +112,8 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   <div className="Mypage-Profile-img"></div>
                   <div className="Mypage-Profile-name">눈멍이 님</div>
                 </div>
-                <div className="Mypage-Profile-buttons">
-                  <div className="Mypage-Profile-button">설정</div>
-                  <div className="Mypage-Profile-button">프로필 수정</div>
+                <div className="Mypage-Profile-button" onClick={openModal}>
+                  설정
                 </div>
               </div>
               <div className="Mypage-Select">
@@ -145,6 +148,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
           </div>
         </motion.div>
       </motion.div>
+      <Mypageinfo isOpen={isModalOpen} onClose={closeModal} />
     </Modal>
   )
 }

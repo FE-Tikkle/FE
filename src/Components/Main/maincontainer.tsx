@@ -8,7 +8,6 @@ const MainContainer: React.FC<MainConatainerProps> = ({ children }) => {
   return (
     <>
       <div className="main-conatainer">{children}</div>
-      <div className="main-bottom-container"></div>
     </>
   )
 }

@@ -24,16 +24,16 @@ const Header: React.FC = () => {
     <header className="Header-main">
       <div className="Header-left">
         <div className="Header-text" onClick={handleClick}>
-          티끌
+          <img src="img/Logo/Mainlogo.svg" />
         </div>
       </div>
       <div className="Header-right">
-        <div>티끌 소개</div>
+        <div className="Header-intro">티끌 소개</div>
         <div className="Header-mypage" onClick={openModal}>
           마이페이지
         </div>
         <div className="Header-profile">
-          <div className="Header-profile-img" />
+          {/* <div className="Header-profile-img" /> */}
           <AuthHandler />
         </div>
       </div>

@@ -1,0 +1,36 @@
+.Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.Proile-img {
+  width: 100px;
+  height: 100px;
+  background-color: var(--blue, #ffede1);
+  border-radius: 50%;
+}
+.Content input {
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: Pretendard;
+  text-align: center;
+}
+
+/* input에 포커스가 되었을 때 */
+.Content input:focus {
+  border-color: #919191; /* 원하는 강조 색상 */
+}
+
+/* input 내부에 있는 텍스트를 좀 더 깔끔하게 스타일링 */
+.Content input::placeholder {
+  color: #888;
+  font-size: 14px;
+}

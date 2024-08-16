@@ -2,7 +2,7 @@
   width: 100%;
   height: 52px;
   flex-shrink: 0;
-  background: #f0f1f3;
+  background: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,4 +48,9 @@
 }
 .Header-mypage {
   cursor: pointer;
+}
+@media (max-width: 700px) {
+  .Header-intro {
+    display: none;
+  }
 }
