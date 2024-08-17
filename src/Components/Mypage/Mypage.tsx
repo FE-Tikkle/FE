@@ -9,7 +9,6 @@ import Activites from './Activites/Activites'
 import Contest from './Contest/Contest'
 import Mypageinfo from '../modal/Mypageinfomodal'
 import DoLogin from './DoLogin'
-import AuthHandler from '../Login/AuthHandler'
 import LoginModal2 from '../modal/Loginmodal2'
 
 interface MyPageModalProps {
