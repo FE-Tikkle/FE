@@ -33,6 +33,9 @@
   line-height: normal;
   cursor: pointer;
 }
+.Header-intro {
+  cursor: pointer;
+}
 .Header-profile-img {
   width: 34.688px;
   height: 34.688px;

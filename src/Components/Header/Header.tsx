@@ -2,15 +2,76 @@ import React, { useState, useEffect } from 'react'
 import './Header.css'
 import AuthHandler from '../Login/AuthHandler'
 import MyPageModal from '../Mypage/Mypage'
+import { KAKAO_SDK_ID } from '../../store/slices/constant'
+
+declare global {
+  interface Window {
+    Kakao: any
+  }
+}
 
 const Header: React.FC = () => {
   const [isAuthTokenPresent, setIsAuthTokenPresent] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalIndex, setModalIndex] = useState(0)
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://developers.kakao.com/sdk/js/kakao.js'
+    script.async = true
+    document.body.appendChild(script)
+
+    script.onload = () => {
+      if (window.Kakao) {
+        if (!window.Kakao.isInitialized()) {
+          window.Kakao.init(KAKAO_SDK_ID)
+        }
+      }
+    }
+
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const openModal = () => setIsModalOpen(true)
+
+  const openModal = (index: number) => {
+    setModalIndex(index)
+    setIsModalOpen(true)
+  }
+
   const closeModal = () => setIsModalOpen(false)
+
+  const shareToKakao = () => {
+    if (window.Kakao) {
+      window.Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '티끌 공유하기',
+          description: '티끌 서비스를 친구에게 공유해보세요!',
+          imageUrl: 'https://your-image-url.com/image.jpg', // 실제 이미지 URL로 교체하세요
+          link: {
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
+          },
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: window.location.href,
+              webUrl: window.location.href,
+            },
+          },
+        ],
+      })
+    } else {
+      console.error('Kakao SDK is not loaded')
+    }
+  }
 
   useEffect(() => {
     const accessToken = localStorage.getItem('access_token')
@@ -20,27 +81,32 @@ const Header: React.FC = () => {
       console.log(isAuthTokenPresent)
     }
   }, [])
+
   return (
     <header className="Header-main">
       <div className="Header-left">
         <div className="Header-text" onClick={handleClick}>
-          <img src="img/Logo/Mainlogo.svg" />
+          <img src="img/Logo/Mainlogo.svg" alt="Main Logo" />
         </div>
       </div>
       <div className="Header-right">
-        <div className="Header-intro">티끌 소개</div>
-        <div className="Header-mypage" onClick={openModal}>
+        <div className="Header-intro" onClick={() => openModal(0)}>
+          티끌 소개
+        </div>
+        <div className="Header-mypage" onClick={() => openModal(1)}>
           마이페이지
         </div>
+        <div className="Header-intro" onClick={shareToKakao}>
+          공유하기
+        </div>
         <div className="Header-profile">
-          {/* <div className="Header-profile-img" /> */}
           <AuthHandler />
         </div>
       </div>
       <MyPageModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        initialSelectedIndex={1}
+        initialSelectedIndex={modalIndex}
       />
     </header>
   )
