@@ -9,6 +9,17 @@ const Announcement = () => {
         </div>
         <div className="Announcement-dateText">2024.08.31</div>
       </div>
+      <div className="Announcement-Line"></div>
+      <div className="Announcement-1">
+        <div className="Announcement-MainText">티끌 서비스 시작</div>
+        <div className="Announcement-dateText">2024.08.31</div>
+      </div>
+      <div className="Announcement-Line"></div>
+      <div className="Announcement-1">
+        <div className="Announcement-MainText">티끌 서비스 시작</div>
+        <div className="Announcement-dateText">2024.08.31</div>
+      </div>
+      <div className="Announcement-Line"></div>
       <div className="Announcement-1">
         <div className="Announcement-MainText">티끌 서비스 시작</div>
         <div className="Announcement-dateText">2024.08.31</div>

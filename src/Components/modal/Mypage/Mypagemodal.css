@@ -48,3 +48,68 @@
 .Update-button:hover {
   background: #b8b8b8;
 }
+.Announcement-Container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.Announcement-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.Announcement-Line {
+  width: 250px;
+  height: 1px;
+  background-color: #8b8b8b;
+}
+.Getout-MainTitle {
+  position: absolute;
+  top: 60px;
+  left: 40%;
+  font-size: 18px;
+  font-weight: 500;
+}
+.Getout-Button {
+  cursor: pointer;
+  background-color: #d0d0d0;
+  width: 200px;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 17px;
+}
+.Confirm-Modal-Buttons {
+  margin-top: 20px;
+}
+
+.Confirm-Modal-Buttons button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  width: 100px;
+  border-radius: 10px;
+  background-color: #d0d0d0;
+  font-family: pretendard;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.Confirm-Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Confirm-Modal-Content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+}

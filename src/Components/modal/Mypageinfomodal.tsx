@@ -7,7 +7,6 @@ import Announcement from './Mypage/announcement'
 import Help from './Mypage/help'
 import Recommend from './Mypage/recommend'
 import Service from './Mypage/service'
-import Logout from './Mypage/logout'
 import Getout from './Mypage/getout'
 
 interface LoginModalProps {
@@ -50,8 +49,6 @@ const Mypageinfo: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         return <Recommend />
       case '서비스 약관':
         return <Service />
-      case '로그아웃':
-        return <Logout />
       case '서비스 탈퇴':
         return <Getout />
       default:

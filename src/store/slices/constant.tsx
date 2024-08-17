@@ -3,3 +3,4 @@ export const REDIRECT_URI = 'https://tikkle.netlify.app'
 export const GOOGLE_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 export const NAVER_ID = import.meta.env.VITE_NAVER_CLIENT_ID
 export const GOOGLE_SECRET_ID = import.meta.env.VITE_GOOGLE_SECRET_ID
+export const KAKAO_SDK_ID = import.meta.env.VITE_SDK_KAKAO_KEY

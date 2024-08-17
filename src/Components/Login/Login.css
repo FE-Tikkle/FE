@@ -153,6 +153,30 @@
   gap: 10px;
 }
 .Login-form-input {
+  width: 455px;
+  height: 52.999px;
+  border-radius: 10px;
+  background: #fff;
+  border: none;
+  font-size: 25px;
+  font-family: 'Pretendard';
+  padding-left: 20px;
+
+  transition: border-color 0.3s ease-in-out;
+}
+
+.Login-form-input1 {
+  width: 145px;
+  height: 52.999px;
+  border-radius: 10px;
+  background: #fff;
+  border: none;
+  font-size: 15px;
+  font-family: 'Pretendard';
+  padding-left: 20px;
+  transition: border-color 0.3s ease-in-out;
+}
+.Login-form-input2 {
   width: 433.924px;
   height: 52.999px;
   border-radius: 10px;
@@ -161,19 +185,10 @@
   font-size: 25px;
   font-family: 'Pretendard';
   padding-left: 20px;
+
   transition: border-color 0.3s ease-in-out;
 }
-.Login-form-input1 {
-  width: 123px;
-  height: 52.999px;
-  border-radius: 10px;
-  background: #fff;
-  border: none;
-  font-size: 25px;
-  font-family: 'Pretendard';
-  padding-left: 20px;
-  transition: border-color 0.3s ease-in-out;
-}
+
 .Login-form-input:focus {
   outline: none;
 }
@@ -218,7 +233,7 @@ input + label {
   cursor: pointer;
 }
 input:checked + label {
-  background: rgb(34, 41, 255);
+  background: rgb(140, 140, 140);
 }
 .submit-btn {
   width: 455.273px;

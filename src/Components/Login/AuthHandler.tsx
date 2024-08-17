@@ -23,7 +23,12 @@ const AuthHandler: React.FC = () => {
   )
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({
+    name: '',
+    school: '',
+    department: '',
+    extraDepartments: ['', '', ''],
+  })
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
@@ -59,12 +64,22 @@ const AuthHandler: React.FC = () => {
   const openInfoModal = () => setIsInfoModalOpen(true)
   const closeInfoModal = () => setIsInfoModalOpen(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value,
-    }))
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { id, value } = e.target
+
+    if (id.startsWith('extra-department')) {
+      const index = parseInt(id.split('-')[2]) - 1
+      setFormData(prev => ({
+        ...prev,
+        extraDepartments: prev.extraDepartments.map((dept, i) =>
+          i === index ? value : dept
+        ),
+      }))
+    } else {
+      setFormData(prev => ({ ...prev, [id]: value }))
+    }
   }
 
   const handleSubmit = () => {

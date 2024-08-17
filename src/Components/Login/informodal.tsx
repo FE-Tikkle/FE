@@ -6,8 +6,8 @@ import './Login.css'
 interface InfoModalProps {
   isOpen: boolean
   onClose: () => void
-  onSubmit: () => void // 새로운 정보 입력을 완료할 때 호출될 함수
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void // 입력 값 변경 시 호출될 함수
+  onSubmit: () => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
 }
 
 const container = {
@@ -26,14 +26,18 @@ const item = {
   visible: { y: 0, opacity: 1 },
 }
 
-const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const InfoModal: React.FC<InfoModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  onChange,
+}) => {
   const [allChecked, setAllChecked] = useState(false)
   const [terms, setTerms] = useState({
     termsOfService: false,
     privacyPolicy: false,
     promotions: false,
   })
-  const [extraDepartment, setExtraDepartment] = useState('') // 추가된 학과 상태
 
   const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = event.target
@@ -51,12 +55,6 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
       ...prevTerms,
       [name]: checked,
     }))
-  }
-
-  const handleExtraDepartmentChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setExtraDepartment(event.target.value)
   }
 
   const handleFormSubmit = () => {
@@ -94,40 +92,69 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
               <div className="Login-input">
                 <div className="Login-form-group">
                   <label className="Login-form-label">사용자 이름</label>
-                  <input type="text" id="name" className="Login-form-input" />
+                  <input
+                    type="text"
+                    id="name"
+                    className="Login-form-input2"
+                    onChange={onChange}
+                  />
                 </div>
                 <div className="Login-form-group">
                   <label className="form-label">학교</label>
-                  <input type="text" id="school" className="Login-form-input" />
+                  <select
+                    id="school"
+                    className="Login-form-input"
+                    onChange={onChange}
+                  >
+                    <option value="" disabled selected></option>
+                    <option value="school1">School 1</option>
+                    <option value="school2">School 2</option>
+                    <option value="school3">School 3</option>
+                  </select>
                 </div>
                 <div className="Login-form-group">
                   <label className="form-label">학과</label>
-                  <input type="text" id="depart" className="Login-form-input" />
+                  <select
+                    id="depart"
+                    className="Login-form-input"
+                    onChange={onChange}
+                  >
+                    <option value="" disabled selected></option>
+                    <option value="dept1">Department 1</option>
+                    <option value="dept2">Department 2</option>
+                    <option value="dept3">Department 3</option>
+                  </select>
                 </div>
                 <div className="Login-form-group">
                   <label className="form-label">추가 관심 학과</label>
                   <div className="Login-form-group2">
-                    <input
-                      type="text"
-                      id="extra-department"
+                    <select
+                      id="extra-department-1"
                       className="Login-form-input1"
-                      value={extraDepartment}
-                      onChange={handleExtraDepartmentChange}
-                    />
-                    <input
-                      type="text"
-                      id="extra-department"
+                      onChange={onChange}
+                    >
+                      <option value="" disabled selected></option>
+                      <option value="extra1">Extra Dept 1</option>
+                      <option value="extra2">Extra Dept 2</option>
+                    </select>
+                    <select
+                      id="extra-department-2"
                       className="Login-form-input1"
-                      value={extraDepartment}
-                      onChange={handleExtraDepartmentChange}
-                    />
-                    <input
-                      type="text"
-                      id="extra-department"
+                      onChange={onChange}
+                    >
+                      <option value="" disabled selected></option>
+                      <option value="extra3">Extra Dept 3</option>
+                      <option value="extra4">Extra Dept 4</option>
+                    </select>
+                    <select
+                      id="extra-department-3"
                       className="Login-form-input1"
-                      value={extraDepartment}
-                      onChange={handleExtraDepartmentChange}
-                    />
+                      onChange={onChange}
+                    >
+                      <option value="" disabled selected></option>
+                      <option value="extra5">Extra Dept 5</option>
+                      <option value="extra6">Extra Dept 6</option>
+                    </select>
                   </div>
                 </div>
                 <div className="Login-terms">
@@ -182,10 +209,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
                   </div>
                 </div>
               </div>
-              <button
-                className="submit-btn"
-                onClick={handleFormSubmit} // 제출 이벤트 핸들러 연결
-              >
+              <button className="submit-btn" onClick={handleFormSubmit}>
                 다음
               </button>
             </div>
