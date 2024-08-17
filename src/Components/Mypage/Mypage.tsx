@@ -148,8 +148,10 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
             <div className="MyPage-left">
               <div className="Mypage-Profile">
                 <div className="Mypage-profile-first">
-                  <div className="Mypage-Profile-img"></div>
-                  <div className="Mypage-Profile-name">눈멍이 님</div>
+                  <div className="Mypage-Profile-img">
+                    <img src="img/Mypage/Proile.svg"></img>
+                  </div>
+                  <div className="Mypage-Profile-name">로그인이 필요해요</div>
                 </div>
                 <div className="Mypage-Profile-buttons">
                   <div
