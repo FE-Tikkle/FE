@@ -1,9 +1,22 @@
 .Mypage-modal-content {
   width: 535.544px;
+  height: 3-0.117px;
+  border-radius: 10.541px;
+  background: var(--white, #fff);
+  padding: 20px;
+}
+.Mypage2-modal-content {
+  width: 535.544px;
   height: 320.117px;
   border-radius: 10.541px;
   background: var(--white, #fff);
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.LoginTake {
+  width: 500px;
 }
 .Mypage-modal-title {
   color: var(--gray1, #878787);

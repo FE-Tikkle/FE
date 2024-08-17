@@ -79,7 +79,6 @@ const Mypageinfo: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 '고객센터 / 도움말',
                 '친구에게 추천하기',
                 '서비스 약관',
-                '로그아웃',
                 '서비스 탈퇴',
               ].map(option => (
                 <div
@@ -101,8 +100,6 @@ const Mypageinfo: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                         ? '4'
                         : option === '서비스 약관'
                         ? '5'
-                        : option === '로그아웃'
-                        ? '6'
                         : '7'
                     }.svg`}
                   />

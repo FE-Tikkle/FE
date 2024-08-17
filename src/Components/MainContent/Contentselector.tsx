@@ -23,7 +23,7 @@ const ContentSelector: React.FC = () => {
         return (
           <>
             <Noticelist />
-            <Noticemain />
+            <Noticemain activeTab={activeTab} />
           </>
         )
       case '장학':

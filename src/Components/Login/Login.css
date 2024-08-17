@@ -147,8 +147,24 @@
   align-items: flex-start;
   gap: 10px;
 }
+.Login-form-group2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
 .Login-form-input {
   width: 433.924px;
+  height: 52.999px;
+  border-radius: 10px;
+  background: #fff;
+  border: none;
+  font-size: 25px;
+  font-family: 'Pretendard';
+  padding-left: 20px;
+  transition: border-color 0.3s ease-in-out;
+}
+.Login-form-input1 {
+  width: 123px;
   height: 52.999px;
   border-radius: 10px;
   background: #fff;

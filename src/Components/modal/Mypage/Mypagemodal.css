@@ -34,3 +34,17 @@
   color: #888;
   font-size: 14px;
 }
+
+.Update-button {
+  background: transparent;
+  border: 1px solid #919191;
+  border-radius: 5px;
+  font-family: pretendard;
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.Update-button:hover {
+  background: #b8b8b8;
+}

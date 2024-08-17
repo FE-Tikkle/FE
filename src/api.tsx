@@ -92,3 +92,29 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+export interface NoticeData {
+  department: string
+  title: string
+  date: string
+}
+export const getNoticeFiltered = async (
+  size: number,
+  page: number,
+  tag: string,
+  query: string
+): Promise<NoticeData[]> => {
+  try {
+    const response = await axiosInstance.get<NoticeData[]>('/notice/filtered', {
+      params: {
+        size,
+        page,
+        tag,
+        query,
+      },
+    })
+    return response.data
+  } catch (error) {
+    console.error('Error fetching notices:', error)
+    throw error
+  }
+}

@@ -8,6 +8,9 @@ import Recruit from './Recruit/Recruit'
 import Activites from './Activites/Activites'
 import Contest from './Contest/Contest'
 import Mypageinfo from '../modal/Mypageinfomodal'
+import DoLogin from './DoLogin'
+import AuthHandler from '../Login/AuthHandler'
+import LoginModal2 from '../modal/Loginmodal2'
 
 interface MyPageModalProps {
   isOpen: boolean
@@ -81,21 +84,58 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
   initialSelectedIndex,
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   useEffect(() => {
     if (initialSelectedIndex !== undefined) {
       setSelectedIndex(initialSelectedIndex)
     }
+    checkLoginStatus()
   }, [initialSelectedIndex])
-
+  const checkLoginStatus = () => {
+    const token = localStorage.getItem('access_token')
+    setIsLoggedIn(!!token)
+  }
   const selectedData =
     selectedIndex !== null
       ? selecterData[selectedIndex]
       : { title: '', content: null }
   const SelectedComponent = selectedData.content || null
+  const renderContent = () => {
+    if (selectedIndex === 0) {
+      // 티끌 소개 선택 시
+      return SelectedComponent && <SelectedComponent />
+    } else {
+      // 다른 컨텐츠 선택 시
+      if (isLoggedIn) {
+        // 로그인한 경우
+        return SelectedComponent && <SelectedComponent />
+      } else {
+        // 로그인하지 않은 경우
+        return <DoLogin />
+      }
+    }
+  }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
+  const openLoginModal = () => setIsLoginModalOpen(true)
+  const closeLoginModal = () => setIsLoginModalOpen(false)
+
+  const handleLogin = () => {
+    openLoginModal()
+  }
+  const handleLogout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('is_new')
+    localStorage.removeItem('refresh_token')
+    setIsLoggedIn(false)
+    onClose()
+    window.location.reload()
+  }
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <motion.div
@@ -112,8 +152,19 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   <div className="Mypage-Profile-img"></div>
                   <div className="Mypage-Profile-name">눈멍이 님</div>
                 </div>
-                <div className="Mypage-Profile-button" onClick={openModal}>
-                  설정
+                <div className="Mypage-Profile-buttons">
+                  <div
+                    className="Mypage-Profile-button"
+                    onClick={isLoggedIn ? openModal : handleLogin}
+                  >
+                    설정
+                  </div>
+                  <div
+                    className="Mypage-Profile-button"
+                    onClick={isLoggedIn ? handleLogout : handleLogin} // 로그인 상태에 따라 호출되는 함수 변경
+                  >
+                    {isLoggedIn ? '로그아웃' : '로그인하기'}
+                  </div>
                 </div>
               </div>
               <div className="Mypage-Select">
@@ -140,15 +191,13 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
             </div>
             <div className="MyPage-right">
               <div className="MyPage-Title">{selectedData.title}</div>
-              <div className="MyPage-Content">
-                {' '}
-                {SelectedComponent && <SelectedComponent />}
-              </div>
+              <div className="MyPage-Content">{renderContent()}</div>
             </div>
           </div>
         </motion.div>
       </motion.div>
       <Mypageinfo isOpen={isModalOpen} onClose={closeModal} />
+      <LoginModal2 isOpen={isLoginModalOpen} onClose={closeLoginModal} />
     </Modal>
   )
 }

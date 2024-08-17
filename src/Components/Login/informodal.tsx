@@ -106,13 +106,29 @@ const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose, onSubmit }) => {
                 </div>
                 <div className="Login-form-group">
                   <label className="form-label">추가 관심 학과</label>
-                  <input
-                    type="text"
-                    id="extra-department"
-                    className="Login-form-input"
-                    value={extraDepartment}
-                    onChange={handleExtraDepartmentChange}
-                  />
+                  <div className="Login-form-group2">
+                    <input
+                      type="text"
+                      id="extra-department"
+                      className="Login-form-input1"
+                      value={extraDepartment}
+                      onChange={handleExtraDepartmentChange}
+                    />
+                    <input
+                      type="text"
+                      id="extra-department"
+                      className="Login-form-input1"
+                      value={extraDepartment}
+                      onChange={handleExtraDepartmentChange}
+                    />
+                    <input
+                      type="text"
+                      id="extra-department"
+                      className="Login-form-input1"
+                      value={extraDepartment}
+                      onChange={handleExtraDepartmentChange}
+                    />
+                  </div>
                 </div>
                 <div className="Login-terms">
                   <div className="terms-form">
