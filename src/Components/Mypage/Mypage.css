@@ -31,7 +31,8 @@
 .MyPage-left {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
+  margin-top: 20px;
 }
 .Mypage-profile-first {
   display: flex;
@@ -44,16 +45,10 @@
   height: 110px;
   background-color: rgb(211, 211, 211);
   border-radius: 50%;
-}
-.Mypage-Profile-img {
-  width: 110px;
-  height: 110px;
-  background-color: rgb(211, 211, 211);
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; /* 이미지가 원 밖으로 나가지 않도록 */
 }
 
 .Mypage-Profile-img img {
