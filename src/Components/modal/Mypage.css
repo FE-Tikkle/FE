@@ -67,6 +67,9 @@
 .Mypage-modal-Content {
   display: flex;
 }
+.Mypage-modal-left {
+  z-index: 10;
+}
 .Mypage-modal-right {
   width: 400px;
   display: flex;

@@ -14,6 +14,7 @@ const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [events, setEvents] = useState<any[]>([])
   const [isSignedIn, setIsSignedIn] = useState(false)
+
   const daysInMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + 1,
@@ -48,6 +49,7 @@ const Calendar: React.FC = () => {
       return newDate
     })
   }
+
   const handleAuthClick = async () => {
     try {
       const auth2 = await loadAuth2(gapi, CLIENT_ID, SCOPES)
@@ -112,6 +114,16 @@ const Calendar: React.FC = () => {
     }
   }, [currentDate, isSignedIn])
 
+  useEffect(() => {
+    const eventCounts = days.map(day => {
+      const count = events.filter(
+        event => new Date(event.start.dateTime).getDate() === day
+      ).length
+      return { day, count }
+    })
+    console.log('Event counts:', eventCounts)
+  }, [events])
+
   return (
     <div className="Calendar-Container">
       {!isSignedIn && (
@@ -142,27 +154,26 @@ const Calendar: React.FC = () => {
           .map((_, index) => (
             <div key={`empty-${index}`} className="empty-day" />
           ))}
-        {days.map(day => (
-          <div
-            key={day}
-            className={`day ${
-              day === new Date().getDate() &&
-              currentDate.getMonth() === new Date().getMonth() &&
-              currentDate.getFullYear() === new Date().getFullYear()
-                ? 'today'
-                : ''
-            }`}
-          >
-            {day}
-            {events
-              .filter(event => new Date(event.start.dateTime).getDate() === day)
-              .map(event => (
-                <div key={event.id} className="event">
-                  {event.summary}
-                </div>
-              ))}
-          </div>
-        ))}
+        {days.map(day => {
+          const eventCount = events.filter(
+            event => new Date(event.start.dateTime).getDate() === day
+          ).length
+          return (
+            <div
+              key={day}
+              className={`day ${
+                day === new Date().getDate() &&
+                currentDate.getMonth() === new Date().getMonth() &&
+                currentDate.getFullYear() === new Date().getFullYear()
+                  ? 'today'
+                  : ''
+              }`}
+            >
+              {day}
+              <div className="event-count">+ {eventCount}</div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

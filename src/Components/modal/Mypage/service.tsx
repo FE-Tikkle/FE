@@ -4,7 +4,11 @@ const Service = () => {
   return (
     <div>
       {' '}
-      <img src="img/404.svg" style={{ width: '600px' }} alt="Share" />
+      <img
+        src="img/404.svg"
+        style={{ width: '600px', overflow: 'hidden' }}
+        alt="Share"
+      />
     </div>
   )
 }
