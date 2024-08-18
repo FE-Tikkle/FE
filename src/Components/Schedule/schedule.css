@@ -81,7 +81,10 @@
   line-height: normal;
   margin-top: 5px;
 }
-
+.Schedule-key {
+  display: flex;
+  flex-direction: column;
+}
 .Schedule::-webkit-scrollbar {
   width: 8px;
   margin-left: 10px;
