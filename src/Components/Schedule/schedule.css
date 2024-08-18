@@ -46,7 +46,7 @@
   line-height: normal;
 }
 .Schedule-title {
-  color: var(--Schedule-text-icon-color);
+  color: var(--Schedule-text-icon-color) !important;
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;

@@ -92,18 +92,30 @@
 .day {
   aspect-ratio: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-top: 1px solid #e0e0e0;
+  cursor: pointer;
 }
 
 .day.today {
   background-color: #3c332b;
   color: #fff;
   border-radius: 50%;
-  transform: scale(0.8);
+  transform: scale(0.9);
 }
 
 .empty-day {
   aspect-ratio: 1;
+}
+.event-count {
+  background: rgb(255, 239, 206);
+  border-radius: 5px;
+  width: 30px;
+  text-align: center;
+  margin-top: 3px;
+}
+.event-count.no-background {
+  background: none;
 }

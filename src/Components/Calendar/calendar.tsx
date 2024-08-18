@@ -162,23 +162,26 @@ const Calendar: React.FC<{
             <div key={`empty-${index}`} className="empty-day" />
           ))}
         {days.map(day => {
+          const isToday =
+            day === new Date().getDate() &&
+            currentDate.getMonth() === new Date().getMonth() &&
+            currentDate.getFullYear() === new Date().getFullYear()
+
           const eventCount = events.filter(
             event => new Date(event.start.dateTime).getDate() === day
           ).length
+
           return (
             <div
               key={day}
-              className={`day ${
-                day === new Date().getDate() &&
-                currentDate.getMonth() === new Date().getMonth() &&
-                currentDate.getFullYear() === new Date().getFullYear()
-                  ? 'today'
-                  : ''
-              }`}
+              className={`day ${isToday ? 'today' : ''}`}
               onClick={() => handleDayClick(day)} // 날짜 클릭 시 이벤트 핸들러
             >
-              {day}
-              <div className="event-count">+ {eventCount}</div>
+              <div className="day-number">{day}</div> {/* 날짜 */}
+              <div className={`event-count ${isToday ? 'no-background' : ''}`}>
+                + {eventCount}
+              </div>{' '}
+              {/* 이벤트 개수 */}
             </div>
           )
         })}
