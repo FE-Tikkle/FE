@@ -21,7 +21,7 @@ const Schedule: React.FC<{ date: Date | null; events: any[] }> = ({
         </div>
         {events.length > 0 ? (
           events.map((event, index) => (
-            <div key={index}>
+            <div className="Schedule-key" key={index}>
               <div className="Schedule-title">{String(event.summary)}</div>
               <div className="Schedule-time">
                 {new Date(event.start.dateTime).toLocaleTimeString([], {
