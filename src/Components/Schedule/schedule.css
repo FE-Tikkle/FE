@@ -50,7 +50,7 @@
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
   display: flex;
   align-self: flex-end;
@@ -71,8 +71,10 @@
   font-family: Pretendard;
   font-size: 15px;
   margin-right: 10px;
-  font-style: normal;
-  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
   line-height: normal;
   margin-top: 5px;
 }
