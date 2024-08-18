@@ -4,6 +4,7 @@
   border-radius: 30px;
   background: #fff;
   margin-left: 40px;
+  position: relative;
 }
 .calendar-wrapper {
   width: 300px;
@@ -118,4 +119,17 @@
 }
 .event-count.no-background {
   background: none;
+}
+.Calendar-button {
+  border: none;
+  background: var(--blue, #e4effc);
+  position: absolute;
+  right: 10px;
+  top: 45px;
+  border-radius: 5px;
+  height: 35px;
+  cursor: pointer;
+  font-family: pretendard;
+  font-weight: 500;
+  z-index: 10;
 }

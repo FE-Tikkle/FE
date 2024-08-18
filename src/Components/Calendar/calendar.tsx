@@ -134,7 +134,9 @@ const Calendar: React.FC<{
   return (
     <div className="Calendar-Container">
       {!isSignedIn && (
-        <button onClick={handleAuthClick}>구글 캘린더 연동</button>
+        <button className="Calendar-button" onClick={handleAuthClick}>
+          구글 캘린더 연동
+        </button>
       )}
       <div className="month-header">
         <button onClick={() => changeMonth(-1)} className="prev-button">
