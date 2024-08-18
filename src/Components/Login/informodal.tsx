@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from '../modal/modal'
 import { motion } from 'framer-motion'
 import './Login.css'
+import { postUserData, getNoticeDepartment, getNoticeSite } from '../../api'
 
 interface InfoModalProps {
   isOpen: boolean
@@ -32,13 +33,37 @@ const InfoModal: React.FC<InfoModalProps> = ({
   onSubmit,
   onChange,
 }) => {
+  const [name, setName] = useState('')
+  const [school, setSchool] = useState('')
+  const [department, setDepartment] = useState('')
+  const [schools, setSchools] = useState<string[]>([])
+  const [departments, setDepartments] = useState<string[]>([])
   const [allChecked, setAllChecked] = useState(false)
   const [terms, setTerms] = useState({
     termsOfService: false,
     privacyPolicy: false,
     promotions: false,
   })
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const siteData = await getNoticeSite()
+        const departmentData = await getNoticeDepartment()
 
+        const schoolOptions = siteData.map(notice => notice.department)
+        const departmentOptions = departmentData.map(
+          notice => notice.department
+        )
+
+        setSchools(schoolOptions)
+        setDepartments(departmentOptions)
+      } catch (error) {
+        console.error('Error fetching options:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
   const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = event.target
     setAllChecked(checked)
@@ -57,7 +82,9 @@ const InfoModal: React.FC<InfoModalProps> = ({
     }))
   }
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    postUserData(name, school, department)
     onSubmit()
     onClose()
   }
@@ -96,7 +123,8 @@ const InfoModal: React.FC<InfoModalProps> = ({
                     type="text"
                     id="name"
                     className="Login-form-input2"
-                    onChange={onChange}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                   />
                 </div>
                 <div className="Login-form-group">
@@ -104,12 +132,15 @@ const InfoModal: React.FC<InfoModalProps> = ({
                   <select
                     id="school"
                     className="Login-form-input"
-                    onChange={onChange}
+                    value={school}
+                    onChange={e => setSchool(e.target.value)}
                   >
                     <option value="" disabled selected></option>
-                    <option value="school1">School 1</option>
-                    <option value="school2">School 2</option>
-                    <option value="school3">School 3</option>
+                    {schools.map(school => (
+                      <option key={school} value={school}>
+                        {school}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="Login-form-group">
@@ -117,16 +148,19 @@ const InfoModal: React.FC<InfoModalProps> = ({
                   <select
                     id="depart"
                     className="Login-form-input"
-                    onChange={onChange}
+                    value={department}
+                    onChange={e => setDepartment(e.target.value)}
                   >
                     <option value="" disabled selected></option>
-                    <option value="dept1">Department 1</option>
-                    <option value="dept2">Department 2</option>
-                    <option value="dept3">Department 3</option>
+                    {departments.map(dept => (
+                      <option key={dept} value={dept}>
+                        {dept}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="Login-form-group">
-                  <label className="form-label">추가 관심 학과</label>
+                  <label className="form-label">구독할 학과</label>
                   <div className="Login-form-group2">
                     <select
                       id="extra-department-1"

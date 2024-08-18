@@ -2,8 +2,7 @@ import axios from 'axios'
 import GoogleAuthBody from './store/slices/authslice'
 import qs from 'qs'
 
-const BASE_URL =
-  'https://oqn4jdpa4pvtyeodmh5odzofke0ofmje.lambda-url.ap-northeast-3.on.aws'
+const BASE_URL = 'https://api.tikkeul.site'
 
 const axiosInstance = axios.create({
   baseURL: `${BASE_URL}`,
@@ -92,6 +91,22 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+export const postUserData = async (
+  name: string,
+  school: string,
+  department: string
+) => {
+  try {
+    const response = await axiosInstance.post('/user', {
+      name,
+      university: school,
+      department: department,
+    })
+    console.log('User data posted successfully:', response.data)
+  } catch (error) {
+    console.error('Error posting user data:', error)
+  }
+}
 export interface NoticeData {
   department: string
   title: string
@@ -115,6 +130,25 @@ export const getNoticeFiltered = async (
     return response.data
   } catch (error) {
     console.error('Error fetching notices:', error)
+    throw error
+  }
+}
+export const getNoticeSite = async (): Promise<NoticeData[]> => {
+  try {
+    const response = await axiosInstance.get<NoticeData[]>('/notice/site')
+    return response.data
+  } catch (error) {
+    console.error('Error fetching site notices:', error)
+    throw error
+  }
+}
+
+export const getNoticeDepartment = async (): Promise<NoticeData[]> => {
+  try {
+    const response = await axiosInstance.get<NoticeData[]>('/notice/department')
+    return response.data
+  } catch (error) {
+    console.error('Error fetching department notices:', error)
     throw error
   }
 }
