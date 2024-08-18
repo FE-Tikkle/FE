@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { gapi, loadAuth2 } from 'gapi-script'
 import './calendar.css'
+import { GOOGLE_API_KEY, GOOGLE_ID } from '../../store/slices/constant'
+
+const CLIENT_ID = GOOGLE_ID
+const API_KEY = GOOGLE_API_KEY
+const DISCOVERY_DOCS = [
+  'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
+]
+const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly'
 
 const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
-
+  const [events, setEvents] = useState<any[]>([])
+  const [isSignedIn, setIsSignedIn] = useState(false)
   const daysInMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + 1,
@@ -38,9 +48,75 @@ const Calendar: React.FC = () => {
       return newDate
     })
   }
+  const handleAuthClick = async () => {
+    try {
+      const auth2 = await loadAuth2(gapi, CLIENT_ID, SCOPES)
+      if (auth2.isSignedIn.get()) {
+        setIsSignedIn(true)
+        getEvents()
+      } else {
+        await auth2.signIn()
+        setIsSignedIn(true)
+        getEvents()
+      }
+    } catch (err) {
+      console.error('Error signing in:', err)
+    }
+  }
+
+  const getEvents = async () => {
+    try {
+      const response = await gapi.client.calendar.events.list({
+        calendarId: 'primary',
+        timeMin: new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth(),
+          1
+        ).toISOString(),
+        timeMax: new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth() + 1,
+          0
+        ).toISOString(),
+        showDeleted: false,
+        singleEvents: true,
+        orderBy: 'startTime',
+      })
+      setEvents(response.result.items)
+    } catch (err) {
+      console.error('Error fetching events:', err)
+    }
+  }
+
+  useEffect(() => {
+    const initClient = async () => {
+      try {
+        await gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES,
+        })
+        gapi.auth2.getAuthInstance().isSignedIn.listen(setIsSignedIn)
+        setIsSignedIn(gapi.auth2.getAuthInstance().isSignedIn.get())
+      } catch (err) {
+        console.error('Error initializing Google API client:', err)
+      }
+    }
+    gapi.load('client:auth2', initClient)
+  }, [])
+
+  useEffect(() => {
+    if (isSignedIn) {
+      getEvents()
+    }
+  }, [currentDate, isSignedIn])
 
   return (
     <div className="Calendar-Container">
+      {!isSignedIn && (
+        <button onClick={handleAuthClick}>구글 캘린더 연동</button>
+      )}
       <div className="month-header">
         <button onClick={() => changeMonth(-1)} className="prev-button">
           &lt;
@@ -78,6 +154,13 @@ const Calendar: React.FC = () => {
             }`}
           >
             {day}
+            {events
+              .filter(event => new Date(event.start.dateTime).getDate() === day)
+              .map(event => (
+                <div key={event.id} className="event">
+                  {event.summary}
+                </div>
+              ))}
           </div>
         ))}
       </div>
