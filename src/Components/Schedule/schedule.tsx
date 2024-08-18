@@ -22,7 +22,9 @@ const Schedule: React.FC<{ date: Date | null; events: any[] }> = ({
         {events.length > 0 ? (
           events.map((event, index) => (
             <div key={index}>
-              <div className="Schedule-title">{event.summary}</div>
+              <div className="Schedule-title">
+                {event.summary.replace(/[^\w\s]/gi, '')}
+              </div>
               <div className="Schedule-time">
                 {new Date(event.start.dateTime).toLocaleTimeString([], {
                   hour: '2-digit',
