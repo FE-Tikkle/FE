@@ -1,21 +1,38 @@
 import React from 'react'
 import './schedule.css'
 
-const Schedule: React.FC = () => {
+// 선택된 날짜와 이벤트를 받아서 일정 표시
+const Schedule: React.FC<{ date: Date | null; events: any[] }> = ({
+  date,
+  events,
+}) => {
+  if (!date) {
+    return <div className="Schedule">날짜를 선택하세요.</div>
+  }
+
   return (
     <div className="Schedule">
       <div className="Schedule-maincontainer">
         <div className="Schedule-main2conatainer">
           <div className="Schedule-recnet-icon"></div>
-          <div className="Schedule-date">2024년 7월 8일 화</div>
+          <div className="Schedule-date">
+            {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일
+          </div>
         </div>
-        <div className="Schedule-title">현대로템 디펜스 솔루션 면접</div>
-        <div className="Schedule-time">10:00 P.M. ~ 12:00 P.M.</div>
+        {events.length > 0 ? (
+          events.map((event, index) => (
+            <div key={index}>
+              <div className="Schedule-title">{event.summary}</div>
+              <div className="Schedule-time">
+                {new Date(event.start.dateTime).toLocaleTimeString()} ~{' '}
+                {new Date(event.end.dateTime).toLocaleTimeString()}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="Schedule-title">일정이 없습니다.</div>
+        )}
       </div>
-      <div className="Schedule-emptycontainer"></div>
-      <div className="Schedule-emptycontainer"></div>
-      <div className="Schedule-emptycontainer"></div>
-      <div className="Schedule-emptycontainer"></div>
     </div>
   )
 }

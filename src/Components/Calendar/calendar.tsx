@@ -10,7 +10,10 @@ const DISCOVERY_DOCS = [
 ]
 const SCOPES = 'https://www.googleapis.com/auth/calendar.events.readonly'
 
-const Calendar: React.FC = () => {
+const Calendar: React.FC<{
+  setSelectedDate: (date: Date) => void
+  setSelectedEvents: (events: any[]) => void
+}> = ({ setSelectedDate, setSelectedEvents }) => {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [events, setEvents] = useState<any[]>([])
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -114,15 +117,19 @@ const Calendar: React.FC = () => {
     }
   }, [currentDate, isSignedIn])
 
-  useEffect(() => {
-    const eventCounts = days.map(day => {
-      const count = events.filter(
-        event => new Date(event.start.dateTime).getDate() === day
-      ).length
-      return { day, count }
-    })
-    console.log('Event counts:', eventCounts)
-  }, [events])
+  // 날짜 클릭 이벤트 핸들러
+  const handleDayClick = (day: number) => {
+    const selected = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    )
+    setSelectedDate(selected)
+    const eventsForDay = events.filter(
+      event => new Date(event.start.dateTime).getDate() === day
+    )
+    setSelectedEvents(eventsForDay)
+  }
 
   return (
     <div className="Calendar-Container">
@@ -168,6 +175,7 @@ const Calendar: React.FC = () => {
                   ? 'today'
                   : ''
               }`}
+              onClick={() => handleDayClick(day)} // 날짜 클릭 시 이벤트 핸들러
             >
               {day}
               <div className="event-count">+ {eventCount}</div>
