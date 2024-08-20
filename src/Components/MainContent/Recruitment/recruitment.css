@@ -3,9 +3,9 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   grid-auto-rows: 200px;
-  margin-top: 50px;
   height: 740px;
   overflow-y: auto;
+  margin-top: -10px;
 }
 
 .recruitment-mainBox {

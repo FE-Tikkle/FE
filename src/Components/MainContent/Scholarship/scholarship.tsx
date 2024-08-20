@@ -79,11 +79,14 @@ const Scholarship: React.FC = () => {
 
   return (
     <div className="scholar-all-container">
-      {notices.length > 0 ? (
+      {/* {notices.length > 0 ? (
         notices.map((notice, index) => <Notice key={index} notice={notice} />)
       ) : (
         <p>로딩 중... 또는 공지사항이 없습니다.</p>
-      )}
+      )} */}
+      <div className="later-card">
+        <img src="img/404-2.svg" className="errorimg" />
+      </div>
     </div>
   )
 }

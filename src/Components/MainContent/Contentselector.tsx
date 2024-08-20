@@ -12,10 +12,14 @@ import Department from './Department/Department'
 const ContentSelector: React.FC = () => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
   const [activeTab, setActiveTab] = useState('전체')
+  const [tabs, setTabs] = useState(['전체'])
 
-  const notices = ['공지사항', '장학', '채용공고', '대외활동', '공모전']
-  const tabs = ['전체', '학사', '특강', '모집 / 채용', '교내외 활동', '대학원']
+  const notices = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
   const scholarshipTabs = ['전체', '학자금', '장학금', '학자금 대출']
+
+  const handleTagListUpdate = (tagList: string[]) => {
+    setTabs(['전체', ...tagList])
+  }
 
   const renderContent = () => {
     switch (selectedNotice) {
@@ -23,13 +27,16 @@ const ContentSelector: React.FC = () => {
         return (
           <>
             <Noticelist />
-            <Noticemain activeTab={activeTab} />
+            <Noticemain
+              activeTab={activeTab}
+              onTagListUpdate={handleTagListUpdate}
+            />
           </>
         )
       case '장학':
         return (
           <>
-            <Noticelist />
+            {/* <Noticelist /> */}
             <Scholarship />
           </>
         )
@@ -75,7 +82,7 @@ const ContentSelector: React.FC = () => {
 
         {selectedNotice === '장학' && (
           <div className="Content-Selector-main2">
-            {scholarshipTabs.map(tab => (
+            {/* {scholarshipTabs.map(tab => (
               <div
                 key={tab}
                 className={`tab ${activeTab === tab ? 'active' : ''}`}
@@ -83,7 +90,7 @@ const ContentSelector: React.FC = () => {
               >
                 {tab}
               </div>
-            ))}
+            ))} */}
           </div>
         )}
 

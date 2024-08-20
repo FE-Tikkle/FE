@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface RecruitmentCardProps {
-  company: string
+  companyimg: string
   dday: string
   isBookmarked: boolean
   handleBookmarkClick: () => void
@@ -11,7 +11,7 @@ interface RecruitmentCardProps {
 }
 
 const RecruitmentCard: React.FC<RecruitmentCardProps> = ({
-  company,
+  companyimg,
   dday,
   isBookmarked,
   handleBookmarkClick,
@@ -23,7 +23,14 @@ const RecruitmentCard: React.FC<RecruitmentCardProps> = ({
     <div className="recruitment-mainBox">
       <div className="recruitment-Box1">
         <div className="recruitment-company">
-          <img src={company} className="company-logo" />
+          <img
+            src={companyimg}
+            alt="Company Logo"
+            className="company-logo"
+            onError={e => {
+              e.currentTarget.src = 'img/Mypage/Proile.svg' // Fallback image path
+            }}
+          />
         </div>
         <div className="recruitment-dday">{dday}</div>
         <img

@@ -44,6 +44,8 @@
   display: flex;
   margin-top: 10px;
   font-size: 16px;
+  width: 1090px;
+  flex-wrap: wrap;
 }
 .Contents {
   transition: opacity 0.3s ease-out;
