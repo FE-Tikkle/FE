@@ -25,6 +25,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .Noticelist-item {
   text-align: center;
@@ -42,8 +43,8 @@
 }
 
 .Noticelist-item.title {
-  flex: 10;
-  margin-left: 80px;
+  flex: 13;
+  margin-right: -80px;
 }
 
 .Noticelist-item.date {
@@ -54,14 +55,15 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 690px;
+  height: 700px;
   gap: 15px;
   flex-shrink: 0;
   overflow-x: hidden;
+  width: 1096px;
 }
 .notice-all-container::-webkit-scrollbar {
   width: 8px;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .notice-all-container::-webkit-scrollbar-track {
@@ -89,24 +91,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 .department {
-  width: 130px;
-  flex: 1;
-  margin-left: 40px;
+  width: 120px;
+  flex: 0.8;
+  margin-left: 80px;
+  display: flex;
 }
 .title {
-  width: 580px;
-  margin-left: 30px;
-  flex: 3;
+  margin-left: -100px;
+  flex: 2.5;
+  padding: 30px;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .date {
-  width: 110px;
-  flex: 0.64;
+  width: 120px;
+  flex: 0.5;
+  margin-left: 30px;
 }
 .bookmark-icon {
   cursor: pointer;
@@ -115,7 +120,7 @@
 .notice-all-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -173,4 +178,7 @@
 .bookmark-icon.updating {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.notice-highlight {
+  color: red; /* 또는 원하는 색상 */
 }

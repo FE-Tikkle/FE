@@ -2,34 +2,38 @@ import React, { useState } from 'react'
 import './Content.css'
 import Noticelist from './Notice/noticelist'
 import Noticemain from './Notice/noticemain'
-import Recruitment from './Recruitment/recruitment'
 import Activities from './Activities/activities'
 import SearchBox from '../Search/Searchbox'
 import Scholarship from './Scholarship/scholarship'
 import Competition from './Competition/competition'
 import Department from './Department/Department'
+import RecruitmentContainer from './Recruitment/recruitment'
 
 const ContentSelector: React.FC = () => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
   const [activeTab, setActiveTab] = useState('전체')
   const [tabs, setTabs] = useState(['전체'])
-
+  const [searchTerm, setSearchTerm] = useState('')
   const notices = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
   const scholarshipTabs = ['전체', '학자금', '장학금', '학자금 대출']
 
   const handleTagListUpdate = (tagList: string[]) => {
     setTabs(['전체', ...tagList])
   }
-
+  const handleSearch = (term: string) => {
+    setSearchTerm(term)
+  }
   const renderContent = () => {
     switch (selectedNotice) {
       case '공지사항':
         return (
           <>
+            <SearchBox onSearch={handleSearch} />
             <Noticelist />
             <Noticemain
               activeTab={activeTab}
               onTagListUpdate={handleTagListUpdate}
+              searchTerm={searchTerm}
             />
           </>
         )
@@ -41,7 +45,12 @@ const ContentSelector: React.FC = () => {
           </>
         )
       case '채용공고':
-        return <Recruitment />
+        return (
+          <>
+            <SearchBox onSearch={handleSearch} />
+            <RecruitmentContainer searchTerm={searchTerm} />
+          </>
+        )
       case '대외활동':
         return <Activities />
       case '공모전':
@@ -93,8 +102,6 @@ const ContentSelector: React.FC = () => {
             ))} */}
           </div>
         )}
-
-        <SearchBox />
       </div>
 
       <div className="Contents">{renderContent()}</div>
