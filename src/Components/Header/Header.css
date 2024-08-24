@@ -32,6 +32,8 @@
   font-weight: 900;
   line-height: normal;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .Header-intro {
   cursor: pointer;
