@@ -109,7 +109,18 @@ export const postUserData = async (userData: {
     throw error
   }
 }
-
+export const refreshToken = async (refreshToken: string) => {
+  const response = await axios.post(
+    'https://api.tikkeul.site/auth/refresh',
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    }
+  )
+  return response.data
+}
 export interface Notice {
   id: string // 공지사항의 고유 ID
   department: string

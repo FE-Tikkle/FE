@@ -28,6 +28,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
   const prevPageRef = useRef<number>(1)
 
   const fetchNotices = useCallback(async () => {
+    console.log(hasMore)
     if (
       (activeTab === prevActiveTabRef.current &&
         page === prevPageRef.current &&
@@ -78,7 +79,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
       setNotices([])
       setPage(1)
       prevPageRef.current = 1
-      setHasMore(true) // 탭이나 검색어가 변경되면 hasMore를 true로 리셋
+      // setHasMore(true) // 탭이나 검색어가 변경되면 hasMore를 true로 리셋
     }
     fetchNotices()
   }, [activeTab, fetchNotices, searchTerm])

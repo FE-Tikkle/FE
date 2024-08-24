@@ -234,6 +234,9 @@
   .Search-buttons {
     gap: 30px;
   }
+  .SearchBoxConatiner {
+    margin-left: 643px;
+  }
 }
 
 @media (max-width: 700px) {

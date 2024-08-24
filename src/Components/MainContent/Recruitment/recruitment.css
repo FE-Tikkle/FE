@@ -156,6 +156,6 @@
   .recruitment-container {
     grid-template-columns: 1fr 1fr;
     padding-right: 0px;
-    margin-left: 20px;
+    width: 790px;
   }
 }

@@ -7,6 +7,7 @@ import {
   getNoticeDepartment,
   getNoticeSite,
   getNoticeDepartment2,
+  refreshToken,
 } from '../../api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -58,14 +59,51 @@ const InfoModal: React.FC<InfoModalProps> = ({
     promotions: false,
   })
 
+  const handleTokenRefresh = async () => {
+    const refreshTokenValue = localStorage.getItem('refresh_token')
+    if (refreshTokenValue) {
+      try {
+        const response = await refreshToken(refreshTokenValue)
+        localStorage.setItem('access_token', response.access_token)
+        localStorage.setItem('refresh_token', response.refresh_token)
+        return true
+      } catch (refreshError) {
+        console.error('Token refresh failed:', refreshError)
+        toast.error('인증에 실패했습니다. 다시 로그인해주세요.')
+        // 여기서 로그아웃 처리나 로그인 페이지로 리다이렉트 등을 수행할 수 있습니다.
+        return false
+      }
+    } else {
+      toast.error('인증 정보가 없습니다. 다시 로그인해주세요.')
+      // 로그아웃 처리 또는 로그인 페이지로 리다이렉트
+      return false
+    }
+  }
   useEffect(() => {
     const fetchSchools = async () => {
       try {
         const schoolOptions: string[] = await getNoticeSite()
         setSchools(schoolOptions)
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error fetching schools:', error)
-        toast.error('학교 목록을 불러오는 데 실패했습니다.')
+        if (error.response && error.response.status === 409) {
+          const refreshSuccess = await handleTokenRefresh()
+          if (refreshSuccess) {
+            // 토큰 갱신 성공 시 학교 정보 다시 가져오기
+            try {
+              const schoolOptions: string[] = await getNoticeSite()
+              setSchools(schoolOptions)
+            } catch (retryError) {
+              console.error(
+                'Error fetching schools after token refresh:',
+                retryError
+              )
+              toast.error('로그인을 다시 진행해주세요.')
+            }
+          }
+        } else {
+          toast.error('로그인을 진행해주세요.')
+        }
       }
     }
 
@@ -80,7 +118,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
           setDepartments(departmentOptions)
         } catch (error) {
           console.error('Error fetching departments:', error)
-          toast.error('학과 목록을 불러오는 데 실패했습니다.')
+          toast.error('로그인을 진행해주세요')
         }
       } else {
         setDepartments([])
@@ -99,7 +137,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
           setDepartments2(departmentOptions2)
         } catch (error) {
           console.error('Error fetching departments:', error)
-          toast.error('구독 가능한 학과 목록을 불러오는 데 실패했습니다.')
+          toast.error('로그인을 진행해주세요')
         }
       } else {
         setDepartments2([])
@@ -189,7 +227,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <motion.div
-          className="login-modal-content"
+          className="info-modal-content"
           variants={container}
           initial="hidden"
           animate="visible"
@@ -208,6 +246,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
                   맞춤화된 경험과 가치를 만들어갑니다.
                 </div>
               </div>
+              <img src="img/Login/data2.svg" />
             </div>
           </motion.div>
           <motion.div variants={item}>
