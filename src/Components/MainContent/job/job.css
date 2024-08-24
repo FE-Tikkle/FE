@@ -1,13 +1,12 @@
-.department-container {
+.job-container {
   display: flex;
   flex-direction: row;
   margin-top: 20px;
   gap: 20px;
-  justify-content: flex-end;
-  margin-left: -678px;
-  margin-bottom: -40px;
+  margin-left: -528px;
+  margin-bottom: -42px;
 }
-.department-selector {
+.job-selector {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,16 +20,16 @@
   font-weight: 500;
   line-height: normal;
 }
-.department-selector {
+.job-selector {
   cursor: pointer;
 }
 
-.department-selector.selected {
+.job-selector.selected {
   background-color: #8b8b8b;
   color: white;
 }
 @media (max-width: 1100px) {
-  .department-container {
-    margin-left: -368px;
+  .job-container {
+    margin-left: -228px;
   }
 }

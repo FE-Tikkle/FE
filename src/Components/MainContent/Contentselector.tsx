@@ -8,6 +8,7 @@ import Scholarship from './Scholarship/scholarship'
 import Competition from './Competition/competition'
 import Department from './Department/Department'
 import RecruitmentContainer from './Recruitment/recruitment'
+import Job from './job/job'
 
 const ContentSelector: React.FC = () => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
@@ -28,6 +29,7 @@ const ContentSelector: React.FC = () => {
       case '공지사항':
         return (
           <>
+            <Department />
             <SearchBox onSearch={handleSearch} />
             <Noticelist />
             <Noticemain
@@ -47,6 +49,7 @@ const ContentSelector: React.FC = () => {
       case '채용공고':
         return (
           <>
+            <Job />
             <SearchBox onSearch={handleSearch} />
             <RecruitmentContainer searchTerm={searchTerm} />
           </>
@@ -105,9 +108,6 @@ const ContentSelector: React.FC = () => {
       </div>
 
       <div className="Contents">{renderContent()}</div>
-      {selectedNotice !== '대외활동' && selectedNotice !== '공모전' && (
-        <Department />
-      )}
     </div>
   )
 }

@@ -167,6 +167,7 @@
 }
 @media (max-width: 1100px) {
   .Noticelist,
+  .notice-all-container,
   .notice {
     width: 780px;
   }
