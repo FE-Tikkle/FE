@@ -32,7 +32,8 @@
   cursor: pointer;
 }
 .Content-Selector-sector.selected {
-  background: #dbd7d4;
+  background: #3c332b;
+  color: #ffede1;
 }
 .Content-Selector-sector:not(.selected):hover {
   background-color: #e6e6e6;

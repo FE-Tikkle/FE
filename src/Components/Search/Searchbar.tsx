@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react'
 import Modal from '../modal/modal'
 import { motion } from 'framer-motion'
-import { useTheme } from '../../assets/Theme/ThemeContext'
 import './Searchbar.css'
 import '../../App.css'
 interface Platform {
@@ -31,9 +30,6 @@ const Searchbar = () => {
   const [newPlatformUrl, setNewPlatformUrl] = useState('')
   const [showAddPlatformModal, setShowAddPlatformModal] = useState(false)
 
-  const { theme } = useTheme()
-  const imageSrc =
-    theme === 'light' ? 'img/Logo/searchiocn1.svg' : 'img/Logo/searchiocn2.svg'
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
       const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
@@ -83,7 +79,7 @@ const Searchbar = () => {
         <img
           className="Search-img"
           alt="Search icon"
-          src={imageSrc}
+          src="img/Logo/searchiocn2.svg"
           onClick={handleSearch}
         />
       </div>

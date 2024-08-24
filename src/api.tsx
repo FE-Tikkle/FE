@@ -114,14 +114,16 @@ export interface Notice {
   id: string // 공지사항의 고유 ID
   department: string
   title: string
-  date: string
+  created_at: string
   is_bookmarked: boolean
+  index: string
+  top: boolean
+  url: string
 }
 
 export interface NoticeResponse {
   data: Notice[]
   tagList: string[]
-  // 필요한 경우 페이지네이션 정보 등 다른 필드들을 여기에 추가하세요
 }
 
 export const getNoticeFiltered = async (
@@ -198,9 +200,21 @@ export const toggleBookmark = async (id: string): Promise<boolean> => {
   }
 }
 
-export const fetchRecruitments = async (): Promise<Recruitment[]> => {
+export const fetchRecruitments = async (
+  size: number,
+  page: number,
+  tag: string,
+  query: string
+): Promise<Recruitment[]> => {
   try {
-    const response = await axiosInstance.get('/saramin/filtered')
+    const response = await axiosInstance.get('/saramin/filtered', {
+      params: {
+        size, // Number of items per page
+        page,
+        tag,
+        query,
+      },
+    })
     return response.data.data.map((item: any) => ({
       id: item.id, // Ensure the id is present
       url: item.url,
@@ -208,14 +222,63 @@ export const fetchRecruitments = async (): Promise<Recruitment[]> => {
       company: item.company,
       dday: item.deadline_left,
       titles: [item.title],
-      tags: item.job_category.map((cat: string) => `# ${cat}`),
-      info: [
-        { label: '경력', value: item.experience },
-        { label: '학력', value: item.education },
-      ],
+      experience: item.experience,
+      jobType: item.job_type,
+      location: item.location,
+      education: item.education,
+      deadline: item.deadline,
+      jobcate: item.job_category,
+      bookmark: item.is_bookmarked,
     }))
   } catch (error) {
     console.error('Error fetching recruitment data:', error)
     return []
+  }
+}
+interface CompanyInfo {
+  name: string
+  url: string
+}
+
+export const fetchFallbackImage = async (
+  companyInfo: CompanyInfo
+): Promise<string> => {
+  try {
+    const response = await axiosInstance.post('/image', {
+      company: [companyInfo],
+    })
+    return response.data.imageUrl
+  } catch (error) {
+    console.error('Error fetching fallback image:', error)
+    throw error
+  }
+}
+export const toggleBookmark2 = async (id: string): Promise<boolean> => {
+  try {
+    const response = await axiosInstance.post('/saramin/bookmark', { id })
+    return response.data.is_bookmarked
+  } catch (error) {
+    console.error('Error toggling bookmark:', error)
+    throw error
+  }
+}
+export const postContentsRequest = async (
+  contentsType: string,
+  contents_id: string
+): Promise<any> => {
+  try {
+    const response = await axiosInstance.post(
+      '/log',
+      { contents_id },
+      {
+        params: {
+          contents_type: contentsType,
+        },
+      }
+    )
+    return response.data
+  } catch (error) {
+    console.error('Error in postContentsRequest:', error)
+    throw error
   }
 }
