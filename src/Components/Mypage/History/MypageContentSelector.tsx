@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './History.css'
 import HistoryTable from './HistoryTable'
-const MypageMypageSelector: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('전체')
 
-  const tabs = ['공지사항', '장학', '채용공고', '대외활동', '공모전']
+const MypageContentSelector: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('')
+
+  const tabs = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
 
   return (
     <div className="Mypage-selector">
@@ -21,9 +22,10 @@ const MypageMypageSelector: React.FC = () => {
           ))}
         </div>
       </div>
-      <HistoryTable />
+      <HistoryTable activeTab={activeTab} />
     </div>
   )
 }
 
-export default MypageMypageSelector
+export default MypageContentSelector
+

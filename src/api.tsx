@@ -219,3 +219,101 @@ export const fetchRecruitments = async (): Promise<Recruitment[]> => {
     return []
   }
 }
+
+export const getSaraminTags = async (): Promise<Record<string, string[]>> => {
+  try {
+    const response = await axiosInstance.get('/saramin/tag')
+    return response.data
+  } catch (error) {
+    console.error('Error fetching Saramin tags:', error)
+    throw error
+  }
+}
+
+export interface BookmarkedNotice {
+  id: string;
+  title: string;
+  created_at: string;
+  url: string;
+}
+
+export interface BookmarkedNoticeResponse {
+  page: number;
+  size: number;
+  total: number;
+  total_pages: number;
+  has_next: boolean;
+  data: BookmarkedNotice[];
+}
+
+// getBookmarkedNotices 함수는 특정 페이지와 해당 페이지에 대한 데이터를 반환
+export const getBookmarkedNotices = async (
+  size: number,
+  page: number,
+  startDate: string,
+  endDate: string
+): Promise<BookmarkedNoticeResponse> => {
+  try {
+    const response = await axiosInstance.get<BookmarkedNoticeResponse>('/notice/bookmark', {
+      params: {
+        size,
+        page,
+        start_date: startDate,
+        end_date: endDate,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching bookmarked notices:', error);
+    throw error;
+  }
+};
+
+export interface BookmarkedSaramin {
+  id: string;
+  title: string;
+  created_at: string;
+  url: string;
+}
+
+export interface BookmarkedSaraminResponse {
+  page: number;
+  size: number;
+  total: number;
+  total_pages: number;
+  has_next: boolean;
+  data: BookmarkedSaramin[];
+}
+
+export const getBookmarkedSaramin = async (
+  size: number,
+  page: number,
+  startDate: string,
+  endDate: string
+): Promise<BookmarkedSaraminResponse> => {
+  try {
+    const response = await axiosInstance.get<BookmarkedSaraminResponse>('/saramin/bookmark', {
+      params: {
+        size,
+        page,
+        start_date: startDate,
+        end_date: endDate,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Axios 오류 상세:', {
+        메시지: error.message,
+        상태: error.response?.status,
+        상태텍스트: error.response?.statusText,
+        헤더: error.response?.headers,
+        데이터: error.response?.data,
+      });
+    } else {
+      console.error('예상치 못한 오류:', error);
+    }
+    throw error;
+  }
+};
+

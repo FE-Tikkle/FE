@@ -159,7 +159,6 @@ const Myschool: React.FC = () => {
               <label htmlFor="major">관심 학과 1</label>
                 <select
                     id={`extra-department-${1}`}
-                    className="Login-form-input1"
                     value={subscribeDepartments[0]}
                     onChange={e =>
                     handleSubscribeDepartmentChange(
@@ -182,7 +181,6 @@ const Myschool: React.FC = () => {
               <label htmlFor="year">관심 학과 2</label>
               <select
                     id={`extra-department-${2}`}
-                    className="Login-form-input1"
                     value={subscribeDepartments[1]}
                     onChange={e =>
                     handleSubscribeDepartmentChange(
@@ -208,7 +206,6 @@ const Myschool: React.FC = () => {
               <label htmlFor="major">관심 학과 3</label>
               <select
                     id={`extra-department-${3}`}
-                    className="Login-form-input1"
                     value={subscribeDepartments[2]}
                     onChange={e =>
                     handleSubscribeDepartmentChange(
@@ -231,7 +228,6 @@ const Myschool: React.FC = () => {
               <label htmlFor="year">관심 학과 4</label>
               <select
                     id={`extra-department-${4}`}
-                    className="Login-form-input1"
                     value={subscribeDepartments[3]}
                     onChange={e =>
                     handleSubscribeDepartmentChange(

@@ -45,12 +45,13 @@
 
 .field-select{
   height: 40.5px;
-  padding-left: 10px;
+  padding-left: 20px;
   width: 240px;
   border-radius: 5px;
   background: var(--gray3, #f0f1f3);
   border: none;
   margin-bottom: 10px;
+  color: #6f6f6f;
 }
 .Myschool-text {
   color: #6f6f6f;

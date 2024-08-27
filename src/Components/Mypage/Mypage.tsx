@@ -7,6 +7,7 @@ import Myschool from './Myschool/Myschool'
 import Recruit from './Recruit/Recruit'
 import Activites from './Activites/Activites'
 import Contest from './Contest/Contest'
+import Introduce from './Introduce/Introduce'
 import Mypageinfo from '../modal/Mypageinfomodal'
 import DoLogin from './DoLogin'
 import LoginModal2 from '../modal/Loginmodal2'
@@ -39,7 +40,7 @@ const selecterData = [
     mainText: '티끌 소개',
     secondText: '티끌에 대해 알아봐요',
     title: '티끌 소개',
-    content: History,
+    content: Introduce,
   },
   {
     num: '02',

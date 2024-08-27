@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Recruit.css'
+import { getSaraminTags } from '../../../api'
 
 interface FormData {
   school: string
@@ -8,6 +9,11 @@ interface FormData {
   year: string
   relatedSubject: string
   bookOrLectureNote: string
+}
+
+interface FieldSelection {
+  field: string
+  subField: string
 }
 
 const Recruit: React.FC = () => {
@@ -19,14 +25,37 @@ const Recruit: React.FC = () => {
     relatedSubject: '',
     bookOrLectureNote: '',
   })
-  const [field, setField] = useState('')
-  const [subField, setSubField] = useState('')
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value,
-    }))
+  const [fieldSelections, setFieldSelections] = useState<FieldSelection[]>([
+    { field: '', subField: '' },
+    { field: '', subField: '' },
+    { field: '', subField: '' },
+  ])
+  const [tags, setTags] = useState<Record<string, string[]>>({})
+
+  useEffect(() => {
+    const fetchTags = async () => {
+      try {
+        const tagsData = await getSaraminTags()
+        setTags(tagsData)
+        console.log('Saramin Tags:', tagsData)
+      } catch (error) {
+        console.error('Error fetching Saramin tags:', error)
+      }
+    }
+
+    fetchTags()
+  }, [])
+
+  const handleFieldChange = (index: number, value: string) => {
+    const newSelections = [...fieldSelections]
+    newSelections[index] = { field: value, subField: '' }
+    setFieldSelections(newSelections)
+  }
+
+  const handleSubFieldChange = (index: number, value: string) => {
+    const newSelections = [...fieldSelections]
+    newSelections[index] = { ...newSelections[index], subField: value }
+    setFieldSelections(newSelections)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -43,39 +72,41 @@ const Recruit: React.FC = () => {
           {[0, 1, 2].map(index => (
             <div className="Recruit-Conatiner2" key={index}>
               <div className="Recruit-text-Container">
-                <label htmlFor={`school-${index}`}>분야</label>
+                <label htmlFor={`field-${index}`}>분야</label>
                 <select 
-                  id="field"
+                  id={`field-${index}`}
                   className="field-select"
-                  value={field}
-                  onChange={e => setField(e.target.value)}
+                  value={fieldSelections[index].field}
+                  onChange={e => handleFieldChange(index, e.target.value)}
                 >
                   <option value="" disabled>
                     관심 분야를 선택하세요
                   </option>
-                  {/* {fields.map((field, index) => (
-                      <option key={index} value={field}>
-                        {field}
-                      </option>
-                  ))} */}
+                  {Object.keys(tags).map((tagKey, idx) => (
+                    <option key={idx} value={tagKey}>
+                      {tagKey}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="Recruit-text-Container">
-                <label htmlFor={`campus-${index}`}>세부 분야</label>
+                <label htmlFor={`sub-field-${index}`}>세부 분야</label>
                 <select 
-                id="sub-field"
-                className="field-select"
-                value={subField}
-                onChange={e => setSubField(e.target.value)}
+                  id={`sub-field-${index}`}
+                  className="field-select"
+                  value={fieldSelections[index].subField}
+                  onChange={e => handleSubFieldChange(index, e.target.value)}
                 >
                   <option value="" disabled>
                     세부 분야를 선택하세요
                   </option>
-                  {/* {fields.map((field, index) => (
-                      <option key={index} value={field}>
-                        {field}
+                  {fieldSelections[index].field && tags[fieldSelections[index].field] && 
+                    tags[fieldSelections[index].field].map((subField, idx) => (
+                      <option key={idx} value={subField}>
+                        {subField}
                       </option>
-                  ))} */}
+                    ))
+                  }
                 </select>
               </div>
             </div>
