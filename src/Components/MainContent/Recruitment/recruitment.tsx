@@ -1,44 +1,122 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, useCallback } from 'react'
 import RecruitmentCard from './recruitmentCard'
-import { fetchRecruitments } from '../../../api' // Ensure this path is correct
+import { fetchRecruitments, toggleBookmark2 } from '../../../api'
 import './recruitment.css'
 import { Recruitment } from '../../../store/Rec'
-
-const RecruitmentContainer: React.FC = () => {
+interface RecruitmentContainerProps {
+  searchTerm: string
+}
+const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
+  searchTerm,
+}) => {
   const [recruitments, setRecruitments] = useState<Recruitment[]>([])
-  const [bookmarks, setBookmarks] = useState<{ [key: string]: boolean }>({})
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+  const [page, setPage] = useState<number>(1)
+  const [hasMore, setHasMore] = useState<boolean>(true)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const prevPageRef = useRef<number>(1)
+  const prevSearchTermRef = useRef<string>('')
 
-  useEffect(() => {
-    // Fetch data from the API when the component loads
-    const loadRecruitments = async () => {
-      const data = await fetchRecruitments()
-      setRecruitments(data)
+  const loadRecruitments = useCallback(async () => {
+    console.log('loadRecruitments called. Current state:', {
+      isLoading,
+      hasMore,
+      page,
+      prevPage: prevPageRef.current,
+    })
+    if (isLoading || !hasMore || (page !== 1 && page === prevPageRef.current)) {
+      console.log('loadRecruitments aborted due to condition')
+      return
     }
 
-    loadRecruitments()
-  }, [])
+    try {
+      console.log('Fetching recruitments for page:', page)
+      const data = await fetchRecruitments(15, page, '', searchTerm)
 
-  const handleBookmarkClick = (id: string) => {
-    setBookmarks(prev => ({
-      ...prev,
-      [id]: !prev[id],
-    }))
+      if (data.length === 0) {
+        setHasMore(false)
+      } else {
+        setRecruitments(prevRecruitments => [...prevRecruitments, ...data])
+      }
+      prevPageRef.current = page
+      prevSearchTermRef.current = searchTerm
+    } catch (err) {
+      setError('채용 정보를 불러오는 데 실패했습니다.')
+      console.error('Error fetching recruitments:', err)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [isLoading, hasMore, page, searchTerm])
+
+  useEffect(() => {
+    if (prevSearchTermRef.current !== searchTerm) {
+      setRecruitments([])
+      setPage(1)
+      prevPageRef.current = 1
+      setHasMore(true)
+    }
+    loadRecruitments()
+  }, [loadRecruitments, searchTerm])
+
+  const handleScroll = useCallback(() => {
+    if (!containerRef.current || isLoading || !hasMore) return
+
+    const { scrollTop, scrollHeight, clientHeight } = containerRef.current
+    if (scrollTop + clientHeight >= scrollHeight) {
+      setPage(prevPage => prevPage + 1)
+    }
+  }, [isLoading, hasMore])
+  const handleBookmarkClick = async (id: string) => {
+    try {
+      const isBookmarked = await toggleBookmark2(id)
+      setRecruitments(prevRecruitments =>
+        prevRecruitments.map(recruitment =>
+          recruitment.id === id
+            ? { ...recruitment, bookmark: isBookmarked }
+            : recruitment
+        )
+      )
+    } catch (error) {
+      console.error('Error toggling bookmark:', error)
+      setError('북마크 설정에 실패했습니다.')
+    }
   }
 
+  useEffect(() => {
+    const container = containerRef.current
+    if (container) {
+      container.addEventListener('scroll', handleScroll)
+      return () => {
+        container.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [handleScroll])
+
   return (
-    <div className="recruitment-container">
+    <div className="recruitment-container" ref={containerRef}>
       {recruitments.map(recruitment => (
         <RecruitmentCard
-          key={recruitment.id} // Use a unique identifier instead of index
+          id={recruitment.id}
+          key={recruitment.id}
           companyimg={recruitment.company_img}
           dday={recruitment.dday}
-          isBookmarked={bookmarks[recruitment.id]} // Use the unique ID for bookmarks
+          isBookmarked={recruitment.bookmark}
           handleBookmarkClick={() => handleBookmarkClick(recruitment.id)}
           titles={recruitment.titles}
-          tags={recruitment.tags}
-          info={recruitment.info}
+          experience={recruitment.experience}
+          jobType={recruitment.jobType}
+          location={recruitment.location}
+          company={recruitment.company}
+          education={recruitment.education}
+          deadline={recruitment.deadline}
+          jobcate={recruitment.jobcate}
+          url={recruitment.url}
         />
       ))}
+      {isLoading && <p>더 많은 정보를 불러오는 중...</p>}
+      {error && <p>{error}</p>}
+      {!hasMore && <p>모든 채용 정보를 불러왔습니다.</p>}
     </div>
   )
 }

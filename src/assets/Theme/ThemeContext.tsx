@@ -27,8 +27,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const themeStyles = {
     light: {
       '--main-background-color': '#FBF9F',
-      '--searchbar-background-color': '#dbd7d4',
-      '--searchbar-font-color': 'rgba(35, 35, 35, 0.50)',
+      '--searchbar-background-color': '#3C332B',
+      '--searchbar-font-color': 'rgba(255, 255, 255, 0.5)',
       '--button-background-color': '#fff',
       '--button-border': '1px solid #D9D9D9',
       '--main-container-background':

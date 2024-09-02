@@ -6,6 +6,11 @@ export interface Recruitment {
   company: string
   dday: string
   titles: string[]
-  tags: string[]
-  info: { label: string; value: string }[]
+  experience: string
+  jobType: string
+  location: string
+  education: string
+  deadline: string
+  jobcate: string
+  bookmark: boolean
 }

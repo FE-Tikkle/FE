@@ -215,6 +215,14 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+.SearchBoxInput {
+  width: 100%;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 5px;
+  font-family: pretendard;
+}
 
 .SearchBoxicon {
   margin-right: 10px;
@@ -225,6 +233,9 @@
   }
   .Search-buttons {
     gap: 30px;
+  }
+  .SearchBoxConatiner {
+    margin-left: 643px;
   }
 }
 

@@ -52,7 +52,7 @@ const Header: React.FC = () => {
         content: {
           title: '티끌 공유하기',
           description: '티끌 서비스를 친구에게 공유해보세요!',
-          imageUrl: 'https://your-image-url.com/image.jpg', // 실제 이미지 URL로 교체하세요
+          imageUrl: 'https://i.ibb.co/H7t4gdq/Frame-1.png', // 실제 이미지 URL로 교체하세요
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href,
@@ -86,7 +86,11 @@ const Header: React.FC = () => {
     <header className="Header-main">
       <div className="Header-left">
         <div className="Header-text" onClick={handleClick}>
-          <img src="img/Logo/Mainlogo.svg" alt="Main Logo" />
+          <img
+            src="img/Logo/Mainlogo.svg"
+            alt="Main Logo"
+            style={{ width: '30%' }}
+          />
         </div>
       </div>
       <div className="Header-right">

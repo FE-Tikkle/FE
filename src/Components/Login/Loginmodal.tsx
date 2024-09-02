@@ -61,6 +61,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 펼쳐보세요
               </div>
             </div>
+            <img src="img/Login/data1.svg" />
           </div>
         </motion.div>
         <div className="Login-right">
