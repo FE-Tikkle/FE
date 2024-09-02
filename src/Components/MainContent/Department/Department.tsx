@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
 import './Department.css'
 
-const departments: string[] = ['정보통신공학과', '컴퓨터공학과', '전자공학과']
+interface DepartmentProps {
+  departments: string[]
+  onDepartmentSelect: (department: string) => void
+}
 
-const Department: React.FC = () => {
+const Department: React.FC<DepartmentProps> = ({
+  departments,
+  onDepartmentSelect,
+}) => {
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
     null
   )
 
   const handleClick = (department: string) => {
     setSelectedDepartment(department)
+    onDepartmentSelect(department)
   }
 
   return (
