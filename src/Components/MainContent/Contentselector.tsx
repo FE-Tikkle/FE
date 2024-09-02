@@ -10,14 +10,18 @@ import Department from './Department/Department'
 import RecruitmentContainer from './Recruitment/recruitment'
 import Job from './job/job'
 import { getUserData, UserData } from '../../api'
+
 const ContentSelector: React.FC = () => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
   const [activeTab, setActiveTab] = useState('전체')
   const [tabs, setTabs] = useState(['전체'])
   const [searchTerm, setSearchTerm] = useState('')
   const [userData, setUserData] = useState<UserData | null>(null)
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
+    null
+  ) // Correctly type as string | null
+  const [tagList, setTagList] = useState<string[]>([]) // Keep this if needed
   const notices = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
-  const scholarshipTabs = ['전체', '학자금', '장학금', '학자금 대출']
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,19 +30,23 @@ const ContentSelector: React.FC = () => {
         setUserData(data)
       } catch (error) {
         console.error('Failed to fetch user data:', error)
-        // 에러 처리 로직 (예: 에러 메시지 표시)
       }
     }
 
     fetchUserData()
   }, [])
 
-  const handleTagListUpdate = (tagList: string[]) => {
-    setTabs(['전체', ...tagList])
+  const handleTagListUpdate = (tags: string[]) => {
+    setTagList(tags)
+    setTabs(['전체', ...tags])
   }
 
   const handleSearch = (term: string) => {
     setSearchTerm(term)
+  }
+
+  const handleDepartmentSelect = (department: string) => {
+    setSelectedDepartment(department)
   }
 
   const renderContent = () => {
@@ -47,7 +55,10 @@ const ContentSelector: React.FC = () => {
         return (
           <>
             {userData && (
-              <Department departments={userData.subscribe_notices} />
+              <Department
+                departments={userData.subscribe_notices}
+                onDepartmentSelect={handleDepartmentSelect}
+              />
             )}
             <SearchBox onSearch={handleSearch} />
             <Noticelist />
@@ -55,15 +66,12 @@ const ContentSelector: React.FC = () => {
               activeTab={activeTab}
               onTagListUpdate={handleTagListUpdate}
               searchTerm={searchTerm}
+              selectedDepartment={selectedDepartment}
             />
           </>
         )
       case '장학':
-        return (
-          <>
-            <Scholarship />
-          </>
-        )
+        return <Scholarship />
       case '채용공고':
         return (
           <>
@@ -76,12 +84,14 @@ const ContentSelector: React.FC = () => {
         return <Activities />
       case '공모전':
         return <Competition />
+      default:
+        return null
     }
   }
 
   return (
     <div className="Content-selector">
-      {userData && <p>Welcome, {userData.name}!</p>} {/* 사용자 이름 표시 */}
+      {userData && <p>Welcome, {userData.name}!</p>}
       <div className="Content-Selector-main">
         {notices.map(notice => (
           <div
@@ -107,12 +117,6 @@ const ContentSelector: React.FC = () => {
                 {tab}
               </div>
             ))}
-          </div>
-        )}
-
-        {selectedNotice === '장학' && (
-          <div className="Content-Selector-main2">
-            {/* 장학 탭 렌더링 로직 */}
           </div>
         )}
       </div>

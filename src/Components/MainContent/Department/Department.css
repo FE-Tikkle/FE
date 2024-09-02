@@ -6,6 +6,7 @@
   justify-content: flex-end;
   margin-left: -820px;
   margin-bottom: -40px;
+  z-index: 10;
 }
 .department-selector {
   display: flex;
