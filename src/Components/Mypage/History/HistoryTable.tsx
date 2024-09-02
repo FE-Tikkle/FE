@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './History.css'
-import { getBookmarkedNotices, BookmarkedNotice } from '../../../api'
-import { getBookmarkedSaramin, BookmarkedSaramin } from '../../../api'
+import {
+  getBookmarkedNotices,
+  BookmarkedNotice,
+  toggleBookmark,
+} from '../../../api'
+import {
+  getBookmarkedSaramin,
+  BookmarkedSaramin,
+  toggleBookmark2,
+} from '../../../api'
 
 interface Item {
   분야: string
@@ -26,9 +34,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
   const [startDate, setStartDate] = useState<Date | undefined>(
     new Date('2024-03-01')
   )
-  const [endDate, setEndDate] = useState<Date | undefined>(
-    new Date('2024-08-27')
-  )
+  const [endDate, setEndDate] = useState<Date | undefined>(new Date())
 
   const formatDate = (date: Date | undefined) => {
     return date ? date.toISOString().split('T')[0] : ''
@@ -60,9 +66,11 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
       switch (activeTab) {
         case '공지사항':
           result = await fetchAllNotices()
+          setSelectedItems(new Set())
           break
         case '채용공고':
           result = await fetchAllSaramin()
+          setSelectedItems(new Set())
           break
         case '':
         case '전체':
@@ -159,12 +167,28 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
     })
   }
 
-  const handleDelete = () => {
-    const newData = allData.filter((_, index) => !selectedItems.has(index))
-    setAllData(newData)
-    setTotalPages(Math.ceil(newData.length / clientItemsPerPage))
-    setSelectedItems(new Set())
-    setCurrentPage(1)
+  const handleDelete = async () => {
+    try {
+      const itemsToDelete = Array.from(selectedItems).map(
+        index => allData[index]
+      )
+
+      for (const item of itemsToDelete) {
+        if (item.분야 === '공지사항') {
+          await toggleBookmark(item.id)
+        } else if (item.분야 === '채용공고') {
+          await toggleBookmark2(item.id)
+        }
+      }
+
+      const newData = allData.filter((_, index) => !selectedItems.has(index))
+      setAllData(newData)
+      setTotalPages(Math.ceil(newData.length / clientItemsPerPage))
+      setSelectedItems(new Set())
+      setCurrentPage(1)
+    } catch (error) {
+      console.error('Error deleting items and toggling bookmarks:', error)
+    }
   }
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -185,7 +209,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
   return (
     <div className="history-container">
       <div className="date-header">
-        {/* <div className="date-picker">
+        <div className="date-picker">
           <img src="img/calendar_2.svg" alt="Start Date" />
           <input
             type="date"
@@ -195,7 +219,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
             className="date-input"
           />
         </div>
-        <span>~</span>
+        <span> ~</span>
         <div className="date-picker">
           <img src="img/calendar_2.svg" alt="End Date" />
           <input
@@ -205,7 +229,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
             min={formatDate(startDate)}
             className="date-input"
           />
-        </div> */}
+        </div>
         <img src="img/delete_2.svg" alt="Delete" />
         <button className="delete-button" onClick={handleDelete}>
           삭제
