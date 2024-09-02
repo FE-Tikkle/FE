@@ -104,12 +104,12 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
   const renderContent = () => {
     if (selectedIndex === 0) {
       // 티끌 소개 선택 시
-      return SelectedComponent && <SelectedComponent />
+      return SelectedComponent && <SelectedComponent onClose={onClose} />
     } else {
       // 다른 컨텐츠 선택 시
       if (isLoggedIn) {
         // 로그인한 경우
-        return SelectedComponent && <SelectedComponent />
+        return SelectedComponent && <SelectedComponent onClose={onClose} />
       } else {
         // 로그인하지 않은 경우
         return <DoLogin />

@@ -262,6 +262,7 @@ export const getBookmarkedNotices = async (
         end_date: endDate,
       },
     });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching bookmarked notices:', error);
@@ -317,3 +318,71 @@ export const getBookmarkedSaramin = async (
   }
 };
 
+export interface BookmarkStats {
+  notice: number;
+  saramin: number;
+}
+
+export const getBookmarkStats = async (): Promise<BookmarkStats> => {
+  try {
+    const response = await axiosInstance.get<BookmarkStats>('/user/bookmark/stat');
+    console.log('Fetching bookmark stats:',response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching bookmark stats:', error);
+    throw error;
+  }
+};
+
+export interface UserData {
+  id: string;
+  name: string;
+  provider: string;
+  university: string;
+  central_site: string | null;
+  department: string;
+  subscribe_notices: string[];
+  subscribe_saramin: string[] | null;
+  bookmarked_link: string[];
+  bookmarked_notices: string[];
+  bookmarked_saramin: string[];
+}
+
+export const getUserData = async (): Promise<UserData> => {
+  try {
+    const response = await axiosInstance.get<UserData>('/user');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    throw error;
+  }
+};
+
+interface UpdateUniversityData {
+  university: string;
+  department: string;
+  subscribe_notices: string[];
+}
+
+export const updateUserUniversity = async (data: UpdateUniversityData): Promise<void> => {
+  try {
+    await axiosInstance.patch('/user/university', data);
+  } catch (error) {
+    console.error('Error updating user university data:', error);
+    throw error;
+  }
+};
+
+interface SaraminSubscriptions {
+  [key: string]: string[];
+}
+
+export const updateUserSaraminSubscriptions = async (subscriptions: SaraminSubscriptions): Promise<void> => {
+  try {
+    await axiosInstance.patch('/user/saramin', { subscribe_saramin: subscriptions });
+    console.log('Saramin 구독 정보가 성공적으로 업데이트되었습니다.');
+  } catch (error) {
+    console.error('Saramin 구독 정보 업데이트 중 오류 발생:', error);
+    throw error;
+  }
+}

@@ -8,6 +8,7 @@ interface Item {
   제목: string;
   날짜: string;
   id: string;
+  url:string;
 }
 
 interface HistoryTableProps {
@@ -33,11 +34,16 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
     return date ? date.toISOString().split('T')[0] : '';
   };
 
+  const handleTitleClick = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   const convertToItem = (notice: BookmarkedNotice): Item => ({
     분야: '공지사항',
     제목: notice.title,
     날짜: new Date(notice.created_at).toLocaleDateString('ko-KR'),
     id: notice.id,
+    url:notice.url,
   });
 
   const convertToSaraminItem = (notice: BookmarkedSaramin): Item => ({
@@ -45,6 +51,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
     제목: notice.title,
     날짜: new Date(notice.created_at).toLocaleDateString('ko-KR'),
     id: notice.id,
+    url:notice.url,
   });
 
   const fetchDataBasedOnActiveTab = useCallback(async () => {
@@ -117,7 +124,12 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
   useEffect(() => {
     const start = (currentPage - 1) * clientItemsPerPage;
     const end = start + clientItemsPerPage;
-    setDisplayData(allData.slice(start, end));
+    const newDisplayData = allData.slice(start, end);
+    setDisplayData(newDisplayData);
+
+    newDisplayData.forEach((item, index) => {
+      console.log(`Item ${index}:`, item);
+    });
   }, [currentPage, allData]);
 
   const handleCheckboxChange = (index: number) => {
@@ -207,7 +219,18 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
                 </label>
               </td>
               <td>{item.분야}</td>
-              <td>{item.제목}</td>
+              <td>                
+                <a 
+                  href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleTitleClick(item.url);
+                  }}
+                  style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}
+                >
+                  {item.제목}
+                </a>
+              </td>
               <td>{item.날짜}</td>
             </tr>
           ))}

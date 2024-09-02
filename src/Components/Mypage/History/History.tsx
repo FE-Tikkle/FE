@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './History.css'
 import MypageContentSelector from './MypageContentSelector'
-import { getBookmarkStats, BookmarkStats } from '../../../api' // Update the import path as needed
+import { getBookmarkStats, BookmarkStats } from '../../../api'
 
 const History: React.FC = () => {
   const [bookmarkStats, setBookmarkStats] = useState<BookmarkStats | null>(null);
@@ -11,6 +11,7 @@ const History: React.FC = () => {
       try {
         const stats = await getBookmarkStats();
         setBookmarkStats(stats);
+        
       } catch (error) {
         console.error('Failed to fetch bookmark stats:', error);
       }

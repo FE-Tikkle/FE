@@ -3,7 +3,8 @@ import './Myschool.css'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
-  postUserData,
+  getUserData,
+  updateUserUniversity,
   getNoticeDepartment,
   getNoticeSite,
   getNoticeDepartment2,
@@ -18,7 +19,11 @@ interface FormData {
   bookOrLectureNote: string
 }
 
-const Myschool: React.FC = () => {
+interface MySchoolProps {
+  onClose: () => void;
+}
+
+const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
   const [formData, setFormData] = useState<FormData>({
     school: '',
     campus: '',
@@ -28,25 +33,30 @@ const Myschool: React.FC = () => {
     bookOrLectureNote: '',
   })
 
+
   const [school, setSchool] = useState('')
   const [department, setDepartment] = useState('')
   const [schools, setSchools] = useState<string[]>([])
   const [departments, setDepartments] = useState<string[]>([])
   const [departments2, setDepartments2] = useState<string[]>([])
-  const [subscribeDepartments, setSubscribeDepartments] = useState<string[]>([
-    '',
-    '',
-    '',
-    '',
-  ])
+  const [subscribeDepartments, setSubscribeDepartments] = useState<string[]>(['', '', '', ''])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value,
-    }))
-  }
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = await getUserData();
+        setSchool(userData.university);
+        setDepartment(userData.department);
+        setSubscribeDepartments(userData.subscribe_notices.concat(Array(4 - userData.subscribe_notices.length).fill('')));
+        console.log('구독학과:',userData.subscribe_notices);
+      } catch (error) {
+        console.error('사용자 데이터를 불러오는 데 실패했습니다:', error);
+        toast.error('사용자 정보를 불러오는 데 실패했습니다.');
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleSubscribeDepartmentChange = (index: number, value: string) => {
     const newSubscribeDepartments = [...subscribeDepartments]
@@ -54,10 +64,20 @@ const Myschool: React.FC = () => {
     setSubscribeDepartments(newSubscribeDepartments)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    // 여기에 폼 제출 로직 추가
+    try {
+      const updateData = {
+        university: school,
+        department: department,
+        subscribe_notices: subscribeDepartments.filter(dept => dept !== '')
+      };
+      await updateUserUniversity(updateData);
+      toast.success('학교 정보가 성공적으로 업데이트되었습니다.');
+    } catch (error) {
+      console.error('학교 정보 업데이트 실패:', error);
+      toast.error('학교 정보 업데이트에 실패했습니다.');
+    }
   }
 
   useEffect(() => {
@@ -255,7 +275,7 @@ const Myschool: React.FC = () => {
             <button className="button" type="submit">
               저장
             </button>
-            <button className="button" type="button">
+            <button className="button" type="button" onClick={onClose}>
               취소
             </button>
           </div>

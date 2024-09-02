@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import './Recruit.css'
-import { getSaraminTags } from '../../../api'
-
-interface FormData {
-  school: string
-  campus: string
-  major: string
-  year: string
-  relatedSubject: string
-  bookOrLectureNote: string
-}
+import { toast, ToastContainer } from 'react-toastify'
+import { getSaraminTags, getUserData, updateUserSaraminSubscriptions } from '../../../api'
 
 interface FieldSelection {
   field: string
   subField: string
 }
 
-const Recruit: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    school: '',
-    campus: '',
-    major: '',
-    year: '',
-    relatedSubject: '',
-    bookOrLectureNote: '',
-  })
+interface RecruitProps {
+  onClose: () => void;
+}
+
+interface SaraminSubscriptions {
+  [key: string]: string[];
+}
+
+const Recruit: React.FC<RecruitProps> = ({ onClose }) => {
   const [fieldSelections, setFieldSelections] = useState<FieldSelection[]>([
     { field: '', subField: '' },
     { field: '', subField: '' },
@@ -33,17 +25,31 @@ const Recruit: React.FC = () => {
   const [tags, setTags] = useState<Record<string, string[]>>({})
 
   useEffect(() => {
-    const fetchTags = async () => {
+    const fetchData = async () => {
       try {
-        const tagsData = await getSaraminTags()
+        const [tagsData, userData] = await Promise.all([getSaraminTags(), getUserData()]);
         setTags(tagsData)
-        console.log('Saramin Tags:', tagsData)
+        
+        if (userData.subscribe_saramin) {
+          const userSelections = Object.entries(userData.subscribe_saramin).flatMap(([field, subFields]) => 
+            (Array.isArray(subFields) ? subFields : [subFields]).map(subField => ({
+              field,
+              subField
+            }))
+          ).slice(0, 3);
+
+          while (userSelections.length < 3) {
+            userSelections.push({ field: '', subField: '' });
+          }
+
+          setFieldSelections(userSelections);
+        }
       } catch (error) {
-        console.error('Error fetching Saramin tags:', error)
+        console.error('데이터 가져오기 오류:', error)
       }
     }
 
-    fetchTags()
+    fetchData()
   }, [])
 
   const handleFieldChange = (index: number, value: string) => {
@@ -58,10 +64,27 @@ const Recruit: React.FC = () => {
     setFieldSelections(newSelections)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    // 여기에 폼 제출 로직 추가
+
+    const subscriptions: SaraminSubscriptions = fieldSelections.reduce((acc, selection) => {
+      if (selection.field && selection.subField) {
+        if (!acc[selection.field]) {
+          acc[selection.field] = [];
+        }
+        acc[selection.field].push(selection.subField);
+      }
+      return acc;
+    }, {} as SaraminSubscriptions);
+
+    try {
+      await updateUserSaraminSubscriptions(subscriptions);
+      toast.success('구독 정보가 성공적으로 업데이트되었습니다.');
+      console.log('구독 정보가 성공적으로 업데이트되었습니다.');
+    } catch (error) {
+      console.error('구독 정보 업데이트 중 오류 발생:', error);
+      toast.error('구독 정보 업데이트에 실패했습니다.');
+    }
   }
 
   return (
@@ -118,7 +141,7 @@ const Recruit: React.FC = () => {
             <button className="button-1" type="submit">
               저장
             </button>
-            <button className="button-1" type="button">
+            <button className="button-1" type="button" onClick={onClose}>
               취소
             </button>
           </div>
