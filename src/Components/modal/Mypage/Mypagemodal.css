@@ -51,7 +51,7 @@
 .Announcement-Container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 .Announcement-1 {
   display: flex;

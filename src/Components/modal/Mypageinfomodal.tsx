@@ -31,7 +31,7 @@ const item = {
 }
 
 const Mypageinfo: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
-  const [selectedOption, setSelectedOption] = useState('프로필 및 계정')
+  const [selectedOption, setSelectedOption] = useState('공지사항')
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option)
@@ -39,8 +39,6 @@ const Mypageinfo: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
 
   const renderContent = () => {
     switch (selectedOption) {
-      case '프로필 및 계정':
-        return <Profile />
       case '공지사항':
         return <Announcement />
       case '고객센터 / 도움말':
@@ -71,7 +69,6 @@ const Mypageinfo: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
           <motion.div variants={item} className="Mypage-modal-left">
             <div className="Mypage-modal-selecter">
               {[
-                '프로필 및 계정',
                 '공지사항',
                 '고객센터 / 도움말',
                 '친구에게 추천하기',
