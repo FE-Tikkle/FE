@@ -246,6 +246,53 @@ export const fetchRecruitments = async (
     return []
   }
 }
+interface CompanyInfo {
+  name: string
+  url: string
+}
+
+export const fetchFallbackImage = async (
+  companyInfo: CompanyInfo
+): Promise<string> => {
+  try {
+    const response = await axiosInstance.post('/image', {
+      company: [companyInfo],
+    })
+    return response.data.imageUrl
+  } catch (error) {
+    console.error('Error fetching fallback image:', error)
+    throw error
+  }
+}
+export const toggleBookmark2 = async (id: string): Promise<boolean> => {
+  try {
+    const response = await axiosInstance.post('/saramin/bookmark', { id })
+    return response.data.is_bookmarked
+  } catch (error) {
+    console.error('Error toggling bookmark:', error)
+    throw error
+  }
+}
+export const postContentsRequest = async (
+  contentsType: string,
+  contents_id: string
+): Promise<any> => {
+  try {
+    const response = await axiosInstance.post(
+      '/log',
+      { contents_id },
+      {
+        params: {
+          contents_type: contentsType,
+        },
+      }
+    )
+    return response.data
+  } catch (error) {
+    console.error('Error in postContentsRequest:', error)
+    throw error
+  }
+}
 
 export const getSaraminTags = async (): Promise<Record<string, string[]>> => {
   try {
