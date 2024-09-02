@@ -10,12 +10,14 @@ interface NoticemainProps {
   activeTab: string
   onTagListUpdate: (tagList: string[]) => void
   searchTerm: string
+  selectedDepartment: string | null
 }
 
 const Noticemain: React.FC<NoticemainProps> = ({
   activeTab,
   onTagListUpdate,
   searchTerm,
+  selectedDepartment,
 }) => {
   const [notices, setNotices] = useState<NoticeType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -23,6 +25,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
   const [hasMore, setHasMore] = useState<boolean>(true)
   const prevActiveTabRef = useRef<string>('')
   const prevSearchTermRef = useRef<string>('')
+  const prevDepartmentRef = useRef<string | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [page, setPage] = useState<number>(1)
   const prevPageRef = useRef<number>(1)
@@ -34,7 +37,8 @@ const Noticemain: React.FC<NoticemainProps> = ({
     if (
       (activeTab === prevActiveTabRef.current &&
         page === prevPageRef.current &&
-        searchTerm === prevSearchTermRef.current) ||
+        searchTerm === prevSearchTermRef.current &&
+        selectedDepartment === prevDepartmentRef.current) ||
       !hasMore ||
       page > MAX_PAGES // 최대 페이지 수 체크
     )
@@ -47,7 +51,8 @@ const Noticemain: React.FC<NoticemainProps> = ({
         ITEMS_PER_PAGE,
         page,
         activeTab,
-        searchTerm
+        searchTerm,
+        selectedDepartment || '전체공지'
       )
 
       if (response.data.length === 0 || response.data.length < ITEMS_PER_PAGE) {
@@ -68,6 +73,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
       prevActiveTabRef.current = activeTab
       prevPageRef.current = page
       prevSearchTermRef.current = searchTerm
+      prevDepartmentRef.current = selectedDepartment
     } catch (err) {
       setError(
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -82,7 +88,14 @@ const Noticemain: React.FC<NoticemainProps> = ({
     } finally {
       setIsLoading(false)
     }
-  }, [activeTab, onTagListUpdate, page, searchTerm, hasMore])
+  }, [
+    activeTab,
+    onTagListUpdate,
+    page,
+    searchTerm,
+    hasMore,
+    selectedDepartment,
+  ])
 
   useEffect(() => {
     if (

@@ -4,7 +4,7 @@
   margin-top: 20px;
   gap: 20px;
   justify-content: flex-end;
-  margin-left: -678px;
+  margin-left: -820px;
   margin-bottom: -40px;
 }
 .department-selector {
@@ -31,6 +31,6 @@
 }
 @media (max-width: 1100px) {
   .department-container {
-    margin-left: -368px;
+    margin-left: -508px;
   }
 }
