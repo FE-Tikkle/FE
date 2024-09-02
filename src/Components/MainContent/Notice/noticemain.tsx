@@ -21,7 +21,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
 }) => {
   const [notices, setNotices] = useState<NoticeType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<JSX.Element | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const [hasMore, setHasMore] = useState<boolean>(true)
   const prevActiveTabRef = useRef<string>('')
   const prevSearchTermRef = useRef<string>('')
@@ -76,13 +76,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
       prevDepartmentRef.current = selectedDepartment
     } catch (err) {
       setError(
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src="img/Mypage/DoLogin.svg"
-            alt="Error"
-            style={{ width: '500px' }}
-          />
-        </div>
+        '공지사항을 불러올 수 없습니다. 새로고침 혹은 로그인을 진행해주세요.'
       )
       console.error('Error fetching notices:', err)
     } finally {
@@ -94,13 +88,14 @@ const Noticemain: React.FC<NoticemainProps> = ({
     page,
     searchTerm,
     hasMore,
-    selectedDepartment,
+    selectedDepartment, // 'selectedDepartment'를 의존성 배열에 추가
   ])
 
   useEffect(() => {
     if (
       prevActiveTabRef.current !== activeTab ||
-      prevSearchTermRef.current !== searchTerm
+      prevSearchTermRef.current !== searchTerm ||
+      prevDepartmentRef.current !== selectedDepartment // 부서가 바뀌었을 때도 notices를 초기화하도록 조건 추가
     ) {
       setNotices([])
       setPage(1)
@@ -108,7 +103,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
       setHasMore(true)
     }
     fetchNotices()
-  }, [activeTab, fetchNotices, searchTerm])
+  }, [activeTab, fetchNotices, searchTerm, selectedDepartment])
 
   const handleScroll = () => {
     if (!containerRef.current || isLoading || !hasMore) return

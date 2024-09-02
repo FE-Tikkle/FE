@@ -11,7 +11,7 @@ import Introduce from './Introduce/Introduce'
 import Mypageinfo from '../modal/Mypageinfomodal'
 import DoLogin from './DoLogin'
 import LoginModal2 from '../modal/Loginmodal2'
-
+import { getUserData, UserData } from '../../api'
 interface MyPageModalProps {
   isOpen: boolean
   onClose: () => void
@@ -85,6 +85,19 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
 }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userData, setUserData] = useState<UserData | null>(null)
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserData()
+        setUserData(data)
+      } catch (error) {
+        console.error('Failed to fetch user data:', error)
+      }
+    }
+
+    fetchUserData()
+  }, [])
 
   useEffect(() => {
     if (initialSelectedIndex !== undefined) {
@@ -152,7 +165,13 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   <div className="Mypage-Profile-img">
                     <img src="img/Mypage/Proile.svg"></img>
                   </div>
-                  <div className="Mypage-Profile-name">로그인이 필요해요</div>
+                  <div className="Mypage-Profile-name">
+                    {userData ? (
+                      <p>Welcome, {userData.name}!</p>
+                    ) : (
+                      <p>로그인이 필요해요!</p>
+                    )}
+                  </div>
                 </div>
                 <div className="Mypage-Profile-buttons">
                   <div

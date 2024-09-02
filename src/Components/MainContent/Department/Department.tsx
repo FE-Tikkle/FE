@@ -3,7 +3,7 @@ import './Department.css'
 
 interface DepartmentProps {
   departments: string[]
-  onDepartmentSelect: (department: string) => void
+  onDepartmentSelect: (department: string) => void // Prop to notify parent about the selected department
 }
 
 const Department: React.FC<DepartmentProps> = ({
@@ -16,7 +16,7 @@ const Department: React.FC<DepartmentProps> = ({
 
   const handleClick = (department: string) => {
     setSelectedDepartment(department)
-    onDepartmentSelect(department)
+    onDepartmentSelect(department) // Call the prop function to notify parent
   }
 
   return (

@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance, AxiosError } from 'axios'
 import GoogleAuthBody from './store/slices/authslice'
 import qs from 'qs'
 import { Recruitment } from './store/Rec'
@@ -21,7 +21,81 @@ interface GoogleAuthBody {
   grant_type: string
   redirect_uri: string
 }
+// 토큰 갱신 응답의 타입 정의
+interface TokenRefreshResponse {
+  access_token: string
+}
 
+// 리프레시 토큰으로 새로운 액세스 토큰을 요청하는 함수
+const refreshAccessToken = async (
+  refreshToken: string
+): Promise<TokenRefreshResponse> => {
+  const response = await axios.post<TokenRefreshResponse>(
+    `${BASE_URL}/auth/refresh`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    }
+  )
+  return response.data
+}
+
+// 요청 인터셉터 추가: 액세스 토큰을 요청 헤더에 첨부
+axiosInstance.interceptors.request.use(
+  config => {
+    const accessToken = localStorage.getItem('access_token')
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
+
+// 응답 인터셉터 추가: 409 오류를 처리하고 토큰을 갱신
+axiosInstance.interceptors.response.use(
+  response => response,
+  async (error: AxiosError) => {
+    const originalRequest = error.config
+
+    // 오류가 409 Conflict이고 원래 요청 설정이 있는 경우 토큰 갱신 시도
+    if (error.response?.status === 409 && originalRequest) {
+      try {
+        const refreshToken = localStorage.getItem('refresh_token')
+        if (!refreshToken) {
+          throw new Error('리프레시 토큰이 없습니다')
+        }
+
+        // 새로운 액세스 토큰 요청
+        const { access_token: newAccessToken } = await refreshAccessToken(
+          refreshToken
+        )
+
+        // 로컬 스토리지에 새로운 액세스 토큰 저장
+        localStorage.setItem('access_token', newAccessToken)
+
+        // 원래 요청의 Authorization 헤더 업데이트
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
+
+        // 원래 요청 재시도
+        return axiosInstance(originalRequest)
+      } catch (refreshError) {
+        console.error('토큰 갱신 오류:', refreshError)
+        // 토큰 갱신 실패 시 추가 처리 (예: 사용자 로그아웃)
+        // TODO: 로그아웃 로직 구현
+        return Promise.reject(refreshError)
+      }
+    }
+
+    return Promise.reject(error)
+  }
+)
+
+export default axiosInstance
 export function postsign(code: string, provider: string) {
   const postCode: Postsign = { code }
 

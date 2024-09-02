@@ -1,176 +1,191 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import './History.css';
-import { getBookmarkedNotices, BookmarkedNotice } from '../../../api';
-import { getBookmarkedSaramin, BookmarkedSaramin } from '../../../api';
+import React, { useState, useEffect, useCallback } from 'react'
+import './History.css'
+import { getBookmarkedNotices, BookmarkedNotice } from '../../../api'
+import { getBookmarkedSaramin, BookmarkedSaramin } from '../../../api'
 
 interface Item {
-  분야: string;
-  제목: string;
-  날짜: string;
-  id: string;
-  url:string;
+  분야: string
+  제목: string
+  날짜: string
+  id: string
+  url: string
 }
 
 interface HistoryTableProps {
-  activeTab: string;
+  activeTab: string
 }
 
 const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
-  const clientItemsPerPage = 4;
-  const serverItemsPerPage = 10;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [allData, setAllData] = useState<Item[]>([]);
-  const [displayData, setDisplayData] = useState<Item[]>([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set());
+  const clientItemsPerPage = 4
+  const serverItemsPerPage = 10
+  const [currentPage, setCurrentPage] = useState(1)
+  const [allData, setAllData] = useState<Item[]>([])
+  const [displayData, setDisplayData] = useState<Item[]>([])
+  const [totalPages, setTotalPages] = useState(1)
+  const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set())
   const [startDate, setStartDate] = useState<Date | undefined>(
     new Date('2024-03-01')
-  );
+  )
   const [endDate, setEndDate] = useState<Date | undefined>(
     new Date('2024-08-27')
-  );
+  )
 
   const formatDate = (date: Date | undefined) => {
-    return date ? date.toISOString().split('T')[0] : '';
-  };
+    return date ? date.toISOString().split('T')[0] : ''
+  }
 
   const handleTitleClick = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
 
   const convertToItem = (notice: BookmarkedNotice): Item => ({
     분야: '공지사항',
     제목: notice.title,
     날짜: new Date(notice.created_at).toLocaleDateString('ko-KR'),
     id: notice.id,
-    url:notice.url,
-  });
+    url: notice.url,
+  })
 
   const convertToSaraminItem = (notice: BookmarkedSaramin): Item => ({
     분야: '채용공고',
     제목: notice.title,
     날짜: new Date(notice.created_at).toLocaleDateString('ko-KR'),
     id: notice.id,
-    url:notice.url,
-  });
+    url: notice.url,
+  })
 
   const fetchDataBasedOnActiveTab = useCallback(async () => {
     try {
-      let result: Item[] = [];
+      let result: Item[] = []
       switch (activeTab) {
         case '공지사항':
-          result = await fetchAllNotices();
-          break;
+          result = await fetchAllNotices()
+          break
         case '채용공고':
-          result = await fetchAllSaramin();
-          break;
+          result = await fetchAllSaramin()
+          break
         case '':
         case '전체':
-          result = await fetchAllData();
-          break;
+          result = await fetchAllData()
+          break
         case '장학':
         case '대외활동':
         case '공모전':
-          result = [];
-          break;
+          result = []
+          break
         default:
-          result = await fetchAllData();
+          result = await fetchAllData()
       }
-      setAllData(result);
-      setTotalPages(Math.ceil(result.length / clientItemsPerPage));
+      setAllData(result)
+      setTotalPages(Math.ceil(result.length / clientItemsPerPage))
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setAllData([]);
-      setTotalPages(1);
+      console.error('Error fetching data:', error)
+      setAllData([])
+      setTotalPages(1)
     }
-  }, [activeTab, startDate, endDate]);
+  }, [activeTab, startDate, endDate])
 
   const fetchAllNotices = async (): Promise<Item[]> => {
-    let allNotices: Item[] = [];
-    let page = 1;
-    let hasMore = true;
+    let allNotices: Item[] = []
+    let page = 1
+    let hasMore = true
     while (hasMore) {
-      const result = await getBookmarkedNotices(serverItemsPerPage, page, formatDate(startDate), formatDate(endDate));
-      allNotices = [...allNotices, ...result.data.map(convertToItem)];
-      hasMore = result.data.length === serverItemsPerPage;
-      page++;
+      const result = await getBookmarkedNotices(
+        serverItemsPerPage,
+        page,
+        formatDate(startDate),
+        formatDate(endDate)
+      )
+      allNotices = [...allNotices, ...result.data.map(convertToItem)]
+      hasMore = result.data.length === serverItemsPerPage
+      page++
     }
-    return allNotices;
-  };
+    return allNotices
+  }
 
   const fetchAllSaramin = async (): Promise<Item[]> => {
-    let allSaramin: Item[] = [];
-    let page = 1;
-    let hasMore = true;
+    let allSaramin: Item[] = []
+    let page = 1
+    let hasMore = true
     while (hasMore) {
-      const result = await getBookmarkedSaramin(serverItemsPerPage, page, formatDate(startDate), formatDate(endDate));
-      allSaramin = [...allSaramin, ...result.data.map(convertToSaraminItem)];
-      hasMore = result.data.length === serverItemsPerPage;
-      page++;
+      const result = await getBookmarkedSaramin(
+        serverItemsPerPage,
+        page,
+        formatDate(startDate),
+        formatDate(endDate)
+      )
+      allSaramin = [...allSaramin, ...result.data.map(convertToSaraminItem)]
+      hasMore = result.data.length === serverItemsPerPage
+      page++
     }
-    return allSaramin;
-  };
+    return allSaramin
+  }
 
   const fetchAllData = async (): Promise<Item[]> => {
-    const [notices, saramin] = await Promise.all([fetchAllNotices(), fetchAllSaramin()]);
-    return [...notices, ...saramin].sort((a, b) => new Date(b.날짜).getTime() - new Date(a.날짜).getTime());
-  };
+    const [notices, saramin] = await Promise.all([
+      fetchAllNotices(),
+      fetchAllSaramin(),
+    ])
+    return [...notices, ...saramin].sort(
+      (a, b) => new Date(b.날짜).getTime() - new Date(a.날짜).getTime()
+    )
+  }
 
   useEffect(() => {
-    setCurrentPage(1);
-    fetchDataBasedOnActiveTab();
-  }, [activeTab, startDate, endDate]);
+    setCurrentPage(1)
+    fetchDataBasedOnActiveTab()
+  }, [activeTab, startDate, endDate])
 
   useEffect(() => {
-    const start = (currentPage - 1) * clientItemsPerPage;
-    const end = start + clientItemsPerPage;
-    const newDisplayData = allData.slice(start, end);
-    setDisplayData(newDisplayData);
+    const start = (currentPage - 1) * clientItemsPerPage
+    const end = start + clientItemsPerPage
+    const newDisplayData = allData.slice(start, end)
+    setDisplayData(newDisplayData)
 
     newDisplayData.forEach((item, index) => {
-      console.log(`Item ${index}:`, item);
-    });
-  }, [currentPage, allData]);
+      console.log(`Item ${index}:`, item)
+    })
+  }, [currentPage, allData])
 
   const handleCheckboxChange = (index: number) => {
-    setSelectedItems((prevSelectedItems) => {
-      const newSelectedItems = new Set(prevSelectedItems);
+    setSelectedItems(prevSelectedItems => {
+      const newSelectedItems = new Set(prevSelectedItems)
       if (newSelectedItems.has(index)) {
-        newSelectedItems.delete(index);
+        newSelectedItems.delete(index)
       } else {
-        newSelectedItems.add(index);
+        newSelectedItems.add(index)
       }
-      return newSelectedItems;
-    });
-  };
+      return newSelectedItems
+    })
+  }
 
   const handleDelete = () => {
-    const newData = allData.filter((_, index) => !selectedItems.has(index));
-    setAllData(newData);
-    setTotalPages(Math.ceil(newData.length / clientItemsPerPage));
-    setSelectedItems(new Set());
-    setCurrentPage(1);
-  };
+    const newData = allData.filter((_, index) => !selectedItems.has(index))
+    setAllData(newData)
+    setTotalPages(Math.ceil(newData.length / clientItemsPerPage))
+    setSelectedItems(new Set())
+    setCurrentPage(1)
+  }
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newStartDate = new Date(e.target.value);
-    setStartDate(newStartDate);
+    const newStartDate = new Date(e.target.value)
+    setStartDate(newStartDate)
     if (endDate && newStartDate > endDate) {
-      setEndDate(newStartDate);
+      setEndDate(newStartDate)
     }
-  };
+  }
 
   const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEndDate = new Date(e.target.value);
-    setEndDate(newEndDate);
+    const newEndDate = new Date(e.target.value)
+    setEndDate(newEndDate)
     if (startDate && newEndDate < startDate) {
-      setStartDate(newEndDate);
+      setStartDate(newEndDate)
     }
-  };
+  }
   return (
     <div className="history-container">
       <div className="date-header">
-        <div className="date-picker">
+        {/* <div className="date-picker">
           <img src="img/calendar_2.svg" alt="Start Date" />
           <input
             type="date"
@@ -190,7 +205,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
             min={formatDate(startDate)}
             className="date-input"
           />
-        </div>
+        </div> */}
         <img src="img/delete_2.svg" alt="Delete" />
         <button className="delete-button" onClick={handleDelete}>
           삭제
@@ -219,14 +234,18 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
                 </label>
               </td>
               <td>{item.분야}</td>
-              <td>                
-                <a 
-                  href="#" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleTitleClick(item.url);
+              <td>
+                <a
+                  href="#"
+                  onClick={e => {
+                    e.preventDefault()
+                    handleTitleClick(item.url)
                   }}
-                  style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}
+                  style={{
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
                 >
                   {item.제목}
                 </a>
@@ -247,7 +266,9 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
         {Array.from({ length: totalPages }, (_, index) => (
           <span
             key={index}
-            className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}
+            className={`page-number ${
+              currentPage === index + 1 ? 'active' : ''
+            }`}
             onClick={() => setCurrentPage(index + 1)}
           >
             {index + 1}
@@ -262,7 +283,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HistoryTable;
+export default HistoryTable
