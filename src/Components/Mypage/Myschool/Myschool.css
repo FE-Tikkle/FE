@@ -28,14 +28,15 @@
   line-height: normal;
   margin-bottom: 10px;
 }
-.Myschool-text-Container input {
-  height: 45.5px;
+.Myschool-text-Container select {
+  height: 40.5px;
   padding-left: 20px;
-  width: 383px;
+  width: 240px;
   border-radius: 5px;
   background: var(--gray3, #f0f1f3);
   border: none;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  color: #6f6f6f;
 }
 .Myschool-text {
   color: #6f6f6f;
@@ -57,10 +58,11 @@
   color: #6f6f6f;
   text-align: center;
   font-family: Pretendard;
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  color: #6f6f6f;
 }
 @media (max-width: 1570px) and (min-height: 901px) {
   .Myschool-All {

@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './History.css'
 import MypageContentSelector from './MypageContentSelector'
+import { getBookmarkStats, BookmarkStats } from '../../../api'
 
 const History: React.FC = () => {
+  const [bookmarkStats, setBookmarkStats] = useState<BookmarkStats | null>(null);
+
+  useEffect(() => {
+    const fetchBookmarkStats = async () => {
+      try {
+        const stats = await getBookmarkStats();
+        setBookmarkStats(stats);
+        
+      } catch (error) {
+        console.error('Failed to fetch bookmark stats:', error);
+      }
+    };
+
+    fetchBookmarkStats();
+  }, []);
+
   const bookmarks = [
-    { category: '우리학교', count: 10 },
-    { category: '취업', count: 5 },
-    { category: '대외활동', count: 7 },
-    { category: '공모전', count: 3 },
-  ]
+    { category: '우리학교', count: bookmarkStats?.notice || 0 },
+    { category: '취업', count: bookmarkStats?.saramin || 0 },
+  ];
 
   return (
     <div className="History-All">

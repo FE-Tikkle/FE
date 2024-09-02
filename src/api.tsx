@@ -293,3 +293,170 @@ export const postContentsRequest = async (
     throw error
   }
 }
+
+export const getSaraminTags = async (): Promise<Record<string, string[]>> => {
+  try {
+    const response = await axiosInstance.get('/saramin/tag')
+    return response.data
+  } catch (error) {
+    console.error('Error fetching Saramin tags:', error)
+    throw error
+  }
+}
+
+export interface BookmarkedNotice {
+  id: string;
+  title: string;
+  created_at: string;
+  url: string;
+}
+
+export interface BookmarkedNoticeResponse {
+  page: number;
+  size: number;
+  total: number;
+  total_pages: number;
+  has_next: boolean;
+  data: BookmarkedNotice[];
+}
+
+// getBookmarkedNotices 함수는 특정 페이지와 해당 페이지에 대한 데이터를 반환
+export const getBookmarkedNotices = async (
+  size: number,
+  page: number,
+  startDate: string,
+  endDate: string
+): Promise<BookmarkedNoticeResponse> => {
+  try {
+    const response = await axiosInstance.get<BookmarkedNoticeResponse>('/notice/bookmark', {
+      params: {
+        size,
+        page,
+        start_date: startDate,
+        end_date: endDate,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching bookmarked notices:', error);
+    throw error;
+  }
+};
+
+export interface BookmarkedSaramin {
+  id: string;
+  title: string;
+  created_at: string;
+  url: string;
+}
+
+export interface BookmarkedSaraminResponse {
+  page: number;
+  size: number;
+  total: number;
+  total_pages: number;
+  has_next: boolean;
+  data: BookmarkedSaramin[];
+}
+
+export const getBookmarkedSaramin = async (
+  size: number,
+  page: number,
+  startDate: string,
+  endDate: string
+): Promise<BookmarkedSaraminResponse> => {
+  try {
+    const response = await axiosInstance.get<BookmarkedSaraminResponse>('/saramin/bookmark', {
+      params: {
+        size,
+        page,
+        start_date: startDate,
+        end_date: endDate,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Axios 오류 상세:', {
+        메시지: error.message,
+        상태: error.response?.status,
+        상태텍스트: error.response?.statusText,
+        헤더: error.response?.headers,
+        데이터: error.response?.data,
+      });
+    } else {
+      console.error('예상치 못한 오류:', error);
+    }
+    throw error;
+  }
+};
+
+export interface BookmarkStats {
+  notice: number;
+  saramin: number;
+}
+
+export const getBookmarkStats = async (): Promise<BookmarkStats> => {
+  try {
+    const response = await axiosInstance.get<BookmarkStats>('/user/bookmark/stat');
+    console.log('Fetching bookmark stats:',response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching bookmark stats:', error);
+    throw error;
+  }
+};
+
+export interface UserData {
+  id: string;
+  name: string;
+  provider: string;
+  university: string;
+  central_site: string | null;
+  department: string;
+  subscribe_notices: string[];
+  subscribe_saramin: string[] | null;
+  bookmarked_link: string[];
+  bookmarked_notices: string[];
+  bookmarked_saramin: string[];
+}
+
+export const getUserData = async (): Promise<UserData> => {
+  try {
+    const response = await axiosInstance.get<UserData>('/user');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    throw error;
+  }
+};
+
+interface UpdateUniversityData {
+  university: string;
+  department: string;
+  subscribe_notices: string[];
+}
+
+export const updateUserUniversity = async (data: UpdateUniversityData): Promise<void> => {
+  try {
+    await axiosInstance.patch('/user/university', data);
+  } catch (error) {
+    console.error('Error updating user university data:', error);
+    throw error;
+  }
+};
+
+interface SaraminSubscriptions {
+  [key: string]: string[];
+}
+
+export const updateUserSaraminSubscriptions = async (subscriptions: SaraminSubscriptions): Promise<void> => {
+  try {
+    await axiosInstance.patch('/user/saramin', { subscribe_saramin: subscriptions });
+    console.log('Saramin 구독 정보가 성공적으로 업데이트되었습니다.');
+  } catch (error) {
+    console.error('Saramin 구독 정보 업데이트 중 오류 발생:', error);
+    throw error;
+  }
+}
