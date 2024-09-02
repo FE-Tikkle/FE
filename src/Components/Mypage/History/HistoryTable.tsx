@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import './History.css'
-import {
-  getBookmarkedNotices,
-  BookmarkedNotice,
-  toggleBookmark,
-} from '../../../api'
-import {
-  getBookmarkedSaramin,
-  BookmarkedSaramin,
-  toggleBookmark2,
-} from '../../../api'
+
+import React, { useState, useEffect, useCallback } from 'react';
+import './History.css';
+import { getBookmarkedNotices, BookmarkedNotice,toggleBookmark } from '../../../api';
+import { getBookmarkedSaramin, BookmarkedSaramin,toggleBookmark2 } from '../../../api';
+
 
 interface Item {
   분야: string
@@ -33,8 +27,11 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
   const [selectedItems, setSelectedItems] = useState<Set<number>>(new Set())
   const [startDate, setStartDate] = useState<Date | undefined>(
     new Date('2024-03-01')
-  )
-  const [endDate, setEndDate] = useState<Date | undefined>(new Date())
+  );
+  const [endDate, setEndDate] = useState<Date | undefined>(
+    new Date() 
+  );
+
 
   const formatDate = (date: Date | undefined) => {
     return date ? date.toISOString().split('T')[0] : ''
@@ -65,14 +62,15 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
       let result: Item[] = []
       switch (activeTab) {
         case '공지사항':
-          result = await fetchAllNotices()
-          setSelectedItems(new Set())
-          break
+
+          result = await fetchAllNotices();
+          setSelectedItems(new Set());
+          break;
         case '채용공고':
-          result = await fetchAllSaramin()
-          setSelectedItems(new Set())
-          break
-        case '':
+          result = await fetchAllSaramin();
+          setSelectedItems(new Set());
+          break;
+      case '':
         case '전체':
           result = await fetchAllData()
           break
@@ -169,27 +167,27 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
 
   const handleDelete = async () => {
     try {
-      const itemsToDelete = Array.from(selectedItems).map(
-        index => allData[index]
-      )
 
+      const itemsToDelete = Array.from(selectedItems).map(index => allData[index]);
+      
       for (const item of itemsToDelete) {
         if (item.분야 === '공지사항') {
-          await toggleBookmark(item.id)
+          await toggleBookmark(item.id);
         } else if (item.분야 === '채용공고') {
-          await toggleBookmark2(item.id)
+          await toggleBookmark2(item.id);
         }
       }
 
-      const newData = allData.filter((_, index) => !selectedItems.has(index))
-      setAllData(newData)
-      setTotalPages(Math.ceil(newData.length / clientItemsPerPage))
-      setSelectedItems(new Set())
-      setCurrentPage(1)
+      const newData = allData.filter((_, index) => !selectedItems.has(index));
+      setAllData(newData);
+      setTotalPages(Math.ceil(newData.length / clientItemsPerPage));
+      setSelectedItems(new Set());
+      setCurrentPage(1);
     } catch (error) {
-      console.error('Error deleting items and toggling bookmarks:', error)
+      console.error('Error deleting items and toggling bookmarks:', error);
     }
-  }
+  };
+
 
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStartDate = new Date(e.target.value)

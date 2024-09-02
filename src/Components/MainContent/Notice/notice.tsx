@@ -15,7 +15,7 @@ interface Notice {
 
 interface NoticeProps {
   notice: Notice
-  onBookmarkUpdate?: (id: string, newStatus: boolean) => void
+  onBookmarkUpdate?: (id: string, newStatus: boolean) => void 
 }
 
 const Notice: React.FC<NoticeProps> = ({ notice, onBookmarkUpdate }) => {
