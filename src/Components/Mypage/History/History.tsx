@@ -18,7 +18,7 @@ const History: React.FC = () => {
     };
 
     fetchBookmarkStats();
-  }, []);
+  }, [bookmarkStats]);
 
   const bookmarks = [
     { category: '우리학교', count: bookmarkStats?.notice || 0 },
