@@ -1,34 +1,55 @@
-import { useState, ChangeEvent, KeyboardEvent } from 'react'
+import React, { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react'
+import axios from 'axios'
 import Modal from '../modal/modal'
 import { motion } from 'framer-motion'
 import './Searchbar.css'
 import '../../App.css'
+import axiosInstance, { UserData } from '../../api'
+
 interface Platform {
   name: string
   url: string
   imgSrc?: string
+  state: boolean
 }
 
-const initialPlatforms: Platform[] = [
-  {
-    name: 'Notion',
-    url: 'https://www.notion.com',
-    imgSrc: 'img/Logo/notion.svg',
-  },
-  { name: 'GPT-4', url: 'https://chatgpt.com/', imgSrc: 'img/Logo/gpt.svg' },
-  {
-    name: 'YouTube',
-    url: 'https://www.youtube.com',
-    imgSrc: 'img/Logo/youtube.svg',
-  },
-]
+interface SearchbarProps {
+  userData: UserData | null
+}
 
-const Searchbar = () => {
+interface BookmarkedLink {
+  uri: string
+  title: string
+  state: boolean
+}
+
+interface BookmarkUpdate {
+  uri: string
+  title: string
+  state: boolean
+}
+
+const API_URL = 'https://api.tikkeul.site/user/bookmark' // API URL을 적절히 변경해주세요
+
+const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [platforms, setPlatforms] = useState(initialPlatforms)
+  const [platforms, setPlatforms] = useState<Platform[]>([])
   const [newPlatformName, setNewPlatformName] = useState('')
   const [newPlatformUrl, setNewPlatformUrl] = useState('')
   const [showAddPlatformModal, setShowAddPlatformModal] = useState(false)
+
+  useEffect(() => {
+    if (userData && Array.isArray(userData.bookmarked_link)) {
+      const userPlatforms = (userData.bookmarked_link as BookmarkedLink[]).map(
+        link => ({
+          name: link.title,
+          url: link.uri.startsWith('http') ? link.uri : `https://${link.uri}`,
+          state: link.state,
+        })
+      )
+      setPlatforms(userPlatforms)
+    }
+  }, [userData])
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
@@ -43,28 +64,75 @@ const Searchbar = () => {
     setSearchTerm(e.target.value)
   }
 
-  const handleAddPlatform = () => {
+  const updateBookmark = async (bookmark: BookmarkUpdate) => {
+    try {
+      const response = await axiosInstance.post(API_URL, bookmark)
+      if (response.status === 200) {
+        console.log('북마크 업데이트 성공')
+      } else {
+        throw new Error('북마크 업데이트 실패')
+      }
+    } catch (error) {
+      console.error('북마크 업데이트 중 오류 발생:', error)
+      throw error
+    }
+  }
+
+  const handleAddPlatform = async () => {
     if (!newPlatformName || !newPlatformUrl) {
       alert('이름과 URL을 모두 입력해주세요.')
       return
     }
-    if (newPlatformName && newPlatformUrl) {
-      const newPlatform = { name: newPlatformName, url: newPlatformUrl }
+    const newPlatform: Platform = {
+      name: newPlatformName,
+      url: newPlatformUrl.startsWith('http')
+        ? newPlatformUrl
+        : `https://${newPlatformUrl}`,
+      state: true,
+    }
+
+    try {
+      await updateBookmark({
+        uri: newPlatform.url,
+        title: newPlatform.name,
+        state: true,
+      })
+
       setPlatforms([...platforms, newPlatform])
       setNewPlatformName('')
       setNewPlatformUrl('')
       setShowAddPlatformModal(false)
+    } catch (error) {
+      alert('북마크 추가에 실패했습니다. 다시 시도해주세요.')
     }
   }
-  const handleDeletePlatform = (url: string) => {
-    const filteredPlatforms = platforms.filter(platform => platform.url !== url)
-    setPlatforms(filteredPlatforms)
+
+  const handleDeletePlatform = async (url: string) => {
+    const platformToDelete = platforms.find(platform => platform.url === url)
+    if (!platformToDelete) return
+
+    try {
+      await updateBookmark({
+        uri: platformToDelete.url,
+        title: platformToDelete.name,
+        state: false,
+      })
+
+      const filteredPlatforms = platforms.filter(
+        platform => platform.url !== url
+      )
+      setPlatforms(filteredPlatforms)
+    } catch (error) {
+      alert('북마크 삭제에 실패했습니다. 다시 시도해주세요.')
+    }
   }
+
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleSearch()
     }
   }
+
   return (
     <div className="Search-main">
       <div className="Search-container">
@@ -104,11 +172,7 @@ const Searchbar = () => {
               className="Delete-button"
               onClick={() => handleDeletePlatform(platform.url)}
             >
-              <img
-                src="img/delete.svg"
-                alt="삭제"
-                onClick={() => handleDeletePlatform(platform.url)}
-              />
+              <img src="img/delete.svg" alt="삭제" />
             </button>
           </div>
         ))}
@@ -117,7 +181,6 @@ const Searchbar = () => {
             className="Search-Each-button_add"
             onClick={() => setShowAddPlatformModal(true)}
           >
-            {' '}
             <img src="img/Logo/Vector.svg" alt="add_button" />
           </button>
         )}

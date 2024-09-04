@@ -14,6 +14,7 @@
   display: flex;
   justify-content: center;
   gap: 40px;
+  margin-top: 40px;
 }
 
 .main-bottom-container {
@@ -25,7 +26,6 @@
 .Noice {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
 }
 
 .main-left {

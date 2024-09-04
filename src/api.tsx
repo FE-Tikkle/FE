@@ -24,6 +24,7 @@ interface GoogleAuthBody {
 // 토큰 갱신 응답의 타입 정의
 interface TokenRefreshResponse {
   access_token: string
+  refresh_token: string
 }
 
 // 리프레시 토큰으로 새로운 액세스 토큰을 요청하는 함수
@@ -56,13 +57,11 @@ axiosInstance.interceptors.request.use(
   }
 )
 
-// 응답 인터셉터 추가: 409 오류를 처리하고 토큰을 갱신
 axiosInstance.interceptors.response.use(
   response => response,
   async (error: AxiosError) => {
     const originalRequest = error.config
 
-    // 오류가 409 Conflict이고 원래 요청 설정이 있는 경우 토큰 갱신 시도
     if (error.response?.status === 409 && originalRequest) {
       try {
         const refreshToken = localStorage.getItem('refresh_token')
@@ -70,13 +69,13 @@ axiosInstance.interceptors.response.use(
           throw new Error('리프레시 토큰이 없습니다')
         }
 
-        // 새로운 액세스 토큰 요청
-        const { access_token: newAccessToken } = await refreshAccessToken(
-          refreshToken
-        )
+        // 새로운 액세스 토큰과 리프레시 토큰 요청
+        const { access_token: newAccessToken, refresh_token: newRefreshToken } =
+          await refreshAccessToken(refreshToken)
 
-        // 로컬 스토리지에 새로운 액세스 토큰 저장
+        // 로컬 스토리지에 새로운 액세스 토큰과 리프레시 토큰 저장
         localStorage.setItem('access_token', newAccessToken)
+        localStorage.setItem('refresh_token', newRefreshToken)
 
         // 원래 요청의 Authorization 헤더 업데이트
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
@@ -491,7 +490,6 @@ export const getBookmarkStats = async (): Promise<BookmarkStats> => {
     throw error
   }
 }
-
 export interface UserData {
   id: string
   name: string
