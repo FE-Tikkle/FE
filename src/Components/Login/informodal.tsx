@@ -110,23 +110,23 @@ const InfoModal: React.FC<InfoModalProps> = ({
     fetchDepartments2()
   }, [school])
 
-  const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = event.target
-    setAllChecked(checked)
-    setTerms({
-      termsOfService: checked,
-      privacyPolicy: checked,
-      promotions: checked,
-    })
-  }
+  // const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { checked } = event.target
+  //   setAllChecked(checked)
+  //   setTerms({
+  //     termsOfService: checked,
+  //     privacyPolicy: checked,
+  //     promotions: checked,
+  //   })
+  // }
 
-  const handleTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = event.target
-    setTerms(prevTerms => ({
-      ...prevTerms,
-      [name]: checked,
-    }))
-  }
+  // const handleTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, checked } = event.target
+  //   setTerms(prevTerms => ({
+  //     ...prevTerms,
+  //     [name]: checked,
+  //   }))
+  // }
 
   const handleSubscribeDepartmentChange = (index: number, value: string) => {
     const newSubscribeDepartments = [...subscribeDepartments]
@@ -147,14 +147,14 @@ const InfoModal: React.FC<InfoModalProps> = ({
       toast.error('학과를 선택해주세요.')
       return false
     }
-    if (!terms.termsOfService) {
-      toast.error('이용약관에 동의해주세요.')
-      return false
-    }
-    if (!terms.privacyPolicy) {
-      toast.error('개인정보 수집 및 이용에 동의해주세요.')
-      return false
-    }
+    // if (!terms.termsOfService) {
+    //   toast.error('이용약관에 동의해주세요.')
+    //   return false
+    // }
+    // if (!terms.privacyPolicy) {
+    //   toast.error('개인정보 수집 및 이용에 동의해주세요.')
+    //   return false
+    // }
     return true
   }
 
@@ -218,7 +218,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
               <div className="Login-Information">
                 <div className="Login-input">
                   <div className="Login-form-group">
-                    <label className="Login-form-label">사용자 이름</label>
+                    <label className="form-label">사용자 이름</label>
                     <input
                       type="text"
                       id="name"
@@ -264,7 +264,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
                     </select>
                   </div>
                   <div className="Login-form-group">
-                    <label className="form-label">구독할 학과</label>
+                    <label className="form-label">관심있는 학과 공지</label>
                     <div className="Login-form-group2">
                       {[0, 1, 2].map(index => (
                         <select
@@ -291,7 +291,35 @@ const InfoModal: React.FC<InfoModalProps> = ({
                       ))}
                     </div>
                   </div>
-                  <div className="Login-terms">
+                  <div className="Login-form-group">
+                    <label className="form-label">관심있는 채용공고</label>
+                    <div className="Login-form-group2">
+                      {[0, 1, 2].map(index => (
+                        <select
+                          key={index}
+                          id={`extra-department-${index + 1}`}
+                          className="Login-form-input1"
+                          value={subscribeDepartments[index]}
+                          onChange={e =>
+                            handleSubscribeDepartmentChange(
+                              index,
+                              e.target.value
+                            )
+                          }
+                        >
+                          <option value="" disabled>
+                            선택
+                          </option>
+                          {departments2.map((dept, deptIndex) => (
+                            <option key={deptIndex} value={dept}>
+                              {dept}
+                            </option>
+                          ))}
+                        </select>
+                      ))}
+                    </div>
+                  </div>
+                  {/* <div className="Login-terms">
                     <div className="terms-form">
                       <div className="term-item">
                         <input
@@ -341,7 +369,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
                         </label>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <button className="submit-btn" onClick={handleFormSubmit}>
                   다음

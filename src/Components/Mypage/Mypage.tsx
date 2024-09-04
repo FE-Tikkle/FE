@@ -7,7 +7,6 @@ import Myschool from './Myschool/Myschool'
 import Recruit from './Recruit/Recruit'
 import Activites from './Activites/Activites'
 import Contest from './Contest/Contest'
-import Introduce from './Introduce/Introduce'
 import Mypageinfo from '../modal/Mypageinfomodal'
 import DoLogin from './DoLogin'
 import LoginModal2 from '../modal/Loginmodal2'
@@ -37,41 +36,34 @@ const item = {
 const selecterData = [
   {
     num: '01',
-    mainText: '티끌 소개',
-    secondText: '티끌에 대해 알아봐요',
-    title: '티끌 소개',
-    content: Introduce,
-  },
-  {
-    num: '02',
     mainText: '히스토리',
     secondText: '나의 북마크를 확인해요',
     title: '히스토리',
     content: History,
   },
   {
-    num: '03',
+    num: '02',
     mainText: '우리학교',
     secondText: '나의 학력사항을 수정해요',
     title: '우리학교',
     content: Myschool,
   },
   {
-    num: '04',
+    num: '03',
     mainText: '채용공고',
     secondText: '관심있는 취업분야를 선택해요',
     title: '채용공고',
     content: Recruit,
   },
   {
-    num: '05',
+    num: '04',
     mainText: '대외활동',
     secondText: '관심있는 활동분야를 선택해요',
     title: '대외활동',
     content: Activites,
   },
   {
-    num: '06',
+    num: '05',
     mainText: '공모전',
     secondText: '관심있는 공모전을 선택해요',
     title: '공모전',

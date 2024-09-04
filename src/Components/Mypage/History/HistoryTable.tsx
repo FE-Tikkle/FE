@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import './History.css';
 import { getBookmarkedNotices, BookmarkedNotice,toggleBookmark } from '../../../api';
 import { getBookmarkedSaramin, BookmarkedSaramin,toggleBookmark2 } from '../../../api';
-
 
 interface Item {
   분야: string
@@ -14,10 +12,11 @@ interface Item {
 }
 
 interface HistoryTableProps {
-  activeTab: string
+  activeTab: string;
+  refreshBookmarkStats: () => Promise<void>;
 }
 
-const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
+const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab,refreshBookmarkStats }) => {
   const clientItemsPerPage = 4
   const serverItemsPerPage = 10
   const [currentPage, setCurrentPage] = useState(1)
@@ -167,7 +166,6 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
 
   const handleDelete = async () => {
     try {
-
       const itemsToDelete = Array.from(selectedItems).map(index => allData[index]);
       
       for (const item of itemsToDelete) {
@@ -183,6 +181,9 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab }) => {
       setTotalPages(Math.ceil(newData.length / clientItemsPerPage));
       setSelectedItems(new Set());
       setCurrentPage(1);
+
+      // 북마크 통계 새로고침
+      await refreshBookmarkStats();
     } catch (error) {
       console.error('Error deleting items and toggling bookmarks:', error);
     }

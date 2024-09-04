@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import './History.css'
 import HistoryTable from './HistoryTable'
 
-const MypageContentSelector: React.FC = () => {
+interface MypageContentSelectorProps {
+  refreshBookmarkStats: () => Promise<void>;
+}
+
+const MypageContentSelector: React.FC<MypageContentSelectorProps> = ({ refreshBookmarkStats }) => {
   const [activeTab, setActiveTab] = useState('')
 
   const tabs = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
@@ -22,10 +26,9 @@ const MypageContentSelector: React.FC = () => {
           ))}
         </div>
       </div>
-      <HistoryTable activeTab={activeTab} />
+      <HistoryTable activeTab={activeTab} refreshBookmarkStats={refreshBookmarkStats} />
     </div>
   )
 }
 
 export default MypageContentSelector
-

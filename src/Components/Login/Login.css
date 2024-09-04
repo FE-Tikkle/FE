@@ -200,6 +200,11 @@
   display: flex;
   align-items: center;
 }
+
+.form-label{
+  font-size: 18px;
+}
+
 .term-item {
   display: flex;
   gap: 17px;
@@ -299,5 +304,11 @@ input:checked + label {
 @media (max-height: 750px) {
   .login-modal-content {
     height: 600px;
+  }
+  .info-modal-content {
+    height: 670px;
+  }
+  .form-label{
+    font-size: 16px;
   }
 }

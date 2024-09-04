@@ -47,8 +47,8 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
         const userData = await getUserData();
         setSchool(userData.university);
         setDepartment(userData.department);
-        setSubscribeDepartments(userData.subscribe_notices.concat(Array(4 - userData.subscribe_notices.length).fill('')));
-        console.log('구독학과:',userData.subscribe_notices);
+        setSubscribeDepartments(userData.subscribe_notices_without_filter.concat(Array(4 - userData.subscribe_notices_without_filter.length).fill('')));
+        console.log('구독학과:',userData.subscribe_notices_without_filter);
       } catch (error) {
         console.error('사용자 데이터를 불러오는 데 실패했습니다:', error);
         toast.error('사용자 정보를 불러오는 데 실패했습니다.');
@@ -72,6 +72,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
         department: department,
         subscribe_notices: subscribeDepartments.filter(dept => dept !== '')
       };
+      console.log(updateData);
       await updateUserUniversity(updateData);
       toast.success('학교 정보가 성공적으로 업데이트되었습니다.');
     } catch (error) {
@@ -125,6 +126,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
           toast.error('구독 가능한 학과 목록을 불러오는 데 실패했습니다.')
         }
       } else {
+        console.log('fail');
         setDepartments2([])
       }
     }
@@ -145,6 +147,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
                 onChange={e => {
                   setSchool(e.target.value)
                   setDepartment('') // 학교 변경 시 학과 초기화
+                  setSubscribeDepartments(['', '', '', '']) // 관심 학과 초기화
                 }}
               >
                 <option value="" disabled>
@@ -176,7 +179,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
           </div>
           <div className="Myschool-Conatiner2">
             <div className="Myschool-text-Container">
-              <label htmlFor="major">관심 학과 1</label>
+              <label htmlFor="major">관심 사이트 1</label>
                 <select
                     id={`extra-department-${1}`}
                     value={subscribeDepartments[0]}
@@ -198,7 +201,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
                   </select>
             </div>
             <div className="Myschool-text-Container">
-              <label htmlFor="year">관심 학과 2</label>
+              <label htmlFor="year">관심 사이트 2</label>
               <select
                     id={`extra-department-${2}`}
                     value={subscribeDepartments[1]}
@@ -223,7 +226,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
 
           <div className="Myschool-Conatiner2">
             <div className="Myschool-text-Container">
-              <label htmlFor="major">관심 학과 3</label>
+              <label htmlFor="major">관심 사이트 3</label>
               <select
                     id={`extra-department-${3}`}
                     value={subscribeDepartments[2]}
@@ -245,7 +248,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
                   </select>
             </div>
             <div className="Myschool-text-Container">
-              <label htmlFor="year">관심 학과 4</label>
+              <label htmlFor="year">관심 사이트 4</label>
               <select
                     id={`extra-department-${4}`}
                     value={subscribeDepartments[3]}

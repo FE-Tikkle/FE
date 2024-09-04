@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './History.css'
 import MypageContentSelector from './MypageContentSelector'
 import { getBookmarkStats, BookmarkStats } from '../../../api'
@@ -6,19 +6,18 @@ import { getBookmarkStats, BookmarkStats } from '../../../api'
 const History: React.FC = () => {
   const [bookmarkStats, setBookmarkStats] = useState<BookmarkStats | null>(null);
 
+  const refreshBookmarkStats = useCallback(async () => {
+    try {
+      const stats = await getBookmarkStats();
+      setBookmarkStats(stats);
+    } catch (error) {
+      console.error('Failed to fetch bookmark stats:', error);
+    }
+  }, []);
+  
   useEffect(() => {
-    const fetchBookmarkStats = async () => {
-      try {
-        const stats = await getBookmarkStats();
-        setBookmarkStats(stats);
-        
-      } catch (error) {
-        console.error('Failed to fetch bookmark stats:', error);
-      }
-    };
-
-    fetchBookmarkStats();
-  }, [bookmarkStats]);
+    refreshBookmarkStats();
+  }, [refreshBookmarkStats]);
 
   const bookmarks = [
     { category: '우리학교', count: bookmarkStats?.notice || 0 },
@@ -39,7 +38,7 @@ const History: React.FC = () => {
             </div>
           ))}
         </div>
-        <MypageContentSelector />
+        <MypageContentSelector refreshBookmarkStats={refreshBookmarkStats} />
       </div>
     </div>
   )
