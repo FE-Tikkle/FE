@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Content.css'
 import Noticelist from './Notice/noticelist'
 import Noticemain from './Notice/noticemain'
@@ -10,31 +10,21 @@ import Department from './Department/Department'
 import RecruitmentContainer from './Recruitment/recruitment'
 import Job from './job/job'
 import { getUserData, UserData } from '../../api'
+interface ContentSelectorProps {
+  userData: UserData | null
+}
 
-const ContentSelector: React.FC = () => {
+const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
   const [activeTab, setActiveTab] = useState('전체')
   const [tabs, setTabs] = useState(['전체'])
   const [searchTerm, setSearchTerm] = useState('')
-  const [userData, setUserData] = useState<UserData | null>(null)
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
     null
   ) // Correctly type as string | null
   const [tagList, setTagList] = useState<string[]>([]) // Keep this if needed
   const notices = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const data = await getUserData()
-        setUserData(data)
-      } catch (error) {
-        console.error('Failed to fetch user data:', error)
-      }
-    }
-
-    fetchUserData()
-  }, [])
+  const [selectedJob, setSelectedJob] = useState<string | null>(null)
 
   const handleTagListUpdate = (tags: string[]) => {
     setTagList(tags)
@@ -73,11 +63,17 @@ const ContentSelector: React.FC = () => {
       case '장학':
         return <Scholarship />
       case '채용공고':
+        const jobList = userData?.subscribe_saramin
+          ? Object.values(userData.subscribe_saramin).flat()
+          : []
         return (
           <>
-            <Job />
+            <Job subscribeSaramin={jobList} onJobSelect={setSelectedJob} />
             <SearchBox onSearch={handleSearch} />
-            <RecruitmentContainer searchTerm={searchTerm} />
+            <RecruitmentContainer
+              searchTerm={searchTerm}
+              selectedJob={selectedJob}
+            />
           </>
         )
       case '대외활동':
