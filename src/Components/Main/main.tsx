@@ -4,8 +4,12 @@ import './main.css'
 // import Calendar from '../Calendar/calendar'
 // import Schedule from '../Schedule/schedule'
 import ContentSelector from '../MainContent/Contentselector'
+import { UserData } from '../../api'
 
-const Main: React.FC = () => {
+interface MainProps {
+  userData: UserData | null
+}
+const Main: React.FC<MainProps> = ({ userData }) => {
   // 선택된 날짜와 해당 날짜의 이벤트를 관리
   // const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   // const [selectedEvents, setSelectedEvents] = useState<any[]>([])
@@ -22,7 +26,7 @@ const Main: React.FC = () => {
         {/* <Schedule date={selectedDate} events={selectedEvents} /> */}
       </div>
       <div className="Noice">
-        <ContentSelector />
+        <ContentSelector userData={userData} />
       </div>
     </MainContainer>
   )

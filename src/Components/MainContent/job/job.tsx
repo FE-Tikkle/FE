@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import './job.css'
 
-const jobs: string[] = [
-  'IT개발 / 데이터',
-  '데이터 엔지니어',
-  '백엔드 / 서버개발',
-  '데이터 사이언티스트',
-]
+interface JobProps {
+  subscribeSaramin?: string[]
+  onJobSelect: (selectedJob: string | null) => void
+}
 
-const job: React.FC = () => {
-  const [selectedjob, setSelectedjob] = useState<string | null>(null)
+const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
+  const [selectedJob, setSelectedJob] = useState<string | null>(null)
+
+  const jobs = useMemo(() => {
+    return subscribeSaramin.filter(job => typeof job === 'string')
+  }, [subscribeSaramin])
 
   const handleClick = (job: string) => {
-    setSelectedjob(job)
+    const newSelectedJob = selectedJob === job ? null : job
+    setSelectedJob(newSelectedJob)
+    onJobSelect(newSelectedJob)
   }
 
   return (
@@ -20,7 +24,7 @@ const job: React.FC = () => {
       {jobs.map(job => (
         <div
           key={job}
-          className={`job-selector ${selectedjob === job ? 'selected' : ''}`}
+          className={`job-selector ${selectedJob === job ? 'selected' : ''}`}
           onClick={() => handleClick(job)}
         >
           {job}
@@ -30,4 +34,4 @@ const job: React.FC = () => {
   )
 }
 
-export default job
+export default Job

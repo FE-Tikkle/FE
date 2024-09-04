@@ -5,9 +5,11 @@ import './recruitment.css'
 import { Recruitment } from '../../../store/Rec'
 interface RecruitmentContainerProps {
   searchTerm: string
+  selectedJob: string | null
 }
 const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
   searchTerm,
+  selectedJob,
 }) => {
   const [recruitments, setRecruitments] = useState<Recruitment[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -17,22 +19,20 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const prevPageRef = useRef<number>(1)
   const prevSearchTermRef = useRef<string>('')
-
+  const prevSelectedJobRef = useRef<string | null>(null)
   const loadRecruitments = useCallback(async () => {
-    console.log('loadRecruitments called. Current state:', {
-      isLoading,
-      hasMore,
-      page,
-      prevPage: prevPageRef.current,
-    })
     if (isLoading || !hasMore || (page !== 1 && page === prevPageRef.current)) {
-      console.log('loadRecruitments aborted due to condition')
       return
     }
 
     try {
       console.log('Fetching recruitments for page:', page)
-      const data = await fetchRecruitments(15, page, '', searchTerm)
+      const data = await fetchRecruitments(
+        15,
+        page,
+        selectedJob || '',
+        searchTerm
+      )
 
       if (data.length === 0) {
         setHasMore(false)
@@ -41,23 +41,27 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
       }
       prevPageRef.current = page
       prevSearchTermRef.current = searchTerm
+      prevSelectedJobRef.current = selectedJob
     } catch (err) {
       setError('채용 정보를 불러오는 데 실패했습니다.')
       console.error('Error fetching recruitments:', err)
     } finally {
       setIsLoading(false)
     }
-  }, [isLoading, hasMore, page, searchTerm])
+  }, [isLoading, hasMore, page, searchTerm, selectedJob])
 
   useEffect(() => {
-    if (prevSearchTermRef.current !== searchTerm) {
+    if (
+      prevSearchTermRef.current !== searchTerm ||
+      prevSelectedJobRef.current !== selectedJob
+    ) {
       setRecruitments([])
       setPage(1)
       prevPageRef.current = 1
       setHasMore(true)
     }
     loadRecruitments()
-  }, [loadRecruitments, searchTerm])
+  }, [loadRecruitments, searchTerm, selectedJob])
 
   const handleScroll = useCallback(() => {
     if (!containerRef.current || isLoading || !hasMore) return
