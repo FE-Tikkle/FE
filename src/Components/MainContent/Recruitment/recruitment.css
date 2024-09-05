@@ -43,7 +43,7 @@
   width: 70.96px;
   height: 19.827px;
   border-radius: 5px;
-  background: #492407;
+  background: #101b49;
   color: #fff;
   text-align: center;
   font-family: Pretendard;
@@ -65,7 +65,7 @@
 }
 
 .recruitment-title {
-  color: #3c332b;
+  color: #484848;
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
@@ -94,8 +94,8 @@
   width: 100.67px;
   height: 22.827px;
   border-radius: 5px;
-  background: rgba(255, 178, 129, 0.24);
-  color: #ffa557;
+  background: rgba(153, 197, 255, 0.25);
+  color: #335cff;
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
