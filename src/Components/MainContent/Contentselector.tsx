@@ -116,7 +116,9 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
           </div>
         )}
       </div>
-      <div className="Contents">{renderContent()}</div>
+      <div className={`Contents ${selectedNotice === '채용공고'||'공지사항' ? 'align-left' : ''}`}>
+        {renderContent()}
+      </div>
     </div>
   )
 }

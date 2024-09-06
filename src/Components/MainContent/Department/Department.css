@@ -1,19 +1,21 @@
 .department-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;  /* 여러 줄로 나뉠 수 있도록 */
+  align-items: flex-start;  /* 세로 정렬을 위쪽으로 */
+  justify-content: flex-start;  /* 가로 정렬을 왼쪽으로 */
   margin-top: 20px;
-  gap: 20px;
-  justify-content: flex-end;
-  margin-left: -680px;
-  margin-bottom: -40px;
-  z-index: 10;
+  gap: 10px;  /* 태그 사이의 간격 */
+  margin-bottom: -42px;
 }
+
 .department-selector {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 126.33px;
-  height: 30.098px;
+  width: auto;  /* 내용에 맞게 너비 조정 */
+  min-width: 80px;  /* 최소 너비 설정 */
+  height: 30px;
   border-radius: 15px;
   background: var(--white, #fff);
   font-family: Pretendard;
@@ -21,6 +23,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  padding: 0 10px;  /* 좌우 패딩 추가 */
+  cursor: pointer;
 }
 .department-selector {
   cursor: pointer;
@@ -32,6 +36,7 @@
 }
 @media (max-width: 1100px) {
   .department-container {
-    margin-left: -360px;
+      margin-left: 0;  /* 기존의 큰 마이너스 마진 제거 */
+      padding-left: 10px;  /* 작은 화면에서는 패딩 줄임 */
   }
 }

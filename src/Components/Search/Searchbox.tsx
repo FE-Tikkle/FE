@@ -1,5 +1,5 @@
 import React, { useState, KeyboardEvent } from 'react'
-
+import './Searchbar.css'
 interface SearchBoxProps {
   onSearch: (searchTerm: string) => void
 }
