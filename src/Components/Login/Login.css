@@ -391,6 +391,9 @@ input:checked + label {
   .Login-info-left {
     display: none;
   }
+  .Login-info-left-2 {
+    display: none;
+  }
   .info-modal-content {
     flex-direction: column;
     align-items: center;
