@@ -498,7 +498,8 @@ export interface UserData {
   central_site: string | null
   department: string
   subscribe_notices: string[]
-  subscribe_saramin?: { [key: string]: string[] }
+  subscribe_notices_without_filter: string[]
+  subscribe_saramin: string[] | null
   bookmarked_link: string[]
   bookmarked_notices: string[]
   bookmarked_saramin: string[]
@@ -525,6 +526,7 @@ export const updateUserUniversity = async (
 ): Promise<void> => {
   try {
     await axiosInstance.patch('/user/university', data)
+    console.log('update:',data);
   } catch (error) {
     console.error('Error updating user university data:', error)
     throw error
@@ -548,3 +550,22 @@ export const updateUserSaraminSubscriptions = async (
     throw error
   }
 }
+
+export const deleteUser = async (): Promise<void> => {
+  try {
+    await axiosInstance.delete('/auth/user');
+    console.log('사용자 계정이 성공적으로 삭제되었습니다.');
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('사용자 삭제 중 오류 발생:', {
+        메시지: error.message,
+        상태: error.response?.status,
+        상태텍스트: error.response?.statusText,
+        데이터: error.response?.data,
+      });
+    } else {
+      console.error('예상치 못한 오류:', error);
+    }
+    throw error;
+  }
+};

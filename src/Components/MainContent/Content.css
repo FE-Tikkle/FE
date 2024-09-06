@@ -55,6 +55,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%; /* 전체 너비를 사용하도록 설정 */
+}
+
+.Contents.align-left {
+  align-items: flex-start; /* 왼쪽 정렬 */
+  padding-left: 20px; /* 왼쪽 여백 추가 */
+}
+
+/* Job 컴포넌트에 대한 추가 스타일 */
+.Contents.align-left .job-container {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.Contents.align-left .department-container {
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .Contents.hide {

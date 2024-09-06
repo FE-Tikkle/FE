@@ -58,6 +58,35 @@
   margin-bottom: 30px;
   color: #82bbff;
 }
+
+.Login-maintext-4 {
+  font-family: Pretendard;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 5px;
+  color: #101b49;
+}
+
+.Login-maintext-5 {
+  color: #484848;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 55px;
+  margin-bottom: 5px;
+}
+
+.Login-maintext-6 {
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  margin-top: 10px;
+}
+
 .Login-Image {
   width: 90%;
   height: auto;
@@ -92,6 +121,13 @@
   gap: 23.26px;
   margin-top: 120px;
 }
+
+.Login-policy-img{
+  width: 80%;
+  margin-left: 50px;
+  margin-bottom: 60px;
+}
+
 .Login-google,
 .Login-kakao,
 .Login-naver {
@@ -131,6 +167,16 @@
   width: 100%;
   margin-left: 50px;
 }
+
+.Login-info-left-2{
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 20px;
+  width: 100%;
+  margin-left: 50px;
+}
+
 .Login-input {
   display: flex;
   flex-direction: column;
@@ -152,6 +198,18 @@
   align-items: flex-start;
   gap: 10px;
 }
+
+.recruit-selection {
+  display: flex;
+  gap: 40px; /* 분야와 세부분야 사이의 간격 */
+  margin-bottom: 10px; /* 각 선택 그룹 사이의 세로 간격 */
+  margin-top: 10px;
+}
+
+.recruit-select {
+  flex: 1; /* 두 선택 상자의 너비를 동일하게 설정 */
+}
+
 .Login-form-input {
   width: 455px;
   height: 52.999px;
@@ -200,6 +258,50 @@
   display: flex;
   align-items: center;
 }
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  width: 455px;
+  margin: 20px 0 0;  /* 상하 여백 추가 및 중앙 정렬 */
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background-color: #4a4a4a;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100px;
+}
+
+.nav-btn:hover {
+  background-color: #2a2a2a;
+}
+
+.nav-btn:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: 5px; /* 버튼 사이 간격 추가 */
+}
+
+.nav-btn:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-left: 5px; /* 버튼 사이 간격 추가 */
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.form-label{
+  font-size: 18px;
+}
+
 .term-item {
   display: flex;
   gap: 17px;
@@ -293,11 +395,17 @@ input:checked + label {
     flex-direction: column;
     align-items: center;
     width: 530px;
-    height: 850px;
+    height: 710px;
   }
 }
 @media (max-height: 750px) {
   .login-modal-content {
     height: 600px;
+  }
+  .info-modal-content {
+    height: 670px;
+  }
+  .form-label{
+    font-size: 16px;
   }
 }

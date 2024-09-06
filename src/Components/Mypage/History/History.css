@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  width: 1010.1px;
+  width: 1012.09px;
 }
 .History-title {
   color: #6f6f6f;
@@ -200,7 +200,7 @@
   color: #6f6f6f;
   text-align: center;
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -225,6 +225,7 @@
 @media (max-width: 1570px) and (min-height: 901px) {
   .History-Container {
     margin-top: 15px;
+    width: 823.8px;
   }
   .History-title {
     font-size: 17px;
@@ -294,10 +295,18 @@
     padding: 15px;
     border-bottom: 3px solid transparent;
   }
+  .date-picker input[type='date'] {
+    font-size: 12px;
+  }
+  .delete-button {
+    font-size: 12px;
+    font-weight: 500;
+  }
 }
 @media (max-height: 900px) {
   .History-Container {
     margin-top: 15px;
+    width: 823.8px;
   }
   .History-title {
     font-size: 17px;
@@ -366,11 +375,19 @@
     padding: 15px;
     border-bottom: 3px solid transparent;
   }
+  .date-picker input[type='date'] {
+    font-size: 12px;
+  }
+  .delete-button {
+    font-size: 12px;
+    font-weight: 500;
+  }
 }
 
 @media (max-height: 800px) {
   .History-Container {
     margin-top: 15px;
+    width: 692.31px;
   }
   .History-title {
     font-size: 14px;

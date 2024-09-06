@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Mypagemodal.css'
+import {deleteUser} from '../../../api'
 
 const Getout: React.FC = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -7,11 +8,24 @@ const Getout: React.FC = () => {
   const handleGetoutClick = () => {
     setShowConfirmModal(true)
   }
+  const handleLogout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('is_new')
+    localStorage.removeItem('refresh_token')
+    window.location.reload()
+  }
 
-  const handleConfirm = () => {
-    // 여기에 실제 탈퇴 로직을 구현합니다.
-    console.log('사용자가 탈퇴를 확인했습니다.')
-    setShowConfirmModal(false)
+  const handleConfirm = async () => {
+    try {
+      console.log('사용자가 탈퇴를 확인했습니다.');
+      setShowConfirmModal(false);
+      await deleteUser(); // deleteUser 함수가 완료될 때까지 기다립니다.
+      console.log('사용자 탈퇴가 완료되었습니다.');
+      handleLogout(); // 탈퇴 완료 후 로그아웃 실행
+    } catch (error) {
+      console.error('탈퇴 처리 중 오류가 발생했습니다:', error);
+      // 여기에 사용자에게 오류 메시지를 보여주는 로직을 추가할 수 있습니다.
+    }
   }
 
   const handleCancel = () => {

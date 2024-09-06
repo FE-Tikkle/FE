@@ -73,6 +73,10 @@ const Header: React.FC = () => {
     }
   }
 
+  const IntroLink = () => {
+    window.open('https://campusnow.notion.site/ccc5e7ddd888426387eac41537ca58b3', '_blank')
+  }
+
   useEffect(() => {
     const accessToken = localStorage.getItem('access_token')
     if (accessToken) {
@@ -94,7 +98,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div className="Header-right">
-        <div className="Header-intro" onClick={() => openModal(0)}>
+      <div className="Header-intro" onClick={IntroLink}>
           티끌 소개
         </div>
         <div className="Header-mypage" onClick={() => openModal(1)}>
