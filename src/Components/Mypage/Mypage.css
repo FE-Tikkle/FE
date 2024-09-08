@@ -103,7 +103,7 @@
   color: #c0dbff;
 }
 .Mypage-Selecter-num {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   width: 30px;
   margin-left: 10px;
@@ -115,7 +115,7 @@
   text-align: center;
 }
 .Mypage-Selecter-mainText {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   width: 100px;
 }
@@ -179,7 +179,7 @@
     font-size: 17px;
   }
   .Mypage-Selecter-mainText {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     width: 70px;
   }
@@ -257,12 +257,12 @@
     gap: 0px;
   }
   .Mypage-Selecter-num {
-    font-size: 15px;
+    font-size: 20px;
     width: 30px;
     margin-left: 10px;
   }
   .Mypage-Selecter-mainText {
-    font-size: 17px;
+    font-size: 20px;
   }
   .Mypage-Selecter-secondText {
     font-size: 12px;
@@ -316,7 +316,7 @@
     font-size: 17px;
   }
   .Mypage-Selecter-mainText {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     width: 70px;
   }
@@ -389,7 +389,8 @@
     margin-left: 10px;
   }
   .Mypage-Selecter-mainText {
-    font-size: 15px;
+    font-size: 18px;
+    width: 70px;
   }
   .Mypage-Selecter-secondText {
     font-size: 9px;

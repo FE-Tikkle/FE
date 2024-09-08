@@ -26,7 +26,7 @@ const History: React.FC = () => {
 
   return (
     <div className="History-All">
-      <div className="History-title">나의 북마크를 확인해요</div>
+      <div className="History-title">히스토리</div>
       <div className="History-Container">
         <div className="History-boxs">
           {bookmarks.map((bookmark, index) => (

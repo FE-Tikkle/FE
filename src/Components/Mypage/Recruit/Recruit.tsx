@@ -91,7 +91,7 @@ const Recruit: React.FC<RecruitProps> = ({ onClose }) => {
 
   return (
     <div className="Recruit-All">
-      <div className="Recruit-title">관심있는 취업분야를 선택해요</div>
+      <div className="Recruit-title">채용공고</div>
       <div className="Recruit-Container">
         <form onSubmit={handleSubmit}>
           {[0, 1, 2].map(index => (
