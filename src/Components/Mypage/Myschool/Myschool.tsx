@@ -75,6 +75,8 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
       console.log(updateData);
       await updateUserUniversity(updateData);
       toast.success('학교 정보가 성공적으로 업데이트되었습니다.');
+      onClose();
+      setTimeout(() => window.location.reload(), 1000);
     } catch (error) {
       console.error('학교 정보 업데이트 실패:', error);
       toast.error('학교 정보 업데이트에 실패했습니다.');

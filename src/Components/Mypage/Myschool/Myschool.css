@@ -65,6 +65,7 @@
   font-weight: 700;
   line-height: normal;
   color: #6f6f6f;
+  cursor: pointer;
 }
 @media (max-width: 1570px) and (min-height: 901px) {
   .Myschool-All {
@@ -181,5 +182,6 @@
     width: 102.796px;
     height: 30.149px;
     font-size: 13px;
+    cursor: pointer;
   }
 }

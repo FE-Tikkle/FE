@@ -82,6 +82,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  cursor: pointer;
 }
 
 @media (max-width: 1570px) and (min-height: 901px) {
@@ -156,6 +157,7 @@
     flex-direction: column;
     gap: 20px;
     margin-left: 659px;
+    cursor: pointer;
   }
 }
 @media (max-height: 800px) {
@@ -199,5 +201,6 @@
     width: 102.796px;
     height: 30.149px;
     font-size: 13px;
+    cursor: pointer;
   }
 }
