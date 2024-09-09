@@ -138,7 +138,10 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
 
   return (
     <div className="Myschool-All">
-      <div className="Myschool-title">나의 학력사항을 입력해요</div>
+      <div className="Myschool-title">
+        <div className='Myschool-title-num'>02</div>
+        <div className='Myschool-title-name'>우리학교</div>
+      </div>
       <div className="Myschool-Container">
         <form onSubmit={handleSubmit}>
           <div className="Myschool-Conatiner2">
@@ -273,11 +276,9 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
             </div>
           </div>
 
-          <p className="Myschool-text">
-            관심있는 학과를 선택해 공지사항을 확인해보세요!
-          </p>
+
           <div className="buttons">
-            <button className="button" type="submit">
+            <button className="button-save" type="submit">
               저장
             </button>
             <button className="button" type="button" onClick={onClose}>

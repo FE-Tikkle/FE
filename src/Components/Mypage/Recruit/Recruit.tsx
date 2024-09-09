@@ -91,7 +91,10 @@ const Recruit: React.FC<RecruitProps> = ({ onClose }) => {
 
   return (
     <div className="Recruit-All">
-      <div className="Recruit-title">관심있는 취업분야를 선택해요</div>
+      <div className="Recruit-title">
+        <div className='Recruit-title-num'>03</div>
+        <div className='Recruit-title-name'>채용공고</div>
+      </div>
       <div className="Recruit-Container">
         <form onSubmit={handleSubmit}>
           {[0, 1, 2].map(index => (
@@ -136,11 +139,11 @@ const Recruit: React.FC<RecruitProps> = ({ onClose }) => {
               </div>
             </div>
           ))}
-          <p className="Myschool-text">
+          {/* <p className="Myschool-text">
             관심있는 학과를 선택해 공지사항을 확인해보세요!
-          </p>
+          </p> */}
           <div className="buttons-1">
-            <button className="button-1" type="submit" onClick={onClose}>
+            <button className="button-save" type="submit" onClick={onClose}>
               저장
             </button>
             <button className="button-1" type="button" onClick={onClose}>

@@ -6,12 +6,26 @@
   width: 1012.09px;
 }
 .History-title {
-  color: #6f6f6f;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  margin-top: 40px;
+  background-color: #E4EFFC;
+  padding: 12px 32px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 50px;
 }
+.History-title-num{
+  font-size: 20px;
+  font-weight: bold;
+  color: #101B49;
+}
+
+.History-title-name{
+  font-size: 20px;
+  font-weight: bold;
+  color: #101B49;
+}
+
 .History-boxs {
   display: flex;
   gap: 60px;
@@ -230,8 +244,6 @@
   .History-title {
     font-size: 17px;
     margin-top: 25px;
-    margin-bottom: 25px;
-    margin-left: 100px;
   }
   .History-boxs {
     display: flex;
@@ -311,7 +323,6 @@
   .History-title {
     font-size: 17px;
     margin-top: 25px;
-    margin-bottom: 25px;
   }
   .History-boxs {
     display: flex;
@@ -390,9 +401,24 @@
     width: 692.31px;
   }
   .History-title {
-    font-size: 14px;
+    background-color: #E4EFFC;
+    padding: 12px 16px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     margin-top: 20px;
-    margin-bottom: 18px;
+  }
+  .History-title-num{
+    font-size: 16px;
+    font-weight: bold;
+    color: #101B49;
+  }
+  
+  .History-title-name{
+    font-size: 16px;
+    font-weight: bold;
+    color: #101B49;
   }
   .History-boxs {
     gap: 30px;

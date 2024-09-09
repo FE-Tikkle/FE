@@ -37,35 +37,30 @@ const selecterData = [
   {
     num: '01',
     mainText: '히스토리',
-    secondText: '나의 북마크를 확인해요',
     title: '히스토리',
     content: History,
   },
   {
     num: '02',
     mainText: '우리학교',
-    secondText: '나의 학력사항을 수정해요',
     title: '우리학교',
     content: Myschool,
   },
   {
     num: '03',
     mainText: '채용공고',
-    secondText: '관심있는 취업분야를 선택해요',
     title: '채용공고',
     content: Recruit,
   },
   {
     num: '04',
     mainText: '대외활동',
-    secondText: '관심있는 활동분야를 선택해요',
     title: '대외활동',
     content: Activites,
   },
   {
     num: '05',
     mainText: '공모전',
-    secondText: '관심있는 공모전을 선택해요',
     title: '공모전',
     content: Contest,
   },
@@ -150,6 +145,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
         animate="visible"
       >
         <motion.div variants={item}>
+          <div className='MyPage-title'>마이페이지</div>
           <div className="MyPage-All">
             <div className="MyPage-left">
               <div className="Mypage-Profile">
@@ -159,12 +155,13 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   </div>
                   <div className="Mypage-Profile-name">
                     {userData ? (
-                      <p>Welcome, {userData.name}!</p>
+                      <p>{userData.name}님</p>
                     ) : (
                       <p>로그인이 필요해요!</p>
                     )}
                   </div>
                 </div>
+                <div className="Mypage-Profile-info">
                 <div className="Mypage-Profile-buttons">
                   <div
                     className="Mypage-Profile-button"
@@ -178,6 +175,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   >
                     {isLoggedIn ? '로그아웃' : '로그인하기'}
                   </div>
+                </div> 
                 </div>
               </div>
               <div className="Mypage-Select">
@@ -194,16 +192,16 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                       <div className="Mypage-Selecter-mainText">
                         {item.mainText}
                       </div>
-                      <div className="Mypage-Selecter-secondText">
+                      {/* <div className="Mypage-Selecter-secondText">
                         {item.secondText}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="MyPage-right">
-              <div className="MyPage-Title">{selectedData.title}</div>
+              {/* <div className="MyPage-Title">{selectedData.title}</div> */}
               <div className="MyPage-Content">{renderContent()}</div>
             </div>
           </div>
