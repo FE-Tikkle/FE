@@ -241,7 +241,7 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab,refreshBookmarkSt
         </thead>
         <tbody>
           {displayData.map((item, index) => (
-            <tr key={item.id}>
+            <tr className='History-table-list' key={item.id}>
               <td>
                 <label className="checkbox-container">
                   <input
