@@ -58,9 +58,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
   const [subscribeJobs, setSubscribeJobs] = useState<string[]>(['', '', ''])
   const [allChecked, setAllChecked] = useState(false)
   const [terms, setTerms] = useState({
-    termsOfService: false,
     privacyPolicy: false,
-    promotions: false,
   })
   const [fieldSelections, setFieldSelections] = useState<FieldSelection[]>([
     { field: '', subField: '' },
@@ -150,9 +148,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
     const { checked } = event.target
     setAllChecked(checked)
     setTerms({
-      termsOfService: checked,
-      privacyPolicy: checked,
-      promotions: checked,
+      privacyPolicy: checked
     })
   }
 
@@ -207,7 +203,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
   };
 
   const validateStep3 = () => {
-    if (!terms.termsOfService || !terms.privacyPolicy) {
+    if (!terms.privacyPolicy) {
       toast.error('필수 약관에 동의해주세요.')
       return false
     }
@@ -245,9 +241,9 @@ const InfoModal: React.FC<InfoModalProps> = ({
         }
         return acc;
       }, {} as Record<string, string[]>),
-      terms_of_service_agreement: terms.termsOfService,
+      // terms_of_service_agreement: terms.termsOfService,
       personal_information_collection_agreement: terms.privacyPolicy,
-      promotion_and_information_receipt_agreement: terms.promotions,
+      // promotion_and_information_receipt_agreement: terms.promotions,
     }
     console.log(fieldSelections);
     console.log(userData);
@@ -372,7 +368,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
       <div className="Login-Information">
         <div className="Login-terms">
           <div className="terms-form">
-            <div className="term-item">
+            {/* <div className="term-item">
               <input
                 type="checkbox"
                 checked={allChecked}
@@ -381,8 +377,8 @@ const InfoModal: React.FC<InfoModalProps> = ({
               />
               <label htmlFor="chk1"></label>
               <label htmlFor="chk1">선택 포함 전체 약관 동의</label>
-            </div>
-            <div className="term-item">
+            </div> */}
+            {/* <div className="term-item">
               <input
                 type="checkbox"
                 name="termsOfService"
@@ -392,7 +388,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
               />
               <label htmlFor="chk2"></label>
               <label htmlFor="chk2">이용약관 동의 (필수)</label>
-            </div>
+            </div> */}
             <div className="term-item">
               <input
                 type="checkbox"
@@ -403,8 +399,9 @@ const InfoModal: React.FC<InfoModalProps> = ({
               />
               <label htmlFor="chk3"></label>
               <label htmlFor="chk3">개인정보 수집 및 이용동의 (필수)</label>
+              <label className='checkPolicy' onClick={() => window.open('https://campusnow.notion.site/aeaefffa24cd48eca005c0fb71b9358c', '_blank')}>약관 보기</label>
             </div>
-            <div className="term-item">
+            {/* <div className="term-item">
               <input
                 type="checkbox"
                 name="promotions"
@@ -414,7 +411,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
               />
               <label htmlFor="chk4"></label>
               <label htmlFor="chk4">프로모션 등 혜택/정보 수신 동의 (선택)</label>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

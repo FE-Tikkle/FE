@@ -87,6 +87,12 @@
   margin-top: 10px;
 }
 
+.checkPolicy{
+  font-size: 18px;
+  color: #82bbff !important;
+  cursor: pointer;
+}
+
 .Login-Image {
   width: 90%;
   height: auto;
