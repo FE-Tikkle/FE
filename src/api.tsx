@@ -171,9 +171,9 @@ export const postUserData = async (userData: {
   university: string
   department: string
   subscribe_notices: string[]
-  terms_of_service_agreement: boolean
+  // terms_of_service_agreement: boolean
   personal_information_collection_agreement: boolean
-  promotion_and_information_receipt_agreement: boolean
+  // promotion_and_information_receipt_agreement: boolean
 }): Promise<void> => {
   try {
     await axiosInstance.post('/user', userData)
