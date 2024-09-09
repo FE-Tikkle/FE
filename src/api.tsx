@@ -187,7 +187,7 @@ export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
 axiosInstance.interceptors.request.use(
   request => {
     const accessToken = localStorage.getItem('access_token')
-    console.log(accessToken)
+    // console.log(accessToken)
     if (accessToken) {
       request.headers.Authorization = `Bearer ${accessToken}`
     }
