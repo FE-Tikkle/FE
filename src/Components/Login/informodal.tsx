@@ -253,6 +253,10 @@ const InfoModal: React.FC<InfoModalProps> = ({
       toast.success('사용자 정보가 성공적으로 등록되었습니다.')
       onSubmit()
       onClose()
+      // 짧은 지연 후 페이지 새로고침
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000) // 1초 후 새로고침
     } catch (error) {
       console.error('Error posting user data:', error)
       toast.error('사용자 정보 제출에 실패했습니다. 다시 시도해주세요.')

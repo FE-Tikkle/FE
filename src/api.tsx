@@ -62,7 +62,7 @@ axiosInstance.interceptors.response.use(
   async (error: AxiosError) => {
     const originalRequest = error.config
 
-    if (error.response?.status === 409 && originalRequest) {
+    if (error.response?.status === 401 && originalRequest) {
       try {
         const refreshToken = localStorage.getItem('refresh_token')
         if (!refreshToken) {
@@ -85,7 +85,9 @@ axiosInstance.interceptors.response.use(
       } catch (refreshError) {
         console.error('토큰 갱신 오류:', refreshError)
         // 토큰 갱신 실패 시 추가 처리 (예: 사용자 로그아웃)
-        // TODO: 로그아웃 로직 구현
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("is_new");
         return Promise.reject(refreshError)
       }
     }
