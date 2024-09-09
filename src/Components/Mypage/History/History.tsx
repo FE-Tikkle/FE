@@ -26,7 +26,10 @@ const History: React.FC = () => {
 
   return (
     <div className="History-All">
-      <div className="History-title">히스토리</div>
+      <div className="History-title">
+        <div className='History-title-num'>01</div>
+        <div className='History-title-name'>히스토리</div>
+      </div>
       <div className="History-Container">
         <div className="History-boxs">
           {bookmarks.map((bookmark, index) => (

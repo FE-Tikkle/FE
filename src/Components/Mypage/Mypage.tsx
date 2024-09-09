@@ -145,6 +145,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
         animate="visible"
       >
         <motion.div variants={item}>
+          <div className='MyPage-title'>마이페이지</div>
           <div className="MyPage-All">
             <div className="MyPage-left">
               <div className="Mypage-Profile">
@@ -154,12 +155,13 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   </div>
                   <div className="Mypage-Profile-name">
                     {userData ? (
-                      <p>Welcome, {userData.name}!</p>
+                      <p>{userData.name}님</p>
                     ) : (
                       <p>로그인이 필요해요!</p>
                     )}
                   </div>
                 </div>
+                <div className="Mypage-Profile-info">
                 <div className="Mypage-Profile-buttons">
                   <div
                     className="Mypage-Profile-button"
@@ -173,6 +175,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
                   >
                     {isLoggedIn ? '로그아웃' : '로그인하기'}
                   </div>
+                </div> 
                 </div>
               </div>
               <div className="Mypage-Select">

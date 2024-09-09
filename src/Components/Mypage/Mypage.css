@@ -17,6 +17,13 @@
   width: 1350px;
 }
 
+.MyPage-title{
+  font-size: 25px;
+  font-weight: 700;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
 .Mypage-Profile {
   display: flex;
   flex-direction: column;
@@ -146,7 +153,7 @@
 
 @media (max-width: 1570px) and (min-height: 901px) {
   .mypage-modal-content {
-    height: 700px;
+    height: 800px;
     padding-left: 30px;
     padding-right: 30px;
     width: auto;
@@ -158,6 +165,12 @@
   .Mypage-Select {
     flex-direction: row;
     justify-content: center;
+  }
+  .MyPage-title{
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: 50px;
+    margin-bottom: 20px;
   }
   .MyPage-Content {
     display: flex;
@@ -220,6 +233,12 @@
   }
   .MyPage-All {
     gap: 40px;
+  }
+  .MyPage-title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-bottom: 10px;
   }
   .MyPage-left {
     gap: 30px;
@@ -411,7 +430,7 @@
 }
 @media (max-width: 1025px) and (max-height: 800px) {
   .mypage-modal-content {
-    height: 600px;
+    height: 760px;
     padding-left: 30px;
     padding-right: 30px;
     width: auto;
@@ -452,9 +471,12 @@
     display: none;
   }
   .Mypage-Profile {
-    display: none;
+    flex-direction: column;
   }
   .Mypage-Profile-buttons {
+    flex-direction: row;
+  }
+  .Mypage-Profile-info{
     flex-direction: column;
   }
   .MyPage-All {
@@ -462,7 +484,7 @@
   }
   .Mypage-profile-first {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
   }
