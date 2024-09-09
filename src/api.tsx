@@ -57,12 +57,39 @@ axiosInstance.interceptors.request.use(
   }
 )
 
+let isRefreshing = false; // refresh를 모든 곳에서 동시에 진행하지 못하도록 막음
+let refreshSubscribers: ((token: string) => void)[] = []; // refresh가 막혀있을 때 해당 부분으로 들어감
+
+const onRefreshed = () => { // refresh가 완료되었을 때 실행됨
+  refreshSubscribers.forEach(callback => callback);
+  refreshSubscribers = [];
+};
+
+// refresh가 막혔을 때 진행
+const addRefreshSubscriber = (callback: (token: string) => void) => {
+  console.log("pushed")
+  refreshSubscribers.push(callback);
+};
+
 axiosInstance.interceptors.response.use(
   response => response,
   async (error: AxiosError) => {
-    const originalRequest = error.config
+    const originalRequest = error.config as any;
 
-    if (error.response?.status === 409 && originalRequest) {
+    if (error.response?.status === 401 && originalRequest && !originalRequest._retry) {
+
+      if (isRefreshing) {
+        return new Promise((resolve) => {
+          addRefreshSubscriber((token: string) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`;
+            resolve(axiosInstance(originalRequest));
+          });
+        });
+      }
+
+      originalRequest._retry = true; // 에러났을 때 1번만 재시도하도록
+      isRefreshing = true; // refresh 진행 선점
+
       try {
         const refreshToken = localStorage.getItem('refresh_token')
         if (!refreshToken) {
@@ -80,12 +107,17 @@ axiosInstance.interceptors.response.use(
         // 원래 요청의 Authorization 헤더 업데이트
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
 
+        isRefreshing = false; // Refresh 진행 완료
+        onRefreshed() // 진행하지 못한 함수를 다시 진행
+
         // 원래 요청 재시도
         return axiosInstance(originalRequest)
       } catch (refreshError) {
         console.error('토큰 갱신 오류:', refreshError)
         // 토큰 갱신 실패 시 추가 처리 (예: 사용자 로그아웃)
-        // TODO: 로그아웃 로직 구현
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        localStorage.removeItem("is_new");
         return Promise.reject(refreshError)
       }
     }
@@ -155,7 +187,7 @@ export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
 axiosInstance.interceptors.request.use(
   request => {
     const accessToken = localStorage.getItem('access_token')
-    console.log(accessToken)
+    // console.log(accessToken)
     if (accessToken) {
       request.headers.Authorization = `Bearer ${accessToken}`
     }
