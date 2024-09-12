@@ -17,10 +17,10 @@ const Getout: React.FC = () => {
 
   const handleConfirm = async () => {
     try {
-      console.log('사용자가 탈퇴를 확인했습니다.');
+      // console.log('사용자가 탈퇴를 확인했습니다.');
       setShowConfirmModal(false);
       await deleteUser(); // deleteUser 함수가 완료될 때까지 기다립니다.
-      console.log('사용자 탈퇴가 완료되었습니다.');
+      // console.log('사용자 탈퇴가 완료되었습니다.');
       handleLogout(); // 탈퇴 완료 후 로그아웃 실행
     } catch (error) {
       console.error('탈퇴 처리 중 오류가 발생했습니다:', error);

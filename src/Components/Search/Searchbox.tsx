@@ -9,7 +9,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
 
   const handleSearch = () => {
     onSearch(searchTerm)
-    console.log(searchTerm)
+    // console.log(searchTerm)
   }
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {

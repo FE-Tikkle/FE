@@ -48,9 +48,9 @@ const authSlice = createSlice({
       window.open(link, 'googleLogin', 'width=500,height=600')
     },
     GoogleAuthData: (state, action: PayloadAction<{ code: string | null }>) => {
-      console.log('GoogleAuthData reducer called:', action.payload)
+      // console.log('GoogleAuthData reducer called:', action.payload)
       state.googleAuthData.code = action.payload.code || ''
-      console.log('Updated state:', state.googleAuthData)
+      // console.log('Updated state:', state.googleAuthData)
     },
   },
 })

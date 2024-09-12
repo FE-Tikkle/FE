@@ -48,7 +48,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
         setSchool(userData.university);
         setDepartment(userData.department);
         setSubscribeDepartments(userData.subscribe_notices_without_filter.concat(Array(4 - userData.subscribe_notices_without_filter.length).fill('')));
-        console.log('구독학과:',userData.subscribe_notices_without_filter);
+        // console.log('구독학과:',userData.subscribe_notices_without_filter);
       } catch (error) {
         console.error('사용자 데이터를 불러오는 데 실패했습니다:', error);
         toast.error('사용자 정보를 불러오는 데 실패했습니다.');
@@ -72,7 +72,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
         department: department,
         subscribe_notices: subscribeDepartments.filter(dept => dept !== '')
       };
-      console.log(updateData);
+      // console.log(updateData);
       await updateUserUniversity(updateData);
       toast.success('학교 정보가 성공적으로 업데이트되었습니다.');
       onClose();
@@ -128,7 +128,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
           toast.error('구독 가능한 학과 목록을 불러오는 데 실패했습니다.')
         }
       } else {
-        console.log('fail');
+        // console.log('fail');
         setDepartments2([])
       }
     }

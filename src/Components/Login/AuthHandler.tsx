@@ -23,12 +23,12 @@ const AuthHandler: React.FC = () => {
   )
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    school: '',
-    department: '',
-    extraDepartments: ['', '', ''],
-  })
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   school: '',
+  //   department: '',
+  //   extraDepartments: ['', '', ''],
+  // })
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const AuthHandler: React.FC = () => {
       if (state.includes('kakao')) postsign(code, 'kakao')
       else if (state.includes('naver')) postsign(code, 'naver')
       else if (state.includes('google')) {
-        console.log(code)
+        // console.log(code)
         handleGoogleAuthData(code)
       }
     }
@@ -54,7 +54,7 @@ const AuthHandler: React.FC = () => {
 
   useEffect(() => {
     if (googleAuthData.code) {
-      console.log('Updated googleAuthData:', googleAuthData)
+      // console.log('Updated googleAuthData:', googleAuthData)
       handlePostGoogleAuth()
     }
   }, [googleAuthData])
@@ -65,25 +65,25 @@ const AuthHandler: React.FC = () => {
   const closeInfoModal = () => setIsInfoModalOpen(false)
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    // e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { id, value } = e.target
+    // const { id, value } = e.target
 
-    if (id.startsWith('extra-department')) {
-      const index = parseInt(id.split('-')[2]) - 1
-      setFormData(prev => ({
-        ...prev,
-        extraDepartments: prev.extraDepartments.map((dept, i) =>
-          i === index ? value : dept
-        ),
-      }))
-    } else {
-      setFormData(prev => ({ ...prev, [id]: value }))
-    }
+    // if (id.startsWith('extra-department')) {
+    //   const index = parseInt(id.split('-')[2]) - 1
+    //   setFormData(prev => ({
+    //     ...prev,
+    //     extraDepartments: prev.extraDepartments.map((dept, i) =>
+    //       i === index ? value : dept
+    //     ),
+    //   }))
+    // } else {
+    //   setFormData(prev => ({ ...prev, [id]: value }))
+    // }
   }
 
   const handleSubmit = () => {
-    console.log('Form Data:', formData)
+    // console.log('Form Data:', formData)
     closeInfoModal()
   }
 
@@ -103,7 +103,7 @@ const AuthHandler: React.FC = () => {
   }
 
   const handleGoogleAuthData = (code: string) => {
-    console.log(code)
+    // console.log(code)
     dispatch(GoogleAuthData({ code }))
     closeModal()
   }
@@ -112,12 +112,12 @@ const AuthHandler: React.FC = () => {
     if (googleAuthData) {
       postgoogleAuth(googleAuthData)
     } else {
-      console.log('Google authentication data is missing')
+      // console.log('Google authentication data is missing')
     }
   }
 
-  const receiveAuthData = (authData: any) => {
-    console.log('Received auth data in Home component:', authData)
+  const receiveAuthData = () => {
+    // console.log('Received auth data in Home component:', authData)
   }
 
   return (

@@ -245,8 +245,8 @@ const InfoModal: React.FC<InfoModalProps> = ({
       personal_information_collection_agreement: terms.privacyPolicy,
       // promotion_and_information_receipt_agreement: terms.promotions,
     }
-    console.log(fieldSelections);
-    console.log(userData);
+    // console.log(fieldSelections);
+    // console.log(userData);
     try {
       await postUserData(userData)
       localStorage.setItem('is_new', 'false')

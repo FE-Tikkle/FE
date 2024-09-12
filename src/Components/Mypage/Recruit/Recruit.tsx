@@ -80,7 +80,7 @@ const Recruit: React.FC<RecruitProps> = ({ onClose }) => {
     try {
       await updateUserSaraminSubscriptions(subscriptions);
       toast.success('구독 정보가 성공적으로 업데이트되었습니다.');
-      console.log('구독 정보가 성공적으로 업데이트되었습니다.');
+      // console.log('구독 정보가 성공적으로 업데이트되었습니다.');
       onClose();
       setTimeout(() => window.location.reload(), 1000);
     } catch (error) {

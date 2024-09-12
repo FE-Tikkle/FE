@@ -14,14 +14,14 @@ const DataListener: React.FC<DataListenerProps> = ({ onReceiveAuthData }) => {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       const authData: AuthData = event.data
-      console.log('Received auth data from popup:', authData)
+      // console.log('Received auth data from popup:', authData)
 
       // 모든 필수 프로퍼티가 존재하는지 확인
       if (isValidAuthData(authData)) {
         localStorage.setItem('access_token', authData.access_token)
         localStorage.setItem('refresh_token', authData.refresh_token)
         localStorage.setItem('is_new', authData.is_new.toString())
-        console.log('Data saved to localStorage.')
+        // console.log('Data saved to localStorage.')
 
         // 부모 컴포넌트로 인증 데이터 전달
         onReceiveAuthData(authData)

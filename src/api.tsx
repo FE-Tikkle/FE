@@ -67,7 +67,7 @@ const onRefreshed = () => { // refresh가 완료되었을 때 실행됨
 
 // refresh가 막혔을 때 진행
 const addRefreshSubscriber = (callback: (token: string) => void) => {
-  console.log("pushed")
+  // console.log("pushed")
   refreshSubscribers.push(callback);
 };
 
@@ -151,7 +151,7 @@ export function postsign(code: string, provider: string) {
         (provider === 'kakao' || provider === 'naver' || provider === 'google')
       ) {
         window.opener.postMessage(authData, '*')
-        console.log('Auth data sent to parent window:', authData)
+        // console.log('Auth data sent to parent window:', authData)
         window.close()
       }
     })
@@ -163,7 +163,7 @@ export function postsign(code: string, provider: string) {
 
 export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
   if (!googleAuthData) {
-    console.log('Google authentication data is missing')
+    // console.log('Google authentication data is missing')
     return Promise.reject(new Error('Google authentication data is missing'))
   }
 
@@ -174,7 +174,7 @@ export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
       },
     })
     .then(res => {
-      console.log('Token', res.data)
+      // console.log('Token', res.data)
       return postsign(res.data.access_token, 'google')
     })
     .catch(error => {
@@ -262,7 +262,7 @@ export const getNoticeFiltered = async (
         },
       }
     )
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
   } catch (error) {
     console.error('Error fetching notices:', error)
@@ -273,7 +273,7 @@ export const getNoticeFiltered = async (
 export const getNoticeSite = async (): Promise<string[]> => {
   try {
     const response = await axiosInstance.get<string[]>('/notice/university')
-    console.log(response)
+    // console.log(response)
     return response.data
   } catch (error) {
     console.error('Error fetching site notices:', error)
@@ -446,7 +446,7 @@ export const getBookmarkedNotices = async (
         },
       }
     )
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
   } catch (error) {
     console.error('Error fetching bookmarked notices:', error)
@@ -515,7 +515,7 @@ export const getBookmarkStats = async (): Promise<BookmarkStats> => {
     const response = await axiosInstance.get<BookmarkStats>(
       '/user/bookmark/stat'
     )
-    console.log('Fetching bookmark stats:', response.data)
+    // console.log('Fetching bookmark stats:', response.data)
     return response.data
   } catch (error) {
     console.error('Error fetching bookmark stats:', error)
@@ -558,7 +558,7 @@ export const updateUserUniversity = async (
 ): Promise<void> => {
   try {
     await axiosInstance.patch('/user/university', data)
-    console.log('update:',data);
+    // console.log('update:',data);
   } catch (error) {
     console.error('Error updating user university data:', error)
     throw error
@@ -576,7 +576,7 @@ export const updateUserSaraminSubscriptions = async (
     await axiosInstance.patch('/user/saramin', {
       subscribe_saramin: subscriptions,
     })
-    console.log('Saramin 구독 정보가 성공적으로 업데이트되었습니다.')
+    // console.log('Saramin 구독 정보가 성공적으로 업데이트되었습니다.')
   } catch (error) {
     console.error('Saramin 구독 정보 업데이트 중 오류 발생:', error)
     throw error
@@ -586,7 +586,7 @@ export const updateUserSaraminSubscriptions = async (
 export const deleteUser = async (): Promise<void> => {
   try {
     await axiosInstance.delete('/auth/user');
-    console.log('사용자 계정이 성공적으로 삭제되었습니다.');
+    // console.log('사용자 계정이 성공적으로 삭제되었습니다.');
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error('사용자 삭제 중 오류 발생:', {

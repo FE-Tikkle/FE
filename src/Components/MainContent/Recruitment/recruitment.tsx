@@ -26,7 +26,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
     }
 
     try {
-      console.log('Fetching recruitments for page:', page)
+      // console.log('Fetching recruitments for page:', page)
       const data = await fetchRecruitments(
         15,
         page,

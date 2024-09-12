@@ -68,7 +68,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
     try {
       const response = await axiosInstance.post(API_URL, bookmark)
       if (response.status === 200) {
-        console.log('북마크 업데이트 성공')
+        // console.log('북마크 업데이트 성공')
       } else {
         throw new Error('북마크 업데이트 실패')
       }

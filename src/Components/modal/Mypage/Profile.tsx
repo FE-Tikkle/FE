@@ -10,7 +10,7 @@ const Profile = () => {
 
   const handleUpdateProfile = () => {
     // 프로필 업데이트 로직 추가
-    console.log('프로필 업데이트:', nickname)
+    // console.log('프로필 업데이트:', nickname)
     // 서버에 프로필 업데이트 요청 보내기
     // 업데이트 성공 시 알림 메시지 표시 등의 작업 수행
   }

@@ -144,9 +144,9 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ activeTab,refreshBookmarkSt
     const newDisplayData = allData.slice(start, end)
     setDisplayData(newDisplayData)
 
-    newDisplayData.forEach((item, index) => {
-      console.log(`Item ${index}:`, item)
-    })
+    // newDisplayData.forEach((item, index) => {
+    //   // console.log(`Item ${index}:`, item)
+    // })
   }, [currentPage, allData])
 
   const handleCheckboxChange = (index: number) => {

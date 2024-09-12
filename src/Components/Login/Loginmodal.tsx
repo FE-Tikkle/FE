@@ -35,8 +35,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
   onNaverLogin,
   onGoogleLogin,
 }) => {
-  const receiveAuthData = (authData: any) => {
-    console.log('Received auth data in Home component:', authData)
+  const receiveAuthData = () => {
+    // console.log('Received auth data in Home component:', authData)
   }
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
