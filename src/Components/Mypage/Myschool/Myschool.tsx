@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Myschool.css'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
   getUserData,
@@ -10,28 +10,28 @@ import {
   getNoticeDepartment2,
 } from '../../../api'
 
-interface FormData {
-  school: string
-  campus: string
-  major: string
-  year: string
-  relatedSubject: string
-  bookOrLectureNote: string
-}
+// interface FormData {
+//   school: string
+//   campus: string
+//   major: string
+//   year: string
+//   relatedSubject: string
+//   bookOrLectureNote: string
+// }
 
 interface MySchoolProps {
   onClose: () => void;
 }
 
 const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
-  const [formData, setFormData] = useState<FormData>({
-    school: '',
-    campus: '',
-    major: '',
-    year: '',
-    relatedSubject: '',
-    bookOrLectureNote: '',
-  })
+  // const [formData, setFormData] = useState<FormData>({
+  //   school: '',
+  //   campus: '',
+  //   major: '',
+  //   year: '',
+  //   relatedSubject: '',
+  //   bookOrLectureNote: '',
+  // })
 
 
   const [school, setSchool] = useState('')

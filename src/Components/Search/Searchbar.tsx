@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import Modal from '../modal/modal'
 import { motion } from 'framer-motion'
 import './Searchbar.css'
@@ -40,7 +40,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
 
   useEffect(() => {
     if (userData && Array.isArray(userData.bookmarked_link)) {
-      const userPlatforms = (userData.bookmarked_link as BookmarkedLink[]).map(
+      const userPlatforms = (userData.bookmarked_link as unknown as BookmarkedLink[]).map(
         link => ({
           name: link.title,
           url: link.uri.startsWith('http') ? link.uri : `https://${link.uri}`,

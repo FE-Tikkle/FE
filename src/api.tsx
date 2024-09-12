@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosError } from 'axios'
+import axios, { AxiosError } from 'axios'
 import GoogleAuthBody from './store/slices/authslice'
 import qs from 'qs'
 import { Recruitment } from './store/Rec'

@@ -9,7 +9,7 @@ import Competition from './Competition/competition'
 import Department from './Department/Department'
 import RecruitmentContainer from './Recruitment/recruitment'
 import Job from './job/job'
-import { getUserData, UserData } from '../../api'
+import { UserData } from '../../api'
 interface ContentSelectorProps {
   userData: UserData | null
 }
@@ -22,12 +22,12 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
     null
   ) // Correctly type as string | null
-  const [tagList, setTagList] = useState<string[]>([]) // Keep this if needed
+  // const [tagList, setTagList] = useState<string[]>([]) // Keep this if needed
   const notices = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
   const [selectedJob, setSelectedJob] = useState<string | null>(null)
 
   const handleTagListUpdate = (tags: string[]) => {
-    setTagList(tags)
+    // setTagList(tags)
     setTabs(['전체', ...tags])
   }
 

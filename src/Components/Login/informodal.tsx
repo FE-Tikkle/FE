@@ -45,7 +45,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
-  onChange,
+  // onChange,
 }) => {
   const [step, setStep] = useState(1)
   const [name, setName] = useState('')
@@ -55,8 +55,8 @@ const InfoModal: React.FC<InfoModalProps> = ({
   const [departments, setDepartments] = useState<string[]>([])
   const [departments2, setDepartments2] = useState<string[]>([])
   const [subscribeDepartments, setSubscribeDepartments] = useState<string[]>(['', '', ''])
-  const [subscribeJobs, setSubscribeJobs] = useState<string[]>(['', '', ''])
-  const [allChecked, setAllChecked] = useState(false)
+  // const [subscribeJobs, setSubscribeJobs] = useState<string[]>(['', '', ''])
+  // const [allChecked, setAllChecked] = useState(false)
   const [terms, setTerms] = useState({
     privacyPolicy: false,
   })
@@ -138,19 +138,19 @@ const InfoModal: React.FC<InfoModalProps> = ({
     setSubscribeDepartments(newSubscribeDepartments)
   }
 
-  const handleSubscribeJobChange = (index: number, value: string) => {
-    const newSubscribeJobs = [...subscribeJobs]
-    newSubscribeJobs[index] = value
-    setSubscribeJobs(newSubscribeJobs)
-  }
+  // const handleSubscribeJobChange = (index: number, value: string) => {
+  //   const newSubscribeJobs = [...subscribeJobs]
+  //   newSubscribeJobs[index] = value
+  //   setSubscribeJobs(newSubscribeJobs)
+  // }
 
-  const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = event.target
-    setAllChecked(checked)
-    setTerms({
-      privacyPolicy: checked
-    })
-  }
+  // const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { checked } = event.target
+  //   // setAllChecked(checked)
+  //   setTerms({
+  //     privacyPolicy: checked
+  //   })
+  // }
 
   const handleFieldChange = (index: number, value: string) => {
     const newSelections = [...fieldSelections]
