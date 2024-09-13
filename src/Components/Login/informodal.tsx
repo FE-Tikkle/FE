@@ -66,20 +66,48 @@ const InfoModal: React.FC<InfoModalProps> = ({
     { field: '', subField: '' },
   ])
   const [tags, setTags] = useState<Record<string, string[]>>({})
+  const accessToken = localStorage.getItem('access_token');
 
   useEffect(() => {
-    const fetchSchools = async () => {
-      try {
-        const schoolOptions: string[] = await getNoticeSite()
-        setSchools(schoolOptions)
-      } catch (error) {
-        console.error('Error fetching schools:', error)
-        toast.error('학교 정보를 불러오는데 실패했습니다.')
+    const fetchSchoolsAndTags = async () => {
+      if(!accessToken){
+        toast.error('로그인 해주세요!')
+      }else{
+        try {
+          const schoolOptions: string[] = await getNoticeSite()
+          setSchools(schoolOptions)
+        } catch (error) {
+          console.error('Error fetching schools:', error)
+          toast.error('학교 정보를 불러오는데 실패했습니다.')
+        }
+        try {
+          const tagsData = await getSaraminTags()
+          setTags(tagsData)
+        } catch (error) {
+          console.error('Error fetching Saramin tags:', error)
+          toast.error('채용 분야 정보를 불러오는데 실패했습니다.')
+        }
+
       }
     }
 
-    fetchSchools()
+    fetchSchoolsAndTags()
   }, [])
+
+  // useEffect(() => {
+  //   const fetchTags = async () => {
+  //     try {
+  //       const tagsData = await getSaraminTags()
+  //       setTags(tagsData)
+  //     } catch (error) {
+  //       console.error('Error fetching Saramin tags:', error)
+  //       toast.error('채용 분야 정보를 불러오는데 실패했습니다.')
+  //     }
+  //   }
+
+  //   fetchTags()
+  // }, [])
+
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -107,7 +135,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
           setDepartments2(departmentOptions2)
         } catch (error) {
           console.error('Error fetching departments:', error)
-          toast.error('추가 학과 정보를 불러오는데 실패했습니다.')
+          toast.error('관심 학과 정보를 불러오는데 실패했습니다.')
         }
       } else {
         setDepartments2([])
@@ -117,20 +145,6 @@ const InfoModal: React.FC<InfoModalProps> = ({
     fetchDepartments2()
   }, [school])
 
-  useEffect(() => {
-    const fetchTags = async () => {
-      try {
-        const tagsData = await getSaraminTags()
-        setTags(tagsData)
-      } catch (error) {
-        console.error('Error fetching Saramin tags:', error)
-        toast.error('채용 분야 정보를 불러오는데 실패했습니다.')
-      }
-    }
-
-    fetchTags()
-  }, [])
-
 
   const handleSubscribeDepartmentChange = (index: number, value: string) => {
     const newSubscribeDepartments = [...subscribeDepartments]
@@ -138,19 +152,19 @@ const InfoModal: React.FC<InfoModalProps> = ({
     setSubscribeDepartments(newSubscribeDepartments)
   }
 
-  const handleSubscribeJobChange = (index: number, value: string) => {
-    const newSubscribeJobs = [...subscribeJobs]
-    newSubscribeJobs[index] = value
-    setSubscribeJobs(newSubscribeJobs)
-  }
+  // const handleSubscribeJobChange = (index: number, value: string) => {
+  //   const newSubscribeJobs = [...subscribeJobs]
+  //   newSubscribeJobs[index] = value
+  //   setSubscribeJobs(newSubscribeJobs)
+  // }
 
-  const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = event.target
-    setAllChecked(checked)
-    setTerms({
-      privacyPolicy: checked
-    })
-  }
+  // const handleAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { checked } = event.target
+  //   setAllChecked(checked)
+  //   setTerms({
+  //     privacyPolicy: checked
+  //   })
+  // }
 
   const handleFieldChange = (index: number, value: string) => {
     const newSelections = [...fieldSelections]
