@@ -35,10 +35,21 @@ const AuthHandler: React.FC = () => {
     const token = localStorage.getItem('access_token')
     if (token) {
       setIsLoggedIn(true)
+    } else {
+      setIsModalOpen(true) 
     }
     const inNewValue = localStorage.getItem('is_new') === 'true'
     if (inNewValue) openInfoModal()
+    console.log(isLoggedIn);
   }, [])
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setIsModalOpen(true)
+    } else {
+      setIsModalOpen(false)
+    }
+  }, [isLoggedIn])
 
   useEffect(() => {
     if (code && state) {
@@ -124,7 +135,7 @@ const AuthHandler: React.FC = () => {
     <div>
       <DataListener onReceiveAuthData={receiveAuthData} />
 
-      {!isLoggedIn && <LoginButton onClick={openModal} />}
+      <LoginButton onClick={openModal} />
       <LoginModal
         isOpen={isModalOpen}
         onClose={closeModal}

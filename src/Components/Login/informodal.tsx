@@ -71,7 +71,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
   useEffect(() => {
     const fetchSchoolsAndTags = async () => {
       if(!accessToken){
-        toast.error('로그인 해주세요!')
+        // toast.error('로그인 해주세요!')
       }else{
         try {
           const schoolOptions: string[] = await getNoticeSite()
