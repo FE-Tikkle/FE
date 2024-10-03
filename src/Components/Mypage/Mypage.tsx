@@ -11,6 +11,8 @@ import Mypageinfo from '../modal/Mypageinfomodal'
 import DoLogin from './DoLogin'
 import LoginModal2 from '../modal/Loginmodal2'
 import { getUserData, UserData } from '../../api'
+import { toast } from 'react-toastify'
+
 interface MyPageModalProps {
   isOpen: boolean
   onClose: () => void
