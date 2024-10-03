@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Myschool.css'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
   getUserData,
@@ -10,28 +10,28 @@ import {
   getNoticeDepartment2,
 } from '../../../api'
 
-interface FormData {
-  school: string
-  campus: string
-  major: string
-  year: string
-  relatedSubject: string
-  bookOrLectureNote: string
-}
+// interface FormData {
+//   school: string
+//   campus: string
+//   major: string
+//   year: string
+//   relatedSubject: string
+//   bookOrLectureNote: string
+// }
 
 interface MySchoolProps {
   onClose: () => void;
 }
 
 const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
-  const [formData, setFormData] = useState<FormData>({
-    school: '',
-    campus: '',
-    major: '',
-    year: '',
-    relatedSubject: '',
-    bookOrLectureNote: '',
-  })
+  // const [formData, setFormData] = useState<FormData>({
+  //   school: '',
+  //   campus: '',
+  //   major: '',
+  //   year: '',
+  //   relatedSubject: '',
+  //   bookOrLectureNote: '',
+  // })
 
 
   const [school, setSchool] = useState('')
@@ -47,16 +47,21 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
         const userData = await getUserData();
         setSchool(userData.university);
         setDepartment(userData.department);
-        setSubscribeDepartments(userData.subscribe_notices_without_filter.concat(Array(4 - userData.subscribe_notices_without_filter.length).fill('')));
-        console.log('구독학과:',userData.subscribe_notices_without_filter);
+        
+        // '전체공지' 제외
+        const filteredNotices = userData.subscribe_notices_without_filter.filter(dept => dept !== '전체공지');
+        setSubscribeDepartments(filteredNotices.concat(Array(4 - filteredNotices.length).fill('')));
+        
+        console.log('구독학과:', filteredNotices);
       } catch (error) {
         console.error('사용자 데이터를 불러오는 데 실패했습니다:', error);
         toast.error('사용자 정보를 불러오는 데 실패했습니다.');
       }
     };
-
+  
     fetchUserData();
   }, []);
+  
 
   const handleSubscribeDepartmentChange = (index: number, value: string) => {
     const newSubscribeDepartments = [...subscribeDepartments]
@@ -72,7 +77,6 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose })=> {
         department: department,
         subscribe_notices: subscribeDepartments.filter(dept => dept !== '')
       };
-      console.log(updateData);
       await updateUserUniversity(updateData);
       toast.success('학교 정보가 성공적으로 업데이트되었습니다.');
       onClose();

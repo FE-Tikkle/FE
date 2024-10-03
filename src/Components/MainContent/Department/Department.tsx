@@ -11,12 +11,12 @@ const Department: React.FC<DepartmentProps> = ({
   onDepartmentSelect,
 }) => {
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
-    null
+    '전체공지'
   )
 
   const handleClick = (department: string) => {
     setSelectedDepartment(department)
-    onDepartmentSelect(department) // Call the prop function to notify parent
+    onDepartmentSelect(department) 
   }
 
   return (

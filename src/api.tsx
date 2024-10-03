@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosError } from 'axios'
+import axios, { AxiosError } from 'axios'
 import GoogleAuthBody from './store/slices/authslice'
 import qs from 'qs'
 import { Recruitment } from './store/Rec'
@@ -522,6 +522,11 @@ export const getBookmarkStats = async (): Promise<BookmarkStats> => {
     throw error
   }
 }
+export interface BookmarkedLink {
+  uri: string
+  title: string
+  state: boolean
+}
 export interface UserData {
   id: string
   name: string
@@ -532,7 +537,7 @@ export interface UserData {
   subscribe_notices: string[]
   subscribe_notices_without_filter: string[]
   subscribe_saramin: string[] | null
-  bookmarked_link: string[]
+  bookmarked_link: BookmarkedLink[]
   bookmarked_notices: string[]
   bookmarked_saramin: string[]
 }

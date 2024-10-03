@@ -7,7 +7,7 @@ const Activities: React.FC = () => {
   return (
     <div className="Activities-Container">
       <div className="later-card">
-        <img src="img/404-2.svg" className="errorimg" />
+        <img src="img/404.svg" className="errorimg" />
       </div>
       {/* {activitiesData.map((activity, index) => (
         <ActivityCard

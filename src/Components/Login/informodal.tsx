@@ -45,7 +45,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
   isOpen,
   onClose,
   onSubmit,
-  onChange,
+  // onChange,
 }) => {
   const [step, setStep] = useState(1)
   const [name, setName] = useState('')
@@ -55,8 +55,8 @@ const InfoModal: React.FC<InfoModalProps> = ({
   const [departments, setDepartments] = useState<string[]>([])
   const [departments2, setDepartments2] = useState<string[]>([])
   const [subscribeDepartments, setSubscribeDepartments] = useState<string[]>(['', '', ''])
-  const [subscribeJobs, setSubscribeJobs] = useState<string[]>(['', '', ''])
-  const [allChecked, setAllChecked] = useState(false)
+  // const [subscribeJobs, setSubscribeJobs] = useState<string[]>(['', '', ''])
+  // const [allChecked, setAllChecked] = useState(false)
   const [terms, setTerms] = useState({
     privacyPolicy: false,
   })
@@ -78,14 +78,14 @@ const InfoModal: React.FC<InfoModalProps> = ({
           setSchools(schoolOptions)
         } catch (error) {
           console.error('Error fetching schools:', error)
-          toast.error('학교 정보를 불러오는데 실패했습니다.')
+          // toast.error('학교 정보를 불러오는데 실패했습니다.')
         }
         try {
           const tagsData = await getSaraminTags()
           setTags(tagsData)
         } catch (error) {
           console.error('Error fetching Saramin tags:', error)
-          toast.error('채용 분야 정보를 불러오는데 실패했습니다.')
+          // toast.error('채용 분야 정보를 불러오는데 실패했습니다.')
         }
 
       }
@@ -117,7 +117,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
           setDepartments(departmentOptions)
         } catch (error) {
           console.error('Error fetching departments:', error)
-          toast.error('학과 정보를 불러오는데 실패했습니다.')
+          // toast.error('학과 정보를 불러오는데 실패했습니다.')
         }
       } else {
         setDepartments([])
@@ -135,7 +135,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
           setDepartments2(departmentOptions2)
         } catch (error) {
           console.error('Error fetching departments:', error)
-          toast.error('관심 학과 정보를 불러오는데 실패했습니다.')
+          // toast.error('관심 학과 정보를 불러오는데 실패했습니다.')
         }
       } else {
         setDepartments2([])

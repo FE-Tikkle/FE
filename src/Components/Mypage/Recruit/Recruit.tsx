@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Recruit.css'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import { getSaraminTags, getUserData, updateUserSaraminSubscriptions } from '../../../api'
 
 interface FieldSelection {
