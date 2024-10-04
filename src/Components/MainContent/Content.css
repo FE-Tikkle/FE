@@ -33,7 +33,7 @@
 }
 .Content-Selector-sector.selected {
   background: #101b49;
-  color: #ffede1;
+  color: #E4EFFC;
 }
 .Content-Selector-sector:not(.selected):hover {
   background-color: #e6e6e6;

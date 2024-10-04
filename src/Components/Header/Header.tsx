@@ -11,7 +11,7 @@ declare global {
 }
 
 const Header: React.FC = () => {
-  const [isAuthTokenPresent, setIsAuthTokenPresent] = useState(false)
+  // const [isAuthTokenPresent, setIsAuthTokenPresent] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalIndex, setModalIndex] = useState(0)
 
@@ -77,14 +77,14 @@ const Header: React.FC = () => {
     window.open('https://campusnow.notion.site/ccc5e7ddd888426387eac41537ca58b3', '_blank')
   }
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('access_token')
-    if (accessToken) {
-      setIsAuthTokenPresent(true)
-      // console.log(accessToken)
-      // console.log(isAuthTokenPresent)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const accessToken = localStorage.getItem('access_token')
+  //   if (accessToken) {
+  //     setIsAuthTokenPresent(true)
+  //     // console.log(accessToken)
+  //     // console.log(isAuthTokenPresent)
+  //   }
+  // }, [])
 
   return (
     <header className="Header-main">

@@ -1,3 +1,4 @@
+// AuthHandler.tsx
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -35,10 +36,22 @@ const AuthHandler: React.FC = () => {
     const token = localStorage.getItem('access_token')
     if (token) {
       setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+      setIsModalOpen(true) 
     }
     const inNewValue = localStorage.getItem('is_new') === 'true'
     if (inNewValue) openInfoModal()
+    console.log(isLoggedIn)
   }, [])
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setIsModalOpen(true)
+    } else {
+      setIsModalOpen(false)
+    }
+  }, [isLoggedIn])
 
   useEffect(() => {
     if (code && state) {
@@ -116,6 +129,22 @@ const AuthHandler: React.FC = () => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('is_new')
+    localStorage.removeItem('refresh_token')
+    setIsLoggedIn(false)
+    window.location.reload()
+  }
+
+  const handleLoginButtonClick = () => {
+    if (isLoggedIn) {
+      handleLogout()
+    } else {
+      openModal()
+    }
+  }
+
   const receiveAuthData = (authData: any) => {
     console.log('Received auth data in Home component:', authData)
   }
@@ -124,7 +153,7 @@ const AuthHandler: React.FC = () => {
     <div>
       <DataListener onReceiveAuthData={receiveAuthData} />
 
-      {!isLoggedIn && <LoginButton onClick={openModal} />}
+      <LoginButton onClick={handleLoginButtonClick} isLoggedIn={isLoggedIn} />
       <LoginModal
         isOpen={isModalOpen}
         onClose={closeModal}

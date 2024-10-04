@@ -1,13 +1,16 @@
+// LoginButton.tsx
 import React from 'react'
 import './Login.css'
+
 interface LoginButtonProps {
   onClick: () => void
+  isLoggedIn: boolean
 }
 
-const LoginButton: React.FC<LoginButtonProps> = ({ onClick }) => {
+const LoginButton: React.FC<LoginButtonProps> = ({ onClick, isLoggedIn }) => {
   return (
     <div className="Login-button" onClick={onClick}>
-      로그인하기
+      {isLoggedIn ? '로그아웃' : '로그인'}
     </div>
   )
 }

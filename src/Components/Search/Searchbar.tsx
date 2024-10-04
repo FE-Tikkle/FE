@@ -1,5 +1,4 @@
 import React, { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react'
-import axios from 'axios'
 import Modal from '../modal/modal'
 import { motion } from 'framer-motion'
 import './Searchbar.css'
