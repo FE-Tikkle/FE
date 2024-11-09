@@ -3,7 +3,7 @@
   "name": "First-test",
   "version": "1.0.0",
   "description": "",
-  "permissions": ["storage", "http://localhost:5173"],
+  "host_permissions": ["http://localhost:5173/*"],
   "chrome_url_overrides": {
     "newtab": "index.html"
   }

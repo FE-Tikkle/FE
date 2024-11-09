@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Mypagemodal.css'
 import { KAKAO_SDK_ID } from '../../../store/slices/constant'
 
@@ -11,16 +11,16 @@ declare global {
 // 환경 변수에서 카카오 키를 가져옵니다.
 
 const Recommend: React.FC = () => {
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://developers.kakao.com/sdk/js/kakao.js'
-    script.async = true
-    document.body.appendChild(script)
+  // useEffect(() => {
+  //   const script = document.createElement('script')
+  //   script.src = 'https://developers.kakao.com/sdk/js/kakao.js'
+  //   script.async = true
+  //   document.body.appendChild(script)
 
-    return () => {
-      document.body.removeChild(script)
-    }
-  }, [])
+  //   return () => {
+  //     document.body.removeChild(script)
+  //   }
+  // }, [])
 
   const shareToKakao = () => {
     if (window.Kakao) {

@@ -180,7 +180,11 @@ const Calendar: React.FC<{
               onClick={() => handleDayClick(day)} // 날짜 클릭 시 이벤트 핸들러
             >
               <div className="day-number">{day}</div> {/* 날짜 */}
-              <div className={`event-count ${isToday ? 'no-background' : ''}`}>
+              <div
+                className={`event-count ${isToday ? 'no-background' : ''} ${
+                  eventCount === 0 ? 'empty' : ''
+                }`}
+              >
                 + {eventCount}
               </div>{' '}
               {/* 이벤트 개수 */}

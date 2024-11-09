@@ -36,7 +36,7 @@
 @media (max-width: 1500px) {
   .main-conatainer {
     flex-direction: column-reverse;
-    /* height: 1600px; */
+    height: 1600px;
     align-items: center;
     justify-content: start;
   }

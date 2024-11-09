@@ -111,13 +111,17 @@
   aspect-ratio: 1;
 }
 .event-count {
-  background: rgb(255, 239, 206);
+  background: rgb(216, 243, 255);
   border-radius: 5px;
   width: 30px;
   text-align: center;
   margin-top: 3px;
 }
 .event-count.no-background {
+  background: none;
+}
+.event-count.empty {
+  color: transparent;
   background: none;
 }
 .Calendar-button {
