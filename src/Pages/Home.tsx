@@ -45,7 +45,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <Header />
+      <Header userData={userData} />
       <Search userData={userData} />
       {/* <ThemeSelector/> */}
       <Main userData={userData} />

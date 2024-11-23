@@ -74,6 +74,14 @@
   color: #b8b8b8;
 }
 
+.week-day.sunday {
+  color: #a44444;
+}
+
+.week-day.saturday {
+  color: #525292;
+}
+
 .days-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);

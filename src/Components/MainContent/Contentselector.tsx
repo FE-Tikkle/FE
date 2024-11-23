@@ -87,7 +87,6 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
 
   return (
     <div className="Content-selector">
-      {userData && <p>Welcome, {userData.name}!</p>}
       <div className="Content-Selector-main">
         {notices.map(notice => (
           <div

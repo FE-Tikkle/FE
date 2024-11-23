@@ -133,11 +133,11 @@ const Calendar: React.FC<{
 
   return (
     <div className="Calendar-Container">
-      {!isSignedIn && (
+      {/* {!isSignedIn && (
         <button className="Calendar-button" onClick={handleAuthClick}>
           구글 캘린더 연동
         </button>
-      )}
+      )} */}
       <div className="month-header">
         <button onClick={() => changeMonth(-1)} className="prev-button">
           &lt;
@@ -151,8 +151,11 @@ const Calendar: React.FC<{
         </button>
       </div>
       <div className="week-days">
-        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
-          <div key={day} className="week-day">
+        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+          <div 
+            key={day} 
+            className={`week-day ${index === 0 ? 'sunday' : ''} ${index === 6 ? 'saturday' : ''}`}
+          >
             {day}
           </div>
         ))}
