@@ -75,11 +75,11 @@
 }
 
 .week-day.sunday {
-  color: #a44444;
+  color: #FF0000;
 }
 
 .week-day.saturday {
-  color: #525292;
+  color: #FF0000;
 }
 
 .days-grid {
