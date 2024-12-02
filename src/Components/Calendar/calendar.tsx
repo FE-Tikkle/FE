@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { gapi, loadAuth2 } from 'gapi-script'
+import { gapi} from 'gapi-script'
 import './calendar.css'
 import { GOOGLE_API_KEY, GOOGLE_ID } from '../../store/slices/constant'
 
@@ -53,21 +53,21 @@ const Calendar: React.FC<{
     })
   }
 
-  const handleAuthClick = async () => {
-    try {
-      const auth2 = await loadAuth2(gapi, CLIENT_ID, SCOPES)
-      if (auth2.isSignedIn.get()) {
-        setIsSignedIn(true)
-        getEvents()
-      } else {
-        await auth2.signIn()
-        setIsSignedIn(true)
-        getEvents()
-      }
-    } catch (err) {
-      console.error('Error signing in:', err)
-    }
-  }
+  // const handleAuthClick = async () => {
+  //   try {
+  //     const auth2 = await loadAuth2(gapi, CLIENT_ID, SCOPES)
+  //     if (auth2.isSignedIn.get()) {
+  //       setIsSignedIn(true)
+  //       getEvents()
+  //     } else {
+  //       await auth2.signIn()
+  //       setIsSignedIn(true)
+  //       getEvents()
+  //     }
+  //   } catch (err) {
+  //     console.error('Error signing in:', err)
+  //   }
+  // }
 
   const getEvents = async () => {
     try {
