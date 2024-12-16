@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import Loading from '../../Loading';
 import { 
   fetchSchools, 
   fetchDepartments, 
@@ -83,7 +84,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose }) => {
     }
   };
 
-  if (loading) return <div>로딩 중...</div>;
+  if (loading) return <Loading />;
   if (error) return <div>에러: {error}</div>;
 
   // JSX는 기존과 동일하되 state 대신 Redux store의 값을 사용

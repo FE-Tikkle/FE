@@ -1,0 +1,70 @@
+/* src/Components/Loading/Loading.css */
+.loading-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  border-radius: 7.134px;
+}
+
+.spinner {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+
+.loading-text {
+  font-size: 16px;
+  color: #6f6f6f;
+  margin: 0;
+  font-family: Pretendard;
+  font-weight: 500;
+}
+
+@keyframes l5 {
+    0%  {box-shadow: 20px 0 #000, -20px 0 #0002; background: #000 }
+    33% {box-shadow: 20px 0 #000, -20px 0 #0002; background: #0002}
+    66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+    100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1570px) and (min-height: 901px) {
+  .loading-wrapper {
+    height: 480px;
+  }
+  .spinner {
+    width: 12px;
+  }
+  .loading-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-height: 900px) {
+  .loading-wrapper {
+    height: 540px;
+  }
+}
+
+@media (max-height: 800px) {
+  .loading-wrapper {
+    height: 430px;
+  }
+  .spinner {
+    width: 10px;
+  }
+  .loading-text {
+    font-size: 13px;
+  }
+}
