@@ -226,6 +226,9 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
           </button>
         </div>
       </Modal>
+      <div className='Search-Notice'>
+        <img src='img/bell.svg' alt='notice' />
+      </div>
     </div>
   )
 }
