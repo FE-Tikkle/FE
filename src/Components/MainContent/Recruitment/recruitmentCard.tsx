@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './recruitment.css'
 import { postContentsRequest } from '../../../api'
-
+import * as Sentry from '@sentry/react';
 interface RecruitmentCardProps {
   id: string // 새로 추가된 prop
   companyimg: string
@@ -81,6 +81,7 @@ const RecruitmentCard: React.FC<RecruitmentCardProps> = ({
       }
       window.open(url, '_blank')
     } catch (error) {
+      Sentry.captureException(error);
       console.error('Error posting contents request:', error)
     }
   }

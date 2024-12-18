@@ -5,7 +5,8 @@ import {
   NoticeResponse,
   Notice as NoticeType,
 } from '../../../api'
-
+import * as Sentry from '@sentry/react';
+import Loading from '../../Loading';
 interface NoticemainProps {
   activeTab: string
   onTagListUpdate: (tagList: string[]) => void
@@ -75,6 +76,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
       prevSearchTermRef.current = searchTerm
       prevDepartmentRef.current = selectedDepartment
     } catch (err) {
+      Sentry.captureException(err);
       setError(
         '공지사항을 불러올 수 없습니다. 새로고침 혹은 로그인을 진행해주세요.'
       )
@@ -125,10 +127,11 @@ const Noticemain: React.FC<NoticemainProps> = ({
   }, [containerRef, isLoading, hasMore])
 
   if (isLoading && notices.length === 0) {
-    return <p>로딩 중...</p>
+    return <Loading/>
   }
 
   if (error) {
+    Sentry.captureException(error);
     return <div>{error}</div>
   }
 

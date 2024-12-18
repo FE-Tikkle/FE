@@ -6,7 +6,7 @@ import {
   updateUserUniversity,
   getUserData,
 } from '../../api';
-
+import * as Sentry from '@sentry/react';
 interface SchoolState {
   schools: string[];
   departments: string[];
@@ -129,6 +129,7 @@ const schoolSlice = createSlice({
       .addCase(fetchSchools.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || '학교 목록을 불러오는데 실패했습니다.';
+        Sentry.captureException(action.error);
       })
       // fetchDepartments
       .addCase(fetchDepartments.fulfilled, (state, action) => {
@@ -152,6 +153,7 @@ const schoolSlice = createSlice({
       })
       .addCase(fetchUserSchoolData.rejected, (state, action) => {
         state.error = action.error.message || '사용자 데이터를 불러오는데 실패했습니다.';
+        Sentry.captureException(action.error);
       });
   },
 });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { gapi} from 'gapi-script'
 import './calendar.css'
 import { GOOGLE_API_KEY, GOOGLE_ID } from '../../store/slices/constant'
-
+import * as Sentry from '@sentry/react';
 const CLIENT_ID = GOOGLE_ID
 const API_KEY = GOOGLE_API_KEY
 const DISCOVERY_DOCS = [
@@ -89,6 +89,7 @@ const Calendar: React.FC<{
       })
       setEvents(response.result.items)
     } catch (err) {
+      Sentry.captureException(err);
       console.error('Error fetching events:', err)
     }
   }

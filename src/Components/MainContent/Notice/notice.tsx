@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './notice.css'
 import { toggleBookmark, postContentsRequest } from '../../../api'
-
+import * as Sentry from '@sentry/react';
 interface Notice {
   id: string
   department: string
@@ -34,6 +34,7 @@ const Notice: React.FC<NoticeProps> = ({ notice, onBookmarkUpdate }) => {
         onBookmarkUpdate(notice.id, !isBookmarked)
       }
     } catch (error) {
+      Sentry.captureException(error);
       console.error('Failed to update bookmark status:', error)
       // 에러 처리: 사용자에게 알림을 표시하거나 다른 적절한 처리를 수행
     } finally {
@@ -46,6 +47,7 @@ const Notice: React.FC<NoticeProps> = ({ notice, onBookmarkUpdate }) => {
       await postContentsRequest('공지', notice.id)
       window.open(notice.url, '_blank', 'noopener,noreferrer')
     } catch (error) {
+      Sentry.captureException(error);
       console.error('Error posting contents request:', error)
       // 에러 처리: 사용자에게 알림을 표시하거나 다른 적절한 처리를 수행
     }

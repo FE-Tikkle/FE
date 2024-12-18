@@ -15,7 +15,7 @@ import {
 import { RootState } from '../../../store/store';
 import './Myschool.css';
 import { AppDispatch } from '../../../store/store';
-
+import * as Sentry from '@sentry/react';
 interface MySchoolProps {
   onClose: () => void;
 }

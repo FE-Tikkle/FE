@@ -3,6 +3,7 @@ import RecruitmentCard from './recruitmentCard'
 import { fetchRecruitments, toggleBookmark2 } from '../../../api'
 import './recruitment.css'
 import { Recruitment } from '../../../store/Rec'
+import * as Sentry from '@sentry/react';
 interface RecruitmentContainerProps {
   searchTerm: string
   selectedJob: string | null
@@ -43,6 +44,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
       prevSearchTermRef.current = searchTerm
       prevSelectedJobRef.current = selectedJob
     } catch (err) {
+      Sentry.captureException(err);
       setError('채용 정보를 불러오는 데 실패했습니다.')
       console.error('Error fetching recruitments:', err)
     } finally {
@@ -82,6 +84,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
         )
       )
     } catch (error) {
+      Sentry.captureException(error);
       console.error('Error toggling bookmark:', error)
       setError('북마크 설정에 실패했습니다.')
     }

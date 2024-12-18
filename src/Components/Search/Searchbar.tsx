@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import './Searchbar.css'
 import '../../App.css'
 import axiosInstance, { UserData } from '../../api'
-
+import * as Sentry from '@sentry/react';
 interface Platform {
   name: string
   url: string
@@ -72,6 +72,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
         throw new Error('북마크 업데이트 실패')
       }
     } catch (error) {
+      Sentry.captureException(error);
       console.error('북마크 업데이트 중 오류 발생:', error)
       throw error
     }
@@ -102,6 +103,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
       setNewPlatformUrl('')
       setShowAddPlatformModal(false)
     } catch (error) {
+      Sentry.captureException(error);
       alert('북마크 추가에 실패했습니다. 다시 시도해주세요.')
     }
   }
@@ -121,7 +123,8 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
         platform => platform.url !== url
       )
       setPlatforms(filteredPlatforms)
-    } catch (error) {
+    } catch (error) { 
+      Sentry.captureException(error); 
       alert('북마크 삭제에 실패했습니다. 다시 시도해주세요.')
     }
   }

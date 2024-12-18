@@ -11,7 +11,7 @@ import Mypageinfo from '../modal/Mypageinfomodal'
 import DoLogin from './DoLogin'
 import LoginModal2 from '../modal/Loginmodal2'
 import { getUserData, UserData } from '../../api'
-
+import * as Sentry from '@sentry/react';
 interface MyPageModalProps {
   isOpen: boolean
   onClose: () => void
@@ -80,6 +80,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
         const data = await getUserData()
         setUserData(data)
       } catch (error) {
+        Sentry.captureException(error);
         console.error('Failed to fetch user data:', error)
       }
     }
