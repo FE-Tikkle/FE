@@ -60,8 +60,8 @@ axiosInstance.interceptors.request.use(
 let isRefreshing = false; // refresh를 모든 곳에서 동시에 진행하지 못하도록 막음
 let refreshSubscribers: ((token: string) => void)[] = []; // refresh가 막혀있을 때 해당 부분으로 들어감
 
-const onRefreshed = () => { // refresh가 완료되었을 때 실행됨
-  refreshSubscribers.forEach(callback => callback);
+const onRefreshed = (token: string) => { // refresh가 완료되었을 때 실행됨
+  refreshSubscribers.forEach(callback => callback(token));
   refreshSubscribers = [];
 };
 
@@ -108,7 +108,7 @@ axiosInstance.interceptors.response.use(
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
 
         isRefreshing = false; // Refresh 진행 완료
-        onRefreshed() // 진행하지 못한 함수를 다시 진행
+        onRefreshed(newAccessToken) // 진행하지 못한 함수를 다시 진행
 
         // 원래 요청 재시도
         return axiosInstance(originalRequest)
