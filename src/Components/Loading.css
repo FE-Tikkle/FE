@@ -39,9 +39,9 @@
 }
 
 /* 반응형 스타일 */
-@media (max-width: 1570px) and (min-height: 901px) {
+@media (max-width: 1570px){
   .loading-wrapper {
-    height: 480px;
+    height: 100vh;
   }
   .spinner {
     width: 12px;
@@ -53,13 +53,13 @@
 
 @media (max-height: 900px) {
   .loading-wrapper {
-    height: 540px;
+    height: 100vh;
   }
 }
 
 @media (max-height: 800px) {
   .loading-wrapper {
-    height: 430px;
+    height: 100vh;
   }
   .spinner {
     width: 10px;

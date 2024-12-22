@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './recruitment.css'
 import { postContentsRequest } from '../../../api'
+import { motion } from 'framer-motion'
 import * as Sentry from '@sentry/react';
 interface RecruitmentCardProps {
   id: string // 새로 추가된 prop
@@ -87,7 +88,14 @@ const RecruitmentCard: React.FC<RecruitmentCardProps> = ({
   }
 
   return (
-    <div className="recruitment-mainBox" onClick={handleCardClick}>
+    <motion.div 
+      className="recruitment-mainBox" 
+      onClick={handleCardClick}
+      whileHover={{
+        scale: 1.03,
+        transition: { type: "spring", stiffness: 400, damping: 10 }
+      }}
+    >
       <div className="recruitment-Box1">
         <div className="recruitment-company">
           <img
@@ -136,7 +144,7 @@ const RecruitmentCard: React.FC<RecruitmentCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+      </motion.div>
   )
 }
 

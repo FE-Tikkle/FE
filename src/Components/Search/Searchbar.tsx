@@ -5,6 +5,7 @@ import './Searchbar.css'
 import '../../App.css'
 import axiosInstance, { UserData } from '../../api'
 import * as Sentry from '@sentry/react';
+import Bell from './Bell';
 interface Platform {
   name: string
   url: string
@@ -230,7 +231,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
         </div>
       </Modal>
       <div className='Search-Notice'>
-        <img src='img/bell.svg' alt='notice' />
+        <Bell/>
       </div>
     </div>
   )

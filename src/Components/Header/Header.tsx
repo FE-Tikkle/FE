@@ -105,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
         </div>
       </div>
       <div className="Header-right">
-        <div className="Header-intro" onClick={IntroLink}>
+        <div className="Header-intro">
           {userData ? `${userData.name}님 반가워요!` : '게스트님 반가워요!'}
         </div>
         <div className="Header-intro" onClick={IntroLink}>

@@ -4,6 +4,7 @@ import { fetchRecruitments, toggleBookmark2 } from '../../../api'
 import './recruitment.css'
 import { Recruitment } from '../../../store/Rec'
 import * as Sentry from '@sentry/react';
+import Loading from '../../Loading';
 interface RecruitmentContainerProps {
   searchTerm: string
   selectedJob: string | null
@@ -121,7 +122,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
           url={recruitment.url}
         />
       ))}
-      {isLoading && <p>더 많은 정보를 불러오는 중...</p>}
+      {isLoading && <Loading/>}
       {error && <p>{error}</p>}
       {!hasMore && <p>모든 채용 정보를 불러왔습니다.</p>}
     </div>

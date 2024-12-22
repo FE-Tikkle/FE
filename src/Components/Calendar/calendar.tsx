@@ -106,6 +106,7 @@ const Calendar: React.FC<{
         gapi.auth2.getAuthInstance().isSignedIn.listen(setIsSignedIn)
         setIsSignedIn(gapi.auth2.getAuthInstance().isSignedIn.get())
       } catch (err) {
+        Sentry.captureException(err);
         console.error('Error initializing Google API client:', err)
       }
     }
