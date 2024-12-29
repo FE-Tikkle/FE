@@ -111,7 +111,7 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
         <div className="Header-intro" onClick={IntroLink}>
           티끌 소개
         </div>
-        <div className="Header-mypage" onClick={() => openModal(1)}>
+        <div className="Header-mypage" onClick={() => openModal(0)}>
           마이페이지
         </div>
         {/* <div className="Header-intro" onClick={shareToKakao}>

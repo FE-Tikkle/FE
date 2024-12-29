@@ -1,11 +1,15 @@
 import React from 'react'
 import './Loading.css'
 
-const Loading: React.FC = () => {
+interface LoadingProps {
+  type?: 'mypage' | 'main';
+}
+
+const Loading: React.FC<LoadingProps> = ({ type = 'main' }) => {
   return (
-    <div className="loading-wrapper">
+    <div className={`loading-wrapper ${type === 'mypage' ? 'loading-mypage' : ''}`}>
       <div className="spinner"></div>
-      <p className="loading-text">로딩 중입니다 잠시만 기다려주세요...</p>
+      <p className="loading-text">로딩중...</p>
     </div>
   )
 }

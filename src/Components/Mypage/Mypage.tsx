@@ -71,7 +71,7 @@ const MyPageModal: React.FC<MyPageModalProps> = ({
   onClose,
   initialSelectedIndex,
 }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(initialSelectedIndex ?? 0)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userData, setUserData] = useState<UserData | null>(null)
   useEffect(() => {

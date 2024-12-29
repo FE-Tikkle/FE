@@ -86,7 +86,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose }) => {
     }
   };
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading type="mypage" />;
   if (error) return <div>에러: {error}</div>;
 
   // JSX는 기존과 동일하되 state 대신 Redux store의 값을 사용
