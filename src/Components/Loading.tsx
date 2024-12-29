@@ -8,8 +8,8 @@ interface LoadingProps {
 const Loading: React.FC<LoadingProps> = ({ type = 'main' }) => {
   return (
     <div className={`loading-wrapper ${type === 'mypage' ? 'loading-mypage' : ''}`}>
+      <div className='loading-logo'><img src = '/img/Logo/Logo241229.svg' alt='logo'></img></div>
       <div className="spinner"></div>
-      <p className="loading-text">로딩중...</p>
     </div>
   )
 }
