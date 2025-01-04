@@ -15,7 +15,7 @@ import {
 import { RootState } from '../../../store/store';
 import './Myschool.css';
 import { AppDispatch } from '../../../store/store';
-
+import * as Sentry from '@sentry/react';
 interface MySchoolProps {
   onClose: () => void;
 }
@@ -37,6 +37,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose }) => {
   useEffect(() => {
     dispatch(fetchUserSchoolData())
       .catch(error => {
+        Sentry.captureException(error);
         console.error('사용자 데이터를 불러오는 데 실패했습니다:', error);
         toast.error('사용자 정보를 불러오는 데 실패했습니다.');
       });
@@ -80,11 +81,12 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose }) => {
       onClose();
       setTimeout(() => window.location.reload(), 1000);
     } catch (error) {
+      Sentry.captureException(error);
       toast.error('학교 정보 업데이트에 실패했습니다.');
     }
   };
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading type="mypage" />;
   if (error) return <div>에러: {error}</div>;
 
   // JSX는 기존과 동일하되 state 대신 Redux store의 값을 사용

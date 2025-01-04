@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,6 +31,17 @@
   font-weight: 500;
 }
 
+.loading-logo {
+  width: 100px;
+  height: auto;
+}
+
+.loading-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 @keyframes l5 {
     0%  {box-shadow: 20px 0 #000, -20px 0 #0002; background: #000 }
     33% {box-shadow: 20px 0 #000, -20px 0 #0002; background: #0002}
@@ -38,9 +49,14 @@
     100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
 }
 
-/* 반응형 스타일 */
+/* MyPage 전용 스타일 */
+.loading-mypage {
+  height: 100%;
+}
+
+/* MyPage 반응형 스타일 */
 @media (max-width: 1570px) and (min-height: 901px) {
-  .loading-wrapper {
+  .loading-mypage {
     height: 480px;
   }
   .spinner {
@@ -52,13 +68,25 @@
 }
 
 @media (max-height: 900px) {
-  .loading-wrapper {
+  .loading-mypage {
     height: 540px;
+  }
+  .spinner {
+    width: 12px;
+  }
+  .loading-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1270px) and (min-height: 801px) and (max-height: 900px) {
+  .loading-mypage {
+    height: 500px;
   }
 }
 
 @media (max-height: 800px) {
-  .loading-wrapper {
+  .loading-mypage {
     height: 430px;
   }
   .spinner {
@@ -66,5 +94,11 @@
   }
   .loading-text {
     font-size: 13px;
+  }
+}
+
+@media (max-width: 1025px) and (max-height: 800px) {
+  .loading-mypage {
+    height: 450px;
   }
 }

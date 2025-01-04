@@ -90,9 +90,6 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
 
   return (
     <div className="Content-selector">
-      <div className='Content-Selector-Notice'>
-        <img src='img/bell.svg' onClick={() => setIsModalOpen(true)} alt='notice' />
-      </div>
       <Mypageinfo isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <div className="Content-Selector-main">
         {notices.map(notice => (
