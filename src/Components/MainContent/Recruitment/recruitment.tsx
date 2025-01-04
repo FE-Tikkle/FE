@@ -74,6 +74,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
       setPage(prevPage => prevPage + 1)
     }
   }, [isLoading, hasMore])
+  
   const handleBookmarkClick = async (id: string) => {
     try {
       const isBookmarked = await toggleBookmark2(id)

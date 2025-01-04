@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Notice from './notice'
+import useNoticeStore from './noticeStore'
 import {
   getNoticeFiltered,
   NoticeResponse,
@@ -15,7 +16,7 @@ interface NoticemainProps {
 }
 
 const Noticemain: React.FC<NoticemainProps> = ({
-  activeTab,
+  activeTab, 
   onTagListUpdate,
   searchTerm,
   selectedDepartment,
@@ -30,7 +31,8 @@ const Noticemain: React.FC<NoticemainProps> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const [page, setPage] = useState<number>(1)
   const prevPageRef = useRef<number>(1)
-
+  const { notices: cachedNotices, updateCache, shouldFetchNewData } = useNoticeStore()
+  
   const ITEMS_PER_PAGE = 20
   const MAX_PAGES = 50 // 최대 페이지 수 설정
 
@@ -48,6 +50,11 @@ const Noticemain: React.FC<NoticemainProps> = ({
     setIsLoading(true)
     setError(null)
     try {
+      if (page === 1 && !shouldFetchNewData(activeTab, searchTerm, selectedDepartment)) {
+        setNotices(cachedNotices)//캐싱 
+        return
+      }
+
       const response: NoticeResponse = await getNoticeFiltered(
         ITEMS_PER_PAGE,
         page,
@@ -64,6 +71,7 @@ const Noticemain: React.FC<NoticemainProps> = ({
 
       if (page === 1) {
         setNotices(response.data)
+        updateCache(response.data, activeTab, searchTerm, selectedDepartment)
       } else {
         setNotices(prevNotices => [...prevNotices, ...response.data])
       }
@@ -90,7 +98,10 @@ const Noticemain: React.FC<NoticemainProps> = ({
     page,
     searchTerm,
     hasMore,
-    selectedDepartment, // 'selectedDepartment'를 의존성 배열에 추가
+    selectedDepartment,
+    shouldFetchNewData,
+    cachedNotices,
+    updateCache,
   ])
 
   useEffect(() => {
