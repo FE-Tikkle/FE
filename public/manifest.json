@@ -1,7 +1,7 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 4,
   "name": "티끌 Tikkeul NewTab",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "chrome_url_overrides": {
     "newtab": "index.html"
