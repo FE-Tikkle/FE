@@ -58,6 +58,7 @@
 @media (max-width: 1570px) and (min-height: 901px) {
   .loading-mypage {
     height: 480px;
+    margin-top: 300px;
   }
   .spinner {
     width: 12px;
