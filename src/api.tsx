@@ -3,7 +3,8 @@ import GoogleAuthBody from './store/slices/authslice'
 import qs from 'qs'
 import { Recruitment } from './store/Rec'
 import * as Sentry from '@sentry/react';
-const BASE_URL = 'https://api.tikkeul.site'
+import { API_URL } from './store/slices/constant'
+const BASE_URL = API_URL
 
 const axiosInstance = axios.create({
   baseURL: `${BASE_URL}`,
@@ -640,3 +641,41 @@ export const deleteUser = async (): Promise<void> => {
     throw error;
   }
 };
+
+interface BookmarkUpdate {
+  uri: string
+  title: string
+  state: boolean
+}
+
+export const updateBookmark = async (bookmark: BookmarkUpdate) => {
+  try {
+    // console.log('북마크 업데이트 요청:', bookmark)
+    
+    const response = await axiosInstance.post(API_URL, {
+      uri: bookmark.uri,
+      title: bookmark.title,
+      state: bookmark.state
+    })
+    
+    // console.log('북마크 업데이트 성공:', response.data)
+    return response
+  } catch (error: any) {
+    if (error.response?.status === 409) {
+      console.log('409 에러 상세 정보:', {
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: error.response.data,
+        message: error.message
+      })
+    
+      return { 
+        status: 409, 
+        data: error.response.data 
+      }
+    }
+    console.error('북마크 업데이트 실패:', error.response?.data || error.message)
+    Sentry.captureException(error)
+    throw error
+  }
+}

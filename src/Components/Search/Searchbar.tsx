@@ -2,7 +2,8 @@ import React, { useState, ChangeEvent, KeyboardEvent, useEffect, Suspense, lazy 
 import { motion } from 'framer-motion'
 import './Searchbar.css'
 import '../../App.css'
-import axiosInstance, { UserData } from '../../api'
+import { UserData } from '../../api'
+import { updateBookmark } from '../../api'
 import * as Sentry from '@sentry/react'
 import Bell from './Bell'
 import Loading from '../Loading'
@@ -26,14 +27,6 @@ interface BookmarkedLink {
   title: string
   state: boolean
 }
-
-interface BookmarkUpdate {
-  uri: string
-  title: string
-  state: boolean
-}
-
-const API_URL = 'https://api.tikkeul.site/user/bookmark' // API URL을 적절히 변경해주세요
 
 const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -75,37 +68,6 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
     setSearchTerm(e.target.value)
   }
 
-  const updateBookmark = async (bookmark: BookmarkUpdate) => {
-    try {
-      console.log('북마크 업데이트 요청:', bookmark)
-      
-      const response = await axiosInstance.post(API_URL, {
-        uri: bookmark.uri,
-        title: bookmark.title,
-        state: bookmark.state
-      })
-      
-      console.log('북마크 업데이트 성공:', response.data)
-      return response
-    } catch (error: any) {
-      if (error.response?.status === 409) {
-        console.log('409 에러 상세 정보:', {
-          status: error.response.status,
-          statusText: error.response.statusText,
-          data: error.response.data,
-          message: error.message
-        })
-      
-        return { 
-          status: 409, 
-          data: error.response.data 
-        }
-      }
-      console.error('북마크 업데이트 실패:', error.response?.data || error.message)
-      Sentry.captureException(error)
-      throw error
-    }
-  }
 
   const handleAddPlatform = async () => {
     if (!newPlatformName || !newPlatformUrl) {
