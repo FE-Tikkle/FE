@@ -411,7 +411,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
               />
               <label htmlFor="chk3"></label>
               <label htmlFor="chk3">개인정보 수집 및 이용동의 (필수)</label>
-              <label className='checkPolicy' onClick={() => window.open('https://campusnow.notion.site/aeaefffa24cd48eca005c0fb71b9358c', '_blank')}>약관 보기</label>
+              <label className='checkPolicy' onClick={() => window.open('https://tikkeul-service.notion.site/aeaefffa24cd48eca005c0fb71b9358c?pvs=4', '_blank')}>약관 보기</label>
             </div>
             {/* <div className="term-item">
               <input
