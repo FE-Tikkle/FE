@@ -34,6 +34,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
   const [newPlatformName, setNewPlatformName] = useState('')
   const [newPlatformUrl, setNewPlatformUrl] = useState('')
   const [showAddPlatformModal, setShowAddPlatformModal] = useState(false)
+  const [isComposing, setIsComposing] = useState(false);
 
   useEffect(() => {
     if (userData && Array.isArray(userData.bookmarked_link)) {
@@ -60,7 +61,15 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
       const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
         searchTerm
       )}`
-      window.open(searchUrl, '_blank')
+      try {
+        const newWindow = window.open(searchUrl, '_blank')
+        if (newWindow) {
+          newWindow.focus()
+        }
+      } catch (error) {
+        console.error('검색 창을 열 수 없습니다:', error)
+      }
+      setSearchTerm('')
     }
   }
 
@@ -129,6 +138,10 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
   }
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) {
+      return;
+    }
+    
     if (e.key === 'Enter') {
       handleSearch()
     }
@@ -144,6 +157,8 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
           placeholder="검색어를 입력해주세요."
           className="Search-bar"
           onKeyDown={handleKeyPress}
+          onCompositionStart={() => setIsComposing(true)}
+          onCompositionEnd={() => setIsComposing(false)}
         />
         <img
           className="Search-img"
