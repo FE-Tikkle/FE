@@ -11,7 +11,6 @@ interface RecruitmentState {
   searchTerm: string
   selectedJob: string | null
   setRecruitments: (recruitments: Recruitment[]) => void
-  appendRecruitments: (newRecruitments: Recruitment[]) => void
   updateCache: (
     recruitments: Recruitment[], 
     search: string, 
@@ -34,10 +33,6 @@ const useRecruitmentStore = create<RecruitmentState>()(
       selectedJob: null,
       
       setRecruitments: (recruitments) => set({ recruitments }),
-      
-      appendRecruitments: (newRecruitments) => set(state => ({
-        recruitments: [...state.recruitments, ...newRecruitments]
-      })),
       
       updateCache: (recruitments, search, job) => set({
         recruitments,
