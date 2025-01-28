@@ -138,7 +138,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
   }
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.nativeEvent.isComposing) {
+    if (isComposing || e.nativeEvent.isComposing) {
       return;
     }
     
