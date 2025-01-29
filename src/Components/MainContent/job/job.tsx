@@ -1,13 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import './job.css'
-
+import useRecruitmentStore from '../Recruitment/recruitStore'
 interface JobProps {
   subscribeSaramin?: string[]
   onJobSelect: (selectedJob: string | null) => void
 }
 
 const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
-  const [selectedJob, setSelectedJob] = useState<string | null>(null)
+  const [selectedJob, setSelectedJob] = useState<string | null>(
+    useRecruitmentStore.getState().selectedJob || null
+  )
 
   const jobs = useMemo(() => {
     return subscribeSaramin.filter(job => typeof job === 'string')
