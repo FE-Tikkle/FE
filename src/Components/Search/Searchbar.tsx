@@ -58,18 +58,8 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
-        searchTerm
-      )}`
-      try {
-        const newWindow = window.open(searchUrl, '_blank')
-        if (newWindow) {
-          newWindow.focus()
-        }
-      } catch (error) {
-        console.error('검색 창을 열 수 없습니다:', error)
-      }
-      setSearchTerm('')
+      window.location.href = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+      setSearchTerm('');
     }
   }
 

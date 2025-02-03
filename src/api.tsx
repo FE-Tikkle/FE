@@ -652,7 +652,7 @@ export const updateBookmark = async (bookmark: BookmarkUpdate) => {
   try {
     // console.log('북마크 업데이트 요청:', bookmark)
     
-    const response = await axiosInstance.post(API_URL, {
+    const response = await axiosInstance.post('/user/bookmark', {
       uri: bookmark.uri,
       title: bookmark.title,
       state: bookmark.state
