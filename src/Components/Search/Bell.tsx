@@ -1,14 +1,29 @@
 import { motion } from 'framer-motion'
 import LoginModal2 from '../modal/Loginmodal2'
 import Mypageinfo from '../modal/Mypageinfomodal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getStorageData } from '../../util/storage'
 import './Bell.css'
 
 const Bell = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const isLoggedIn = localStorage.getItem('access_token')
+  // useEffect를 사용하여 컴포넌트 마운트 시 로그인 상태 확인
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const token = await getStorageData('access_token')
+        setIsLoggedIn(!!token)
+      } catch (error) {
+        console.error('Failed to check login status:', error)
+        setIsLoggedIn(false)
+      }
+    }
+    
+    checkLoginStatus()
+  }, [])
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)

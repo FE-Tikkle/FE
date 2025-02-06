@@ -8,5 +8,8 @@
   },
   "icons": {
     "128": "/img/Logo/extension_icon.png"
-  }
+  },
+  "permissions":[
+    "storage"
+  ]
 }

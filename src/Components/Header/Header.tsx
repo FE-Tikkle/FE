@@ -86,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
   }
 
   // useEffect(() => {
-  //   const accessToken = localStorage.getItem('access_token')
+  //   const accessToken = chrome.storage.local.get('access_token')
   //   if (accessToken) {
   //     setIsAuthTokenPresent(true)
   //     // console.log(accessToken)
