@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import RecruitmentCard from './recruitmentCard'
+import useRecruitmentStore from './recruitStore'
 import { fetchRecruitments, toggleBookmark2 } from '../../../api'
 import './recruitment.css'
 import { Recruitment } from '../../../store/Rec'
@@ -22,12 +23,21 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
   const prevPageRef = useRef<number>(1)
   const prevSearchTermRef = useRef<string>('')
   const prevSelectedJobRef = useRef<string | null>(null)
+  const { recruitments: cachedRecruitments, updateCache, shouldFetchNewData } = useRecruitmentStore()
+  
   const loadRecruitments = useCallback(async () => {
     if (isLoading || !hasMore || (page !== 1 && page === prevPageRef.current)) {
       return
     }
 
+    setIsLoading(true)
+
     try {
+      if (page === 1 && !shouldFetchNewData(searchTerm, selectedJob)) {
+        setRecruitments(cachedRecruitments)
+        return
+      }
+
       console.log('Fetching recruitments for page:', page)
       const data = await fetchRecruitments(
         15,
@@ -39,8 +49,14 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
       if (data.length === 0) {
         setHasMore(false)
       } else {
-        setRecruitments(prevRecruitments => [...prevRecruitments, ...data])
+        if (page === 1) {
+          setRecruitments(data)
+          updateCache(data, searchTerm, selectedJob, page, data.length === 15)
+        } else {
+          setRecruitments(prevRecruitments => [...prevRecruitments, ...data])
+        }
       }
+      
       prevPageRef.current = page
       prevSearchTermRef.current = searchTerm
       prevSelectedJobRef.current = selectedJob
@@ -51,7 +67,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
     } finally {
       setIsLoading(false)
     }
-  }, [isLoading, hasMore, page, searchTerm, selectedJob])
+  }, [isLoading, hasMore, page, searchTerm, selectedJob, cachedRecruitments, shouldFetchNewData, updateCache])
 
   useEffect(() => {
     if (
