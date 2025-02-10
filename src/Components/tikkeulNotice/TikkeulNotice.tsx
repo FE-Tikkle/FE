@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './TikkeulNotice.css';
 import TikkeulNoticeItem from './TikkeulNoticeItem';
+import { getTikkeulNotice } from '../../api';
+import type { TikkeulNotice as TikkeulNoticeType } from '../../api';
 
 interface TikkeulNoticeProps {
   isOpen: boolean;
@@ -9,6 +11,21 @@ interface TikkeulNoticeProps {
 
 const TikkeulNotice: React.FC<TikkeulNoticeProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
+
+  const [tikkeulNotices, setTikkeulNotices] = useState<TikkeulNoticeType[]>([]);
+
+  useEffect(() => {
+    const fetchTikkeulNotices = async () => {
+      try {
+        const notices = await getTikkeulNotice();
+        setTikkeulNotices(notices);
+      } catch (error) {
+        console.error('Error fetching tikkeul notices:', error);
+      }
+    };
+
+    fetchTikkeulNotices();
+  }, []);
 
   return (
     <div className='tikkeul-notice-container'>
@@ -24,16 +41,14 @@ const TikkeulNotice: React.FC<TikkeulNoticeProps> = ({ isOpen, onClose }) => {
       </div>
       <div className="tikkeul-notice-content-box">
         <div className="tikkeul-notice-contents-list">
-            <TikkeulNoticeItem title="공지사항" date="2025.02.08" />
-            <TikkeulNoticeItem title="공지사항" date="2025.02.07" />
-            <TikkeulNoticeItem title="공지사항" date="2025.02.07" />
-            <TikkeulNoticeItem title="공지사항" date="2025.02.07" />
+          {tikkeulNotices.map((notice) => (
+            <TikkeulNoticeItem title={notice.title} date={notice.timestamp} url={notice.url} />
+          ))}
         </div>
       </div>
       <div className="tikkeul-notice-footer">
         <div className="tikkeul-notice-footer-button">
-          <div className='tikkeul-notice-footer-button-text'>전체보기</div>
-          {/* <img src={arrowRight} alt="arrowRight" /> */}
+          <div className='tikkeul-notice-footer-button-text' onClick={() => window.open('https://tikkeul-service.notion.site/196389ea7463801ca419ddb629a60b51?pvs=74', '_blank')}>전체보기</div>
         </div>
       </div>
     </div>

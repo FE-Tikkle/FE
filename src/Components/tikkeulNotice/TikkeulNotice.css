@@ -8,8 +8,10 @@
     margin: 0 auto;
     right: 0;
     left: 0;
+    pointer-events: none; /* 컨테이너 자체는 마우스 이벤트를 무시 */
 }
 .tikkeul-notice {  
+    pointer-events: auto; /* 실제 notice 창은 마우스 이벤트 허용 */
     width: 444px;
     height: 223px;
     border-radius: 6px;

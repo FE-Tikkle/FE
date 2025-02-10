@@ -1,17 +1,23 @@
 import './TikkeulNotice.css';
 
-const TikkeulNoticeItem = (data: {title: string, date: string}) => {
+const handleClick = (url: string) => {
+    if(url !== "") {
+        window.open(url, '_blank');
+    }
+}
+
+const TikkeulNoticeItem = (data: {title: string, date: string,url:string}) => {
+    const date = new Date(data.date);
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    
     return(
-        <div className="tikkeul-notice-item">
+        <div className="tikkeul-notice-item" onClick={() => handleClick(data.url)}> 
             <div className="tikkeul-notice-item-title">
                 <div className='tikkeul-notice-item-title-text'>{data.title}</div>
                 {(() => {
-                    const today = new Date().toLocaleDateString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit'
-                    }).replace(/\. /g, '.').replace(/\.$/, '');
-                    return data.date === today;
+                    const today = new Date();
+                    const todayFormatted = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+                    return formattedDate === todayFormatted;
                 })() && (
                     <div className='tikkeul-notice-item-new'>
                         N
@@ -19,7 +25,7 @@ const TikkeulNoticeItem = (data: {title: string, date: string}) => {
                 )}
             </div>
             <div className='tikkeul-notice-item-date'>
-                <span className='tikkeul-notice-item-date-text'>{data.date}</span>
+                <span className='tikkeul-notice-item-date-text'>{formattedDate}</span>
             </div>
         </div>
     )
