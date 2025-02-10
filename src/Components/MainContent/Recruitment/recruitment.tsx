@@ -139,7 +139,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
           url={recruitment.url}
         />
       ))}
-      {isLoading && <Loading/>}
+      {isLoading && <Loading type="recruitment" />}
       {error && <p>{error}</p>}
       {!hasMore && <p>모든 채용 정보를 불러왔습니다.</p>}
     </div>
