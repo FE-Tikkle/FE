@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import LoginModal2 from '../modal/Loginmodal2'
-import Mypageinfo from '../modal/Mypageinfomodal'
+import TikkeulNotice from '../tikkeulNotice/TikkeulNotice'
 import { useState, useEffect } from 'react'
 import { getStorageData } from '../../util/storage'
 import './Bell.css'
@@ -52,7 +52,7 @@ const Bell = () => {
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
       />
-      <Mypageinfo isOpen={isModalOpen} onClose={closeModal} />
+      <TikkeulNotice isOpen={isModalOpen} onClose={closeModal} />
     </div>
   )
 }

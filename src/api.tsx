@@ -664,3 +664,22 @@ export const updateBookmark = async (bookmark: BookmarkUpdate) => {
     throw error
   }
 }
+
+export interface TikkeulNotice {
+  title: string;
+  content: string;
+  timestamp: string;
+  url: string;
+  univ: string;
+}
+
+export const getTikkeulNotice = async (): Promise<TikkeulNotice[]> => {
+  try {
+    const response = await axiosInstance.get<TikkeulNotice[]>('/tikkeul');
+    return response.data;
+  } catch (error) {
+    Sentry.captureException(error);
+    console.error('Error fetching tikkeul notices:', error);
+    throw error;
+  }
+};
