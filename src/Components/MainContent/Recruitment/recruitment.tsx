@@ -26,15 +26,24 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
   const { recruitments: cachedRecruitments, updateCache, shouldFetchNewData } = useRecruitmentStore()
   
   const loadRecruitments = useCallback(async () => {
-    if (isLoading || !hasMore || (page !== 1 && page === prevPageRef.current)) {
+    if (isLoading || !hasMore) {
       return
     }
 
     setIsLoading(true)
 
     try {
+      if (
+        page === prevPageRef.current &&
+        searchTerm === prevSearchTermRef.current &&
+        selectedJob === prevSelectedJobRef.current
+      ) {
+        return
+      }
+
       if (page === 1 && !shouldFetchNewData(searchTerm, selectedJob)) {
         setRecruitments(cachedRecruitments)
+        setHasMore(true)
         return
       }
 
@@ -46,15 +55,17 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
         searchTerm
       )
 
-      if (data.length === 0) {
+      if (data.length === 0 || data.length < 15) {
         setHasMore(false)
       } else {
-        if (page === 1) {
-          setRecruitments(data)
-          updateCache(data, searchTerm, selectedJob, page, data.length === 15)
-        } else {
-          setRecruitments(prevRecruitments => [...prevRecruitments, ...data])
-        }
+        setHasMore(true)
+      }
+
+      if (page === 1) {
+        setRecruitments(data)
+        updateCache(data, searchTerm, selectedJob, page, data.length === 15)
+      } else {
+        setRecruitments(prevRecruitments => [...prevRecruitments, ...data])
       }
       
       prevPageRef.current = page
@@ -86,7 +97,7 @@ const RecruitmentContainer: React.FC<RecruitmentContainerProps> = ({
     if (!containerRef.current || isLoading || !hasMore) return
 
     const { scrollTop, scrollHeight, clientHeight } = containerRef.current
-    if (scrollTop + clientHeight >= scrollHeight) {
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
       setPage(prevPage => prevPage + 1)
     }
   }, [isLoading, hasMore])

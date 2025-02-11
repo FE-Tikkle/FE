@@ -34,11 +34,13 @@ const useRecruitmentStore = create<RecruitmentState>()(
       
       setRecruitments: (recruitments) => set({ recruitments }),
       
-      updateCache: (recruitments, search, job) => set({
+      updateCache: (recruitments, search, job, currentPage, hasMoreItems) => set({
         recruitments,
         lastFetched: Date.now(),
         searchTerm: search,
         selectedJob: job,
+        page: currentPage,
+        hasMore: hasMoreItems,
       }),
       
       shouldFetchNewData: (search, job) => {
