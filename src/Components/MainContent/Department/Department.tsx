@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './Department.css'
-import useNoticeStore from '../Notice/noticeStore'
 
 interface DepartmentProps {
   departments: string[]
@@ -12,12 +11,13 @@ const Department: React.FC<DepartmentProps> = ({
   onDepartmentSelect,
 }) => {
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
-    useNoticeStore.getState().selectedDepartment || '전체공지'
+    localStorage.getItem('selectedDepartment') || '전체공지'
   )
 
   const handleClick = (department: string) => {
     setSelectedDepartment(department)
     onDepartmentSelect(department) 
+    localStorage.setItem('selectedDepartment', department)
   }
 
   return (

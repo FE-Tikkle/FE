@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Content.css'
 import Noticelist from './Notice/noticelist'
 import Noticemain from './Notice/noticemain'
@@ -29,8 +29,25 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const [selectedJob, setSelectedJob] = useState<string | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  useEffect(() => {
+    const savedDepartment = localStorage.getItem('selectedDepartment')
+    if (savedDepartment) {
+      setSelectedDepartment(savedDepartment)
+    }else{
+      setSelectedDepartment('전체공지')
+    }
+  }, [])
+
+  useEffect(() => {
+    const savedActiveTab = localStorage.getItem('activeTab')
+    if (savedActiveTab) {
+      setActiveTab(savedActiveTab)
+    }else{
+      setActiveTab('전체')
+    }
+  }, [])
+
   const handleTagListUpdate = (tags: string[]) => {
-    // setTagList(tags)
     setTabs(['전체', ...tags])
   }
 
@@ -40,6 +57,7 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
 
   const handleDepartmentSelect = (department: string) => {
     setSelectedDepartment(department)
+    localStorage.setItem('selectedDepartment', department)
   }
 
   const renderContent = () => {
@@ -111,7 +129,10 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
               <div
                 key={tab}
                 className={`tab ${activeTab === tab ? 'active' : ''}`}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => {
+                  setActiveTab(tab)
+                  localStorage.setItem('activeTab', tab)
+                }}
               >
                 {tab}
               </div>
