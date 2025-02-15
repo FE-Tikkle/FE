@@ -47,6 +47,13 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
     }
   }, [])
 
+  useEffect(() => {
+    const savedJob = localStorage.getItem('selectedJob')
+    if (savedJob) {
+      setSelectedJob(savedJob)
+    }
+  }, [])
+
   const handleTagListUpdate = (tags: string[]) => {
     setTabs(['전체', ...tags])
   }

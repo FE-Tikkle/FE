@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import './job.css'
-import useRecruitmentStore from '../Recruitment/recruitStore'
 interface JobProps {
   subscribeSaramin?: string[]
   onJobSelect: (selectedJob: string | null) => void
@@ -8,7 +7,7 @@ interface JobProps {
 
 const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
   const [selectedJob, setSelectedJob] = useState<string | null>(
-    useRecruitmentStore.getState().selectedJob || null
+    localStorage.getItem('selectedJob') || null
   )
 
   const jobs = useMemo(() => {
@@ -28,6 +27,7 @@ const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
     }
     setSelectedJob(job)
     onJobSelect(job)
+    localStorage.setItem('selectedJob', job)
   }
 
   return (
