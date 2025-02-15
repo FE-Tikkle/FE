@@ -23,9 +23,11 @@ const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
   }, [jobs, onJobSelect])
 
   const handleClick = (job: string) => {
-    const newSelectedJob = selectedJob === job ? null : job
-    setSelectedJob(newSelectedJob)
-    onJobSelect(newSelectedJob)
+    if (selectedJob === job) {
+        return; // 이미 선택된 job을 다시 클릭하면 아무 동작도 하지 않음
+    }
+    setSelectedJob(job)
+    onJobSelect(job)
   }
 
   return (
