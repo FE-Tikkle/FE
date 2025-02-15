@@ -42,7 +42,7 @@ const TikkeulNotice: React.FC<TikkeulNoticeProps> = ({ isOpen, onClose }) => {
       <div className="tikkeul-notice-content-box">
         <div className="tikkeul-notice-contents-list">
           {tikkeulNotices.map((notice) => (
-            <TikkeulNoticeItem title={notice.title} date={notice.timestamp} url={notice.url} />
+            <TikkeulNoticeItem title={notice.title} date={notice.timestamp} url={notice.url} isimportant={notice.isimportant} />
           ))}
         </div>
       </div>

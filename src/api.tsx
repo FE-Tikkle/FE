@@ -667,10 +667,10 @@ export const updateBookmark = async (bookmark: BookmarkUpdate) => {
 
 export interface TikkeulNotice {
   title: string;
-  content: string;
   timestamp: string;
   url: string;
   univ: string;
+  isimportant: boolean;
 }
 
 export const getTikkeulNotice = async (): Promise<TikkeulNotice[]> => {
