@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Department.css'
+import useNoticeStore from '../Notice/noticeStore'
 
 interface DepartmentProps {
   departments: string[]
@@ -10,21 +11,13 @@ const Department: React.FC<DepartmentProps> = ({
   departments,
   onDepartmentSelect,
 }) => {
-  // 초기값을 로컬스토리지에서 가져오기
-  const [selectedDepartment, setSelectedDepartment] = useState<string>(() => {
-    const stored = localStorage.getItem('selectedDepartment')
-    return stored || '전체공지'
-  })
-
-  // 컴포넌트 마운트 시 저장된 department 적용
-  useEffect(() => {
-    onDepartmentSelect(selectedDepartment)
-  }, [])
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
+    useNoticeStore.getState().selectedDepartment || '전체공지'
+  )
 
   const handleClick = (department: string) => {
     setSelectedDepartment(department)
-    onDepartmentSelect(department)
-    localStorage.setItem('selectedDepartment', department)
+    onDepartmentSelect(department) 
   }
 
   return (

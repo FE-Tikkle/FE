@@ -18,10 +18,7 @@ interface ContentSelectorProps {
 
 const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
-  const [activeTab, setActiveTab] = useState(() => {
-    // 로컬스토리지에서 activeTab 값을 가져와서 초기값으로 설정
-    return localStorage.getItem('activeTab') || '전체'
-  })
+  const [activeTab, setActiveTab] = useState('전체')
   const [tabs, setTabs] = useState(['전체'])
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
@@ -43,11 +40,6 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
 
   const handleDepartmentSelect = (department: string) => {
     setSelectedDepartment(department)
-  }
-
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab)
-    localStorage.setItem('activeTab', tab)
   }
 
   const renderContent = () => {
@@ -119,7 +111,7 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
               <div
                 key={tab}
                 className={`tab ${activeTab === tab ? 'active' : ''}`}
-                onClick={() => handleTabChange(tab)}
+                onClick={() => setActiveTab(tab)}
               >
                 {tab}
               </div>
