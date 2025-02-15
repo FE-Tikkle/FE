@@ -17,7 +17,10 @@ interface ContentSelectorProps {
 }
 
 const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
-  const [selectedNotice, setSelectedNotice] = useState('공지사항')
+  const [selectedNotice, setSelectedNotice] = useState(() => {
+    const savedNotice = localStorage.getItem('selectedContent')
+    return savedNotice || '공지사항'
+  })
   const [activeTab, setActiveTab] = useState('전체')
   const [tabs, setTabs] = useState(['전체'])
   const [searchTerm, setSearchTerm] = useState('')
@@ -66,6 +69,15 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
     setSelectedDepartment(department)
     localStorage.setItem('selectedDepartment', department)
   }
+
+  useEffect(() => {
+    const savedContent = localStorage.getItem('selectedContent')
+    if (savedContent) {
+      setSelectedNotice(savedContent)
+    }else{
+      setSelectedNotice('공지사항')
+    }
+  }, [])
 
   const renderContent = () => {
     switch (selectedNotice) {
@@ -123,7 +135,10 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
             className={`Content-Selector-sector ${
               selectedNotice === notice ? 'selected' : ''
             }`}
-            onClick={() => setSelectedNotice(notice)}
+            onClick={() => {
+              setSelectedNotice(notice)
+              localStorage.setItem('selectedContent', notice)
+            }}
           >
             {notice}
           </div>
