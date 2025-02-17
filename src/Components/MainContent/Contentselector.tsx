@@ -56,8 +56,13 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   useEffect(() => {
     const fetchJob = async () => {
       const savedJob = await getStorageData('selectedJob')
+      const jobList = userData?.subscribe_saramin
       if (savedJob) {
         setSelectedJob(savedJob)
+      }else{
+        if (jobList && jobList.length > 0) {
+          setSelectedJob(jobList[0])
+        }
       }
     }
     fetchJob()
@@ -84,6 +89,11 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const handleDepartmentSelect = async (department: string) => {
     setSelectedDepartment(department)
     await setStorageData('selectedDepartment', department)
+  }
+  
+  const handleJobSelect = async (job: string) => {
+    setSelectedJob(job)
+    await setStorageData('selectedJob', job)
   }
 
   const renderContent = () => {
@@ -115,7 +125,7 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
           : []
         return (
           <>
-            <Job subscribeSaramin={jobList} onJobSelect={setSelectedJob} />
+            <Job subscribeSaramin={jobList} onJobSelect={handleJobSelect} />
             <SearchBox onSearch={handleSearch} />
             <RecruitmentContainer
               searchTerm={searchTerm}
