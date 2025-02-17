@@ -16,7 +16,15 @@ const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
   useEffect(() => {
     const initializeSelectedJob = async () => {
       const savedJob = await getStorageData('selectedJob')
-      setSelectedJob(savedJob || null)
+      if(savedJob){
+        setSelectedJob(savedJob)
+      }else{
+        if(jobs.length > 0){
+          setSelectedJob(jobs[0])
+          onJobSelect(jobs[0])
+          setStorageData('selectedJob', jobs[0])
+        }
+      }
     }
     initializeSelectedJob()
   }, [])
