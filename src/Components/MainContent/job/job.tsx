@@ -1,26 +1,32 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import './job.css'
-import useRecruitmentStore from '../Recruitment/recruitStore'
+import { getStorageData, setStorageData } from '../../../util/storage'
 interface JobProps {
   subscribeSaramin?: string[]
-  onJobSelect: (selectedJob: string | null) => void
+  onJobSelect: (selectedJob: string ) => void
 }
 
 const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
-  const [selectedJob, setSelectedJob] = useState<string | null>(
-    useRecruitmentStore.getState().selectedJob || null
-  )
+  const [selectedJob, setSelectedJob] = useState<string | null>(null)
 
   const jobs = useMemo(() => {
     return subscribeSaramin.filter(job => typeof job === 'string')
   }, [subscribeSaramin])
 
   useEffect(() => {
-    if (jobs.length > 0 && !selectedJob) {
-      setSelectedJob(jobs[0])
-      onJobSelect(jobs[0])
+    const initializeSelectedJob = async () => {
+      const savedJob = await getStorageData('selectedJob')
+      setSelectedJob(savedJob || null)
     }
-  }, [jobs, onJobSelect])
+    initializeSelectedJob()
+  }, [])
+
+  // useEffect(() => {
+  //   if (jobs.length > 0 && !selectedJob) {
+  //     setSelectedJob(jobs[0])
+  //     onJobSelect(jobs[0])
+  //   }
+  // }, [jobs, onJobSelect])
 
   const handleClick = (job: string) => {
     if (selectedJob === job) {
@@ -28,6 +34,7 @@ const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
     }
     setSelectedJob(job)
     onJobSelect(job)
+    setStorageData('selectedJob', job)
   }
 
   return (

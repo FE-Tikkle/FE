@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
 
   const IntroLink = () => {
     window.open(
-      'https://tikkeul.notion.site/',
+      'https://tikkeul-service.notion.site/ccc5e7ddd888426387eac41537ca58b3',
       '_blank'
     )
   }
