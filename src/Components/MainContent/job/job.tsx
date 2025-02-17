@@ -1,18 +1,25 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import './job.css'
+import { getStorageData, setStorageData } from '../../../util/storage'
 interface JobProps {
   subscribeSaramin?: string[]
   onJobSelect: (selectedJob: string | null) => void
 }
 
 const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
-  const [selectedJob, setSelectedJob] = useState<string | null>(
-    localStorage.getItem('selectedJob') || null
-  )
+  const [selectedJob, setSelectedJob] = useState<string | null>(null)
 
   const jobs = useMemo(() => {
     return subscribeSaramin.filter(job => typeof job === 'string')
   }, [subscribeSaramin])
+
+  useEffect(() => {
+    const initializeSelectedJob = async () => {
+      const savedJob = await getStorageData('selectedJob')
+      setSelectedJob(savedJob || null)
+    }
+    initializeSelectedJob()
+  }, [])
 
   useEffect(() => {
     if (jobs.length > 0 && !selectedJob) {
@@ -27,7 +34,7 @@ const Job: React.FC<JobProps> = ({ subscribeSaramin = [], onJobSelect }) => {
     }
     setSelectedJob(job)
     onJobSelect(job)
-    localStorage.setItem('selectedJob', job)
+    setStorageData('selectedJob', job)
   }
 
   return (

@@ -11,16 +11,13 @@ import RecruitmentContainer from './Recruitment/recruitment'
 import Job from './job/job'
 import { UserData } from '../../api'
 import Mypageinfo from '../modal/Mypageinfomodal'
-
+import { getStorageData, setStorageData } from '../../util/storage'
 interface ContentSelectorProps {
   userData: UserData | null
 }
 
 const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
-  const [selectedNotice, setSelectedNotice] = useState(() => {
-    const savedNotice = localStorage.getItem('selectedContent')
-    return savedNotice || '공지사항'
-  })
+  const [selectedNotice, setSelectedNotice] = useState('공지사항')
   const [activeTab, setActiveTab] = useState('전체')
   const [tabs, setTabs] = useState(['전체'])
   const [searchTerm, setSearchTerm] = useState('')
@@ -33,28 +30,47 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
-    const savedDepartment = localStorage.getItem('selectedDepartment')
-    if (savedDepartment) {
-      setSelectedDepartment(savedDepartment)
-    }else{
-      setSelectedDepartment('전체공지')
+    const fetchDepartment = async () => {
+      const savedDepartment = await getStorageData('selectedDepartment')
+      if (savedDepartment) {
+        setSelectedDepartment(savedDepartment)
+      } else {
+        setSelectedDepartment('전체공지')
+      }
     }
+    fetchDepartment()
   }, [])
 
   useEffect(() => {
-    const savedActiveTab = localStorage.getItem('activeTab')
-    if (savedActiveTab) {
-      setActiveTab(savedActiveTab)
-    }else{
-      setActiveTab('전체')
+    const fetchActiveTab = async () => {
+      const savedActiveTab = await getStorageData('activeTab')
+      if (savedActiveTab) {
+        setActiveTab(savedActiveTab)
+      } else {
+        setActiveTab('전체')
+      }
     }
+    fetchActiveTab()
   }, [])
 
   useEffect(() => {
-    const savedJob = localStorage.getItem('selectedJob')
-    if (savedJob) {
-      setSelectedJob(savedJob)
+    const fetchJob = async () => {
+      const savedJob = await getStorageData('selectedJob')
+      if (savedJob) {
+        setSelectedJob(savedJob)
+      }
     }
+    fetchJob()
+  }, [])
+
+  useEffect(() => {
+    const fetchContent = async () => {
+      const savedContent = await getStorageData('selectedContent')
+      if (savedContent) {
+        setSelectedNotice(savedContent)
+      }
+    }
+    fetchContent()
   }, [])
 
   const handleTagListUpdate = (tags: string[]) => {
@@ -65,19 +81,10 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
     setSearchTerm(term)
   }
 
-  const handleDepartmentSelect = (department: string) => {
+  const handleDepartmentSelect = async (department: string) => {
     setSelectedDepartment(department)
-    localStorage.setItem('selectedDepartment', department)
+    await setStorageData('selectedDepartment', department)
   }
-
-  useEffect(() => {
-    const savedContent = localStorage.getItem('selectedContent')
-    if (savedContent) {
-      setSelectedNotice(savedContent)
-    }else{
-      setSelectedNotice('공지사항')
-    }
-  }, [])
 
   const renderContent = () => {
     switch (selectedNotice) {
@@ -135,9 +142,9 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
             className={`Content-Selector-sector ${
               selectedNotice === notice ? 'selected' : ''
             }`}
-            onClick={() => {
+            onClick={async () => {
               setSelectedNotice(notice)
-              localStorage.setItem('selectedContent', notice)
+              await setStorageData('selectedContent', notice)
             }}
           >
             {notice}
@@ -151,9 +158,9 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
               <div
                 key={tab}
                 className={`tab ${activeTab === tab ? 'active' : ''}`}
-                onClick={() => {
+                onClick={async () => {
                   setActiveTab(tab)
-                  localStorage.setItem('activeTab', tab)
+                  await setStorageData('activeTab', tab)
                 }}
               >
                 {tab}
