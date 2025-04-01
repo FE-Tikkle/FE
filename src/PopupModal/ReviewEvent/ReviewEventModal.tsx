@@ -9,20 +9,23 @@ interface ReviewEventModalProps {
 const ReviewEventModal: React.FC<ReviewEventModalProps> = ({ onClose, onHideToday }) => {
   const [isChecked, setIsChecked] = useState(false);
   
+  const handleClose = () => {
+    if (isChecked) {
+      onHideToday();
+    } else {
+      onClose();
+    }
+  };
+  
   const handleCheckboxClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsChecked(!isChecked);
-  };
-  
-  const handleHideToday = () => {
-    if (isChecked) {
-      onHideToday();
-    }
+    onHideToday();
   };
   
   return (
     <>
-      <div className='review-event-modal-overlay' onClick={onClose}></div>
+      <div className='review-event-modal-overlay' onClick={handleClose}></div>
       <div className='review-event-modal-container'>
         <div className='review-event-modal-background'></div>
         <div className='review-event-modal-content'>
@@ -39,15 +42,15 @@ const ReviewEventModal: React.FC<ReviewEventModalProps> = ({ onClose, onHideToda
                 티끌 가입 후 설문조사 실시해서 <br />
                 스타벅스 쿠폰 받아가세요!
             </div>
-            <div className='review-event-btn' onClick={() => window.open('설문조사_URL', '_blank')}>
+            <div className='review-event-btn' onClick={() => window.open('https://tally.so/r/w2okVb', '_blank')}>
                 설문조사 하러 가기
             </div>
         </div>
-        <div className='review-event-close-btn' onClick={onClose}>
+        <div className='review-event-close-btn' onClick={handleClose}>
             X
         </div>
       </div>
-      <div className='review-event-neglect-btn' onClick={handleHideToday}>
+      <div className='review-event-neglect-btn'>
           <div 
             className='review-event-neglect-btn-check' 
             onClick={handleCheckboxClick}

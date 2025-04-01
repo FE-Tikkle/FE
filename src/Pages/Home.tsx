@@ -13,7 +13,20 @@ import ReviewEventModal from '../PopupModal/ReviewEvent/ReviewEventModal'
 const Home: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(() => {
+    // 로그인 상태 확인 (access_token 존재 여부)
+    const isLoggedIn = localStorage.getItem('access_token') !== null;
+    
+    // 로그인되어 있지 않으면 모달 표시하지 않음
+    if (!isLoggedIn) return false;
+    
+    // 페이지 로드 시 로컬 스토리지 확인
+    const savedDate = localStorage.getItem('reviewModalHideDate');
+    const today = new Date().toDateString();
+    
+    // 저장된 날짜가 오늘과 같으면 모달 표시하지 않음
+    return savedDate !== today;
+  })
 
   useEffect(() => {
     const fetchUserData = async () => {
