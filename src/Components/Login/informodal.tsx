@@ -215,7 +215,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
   const handleFormSubmit = async () => {
     const userData = {
       name: name,
-      university: '인하대학교',
+      // university: '인하대학교',
       department: department,
       subscribe_notices: subscribeDepartments.filter(dept => dept !== ''),
       subscribe_saramin: fieldSelections.reduce((acc, selection) => {
