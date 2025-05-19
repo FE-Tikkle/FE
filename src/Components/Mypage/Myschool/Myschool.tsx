@@ -77,7 +77,7 @@ const Myschool: React.FC<MySchoolProps> = ({ onClose }) => {
     }
     try {
       await dispatch(updateSchoolInfo({
-        university: selectedSchool,
+        // university: selectedSchool,
         department: selectedDepartment,
         subscribe_notices: subscribeDepartments.filter(dept => dept !== '')
       })).unwrap();

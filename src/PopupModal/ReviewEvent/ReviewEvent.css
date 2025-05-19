@@ -8,16 +8,23 @@
   z-index: 999; /* 모달보다 낮고 다른 콘텐츠보다 높은 z-index */
 }
 
-.review-event-modal-container {
+.review-event-modal-wrapper {
   position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+.review-event-modal-container {
   padding: 20px;
   border-radius: 30px;
-  z-index: 1000;
   width: 400px;
   height: 494px;
+  position: relative;
 }
 
 .review-event-modal-background {
@@ -75,6 +82,7 @@
   padding: 15px 50px;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 18px;
   margin-top: 15px;
 }
 
@@ -83,11 +91,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+  margin-top: 20px;
   background-color: rgba(26, 31, 39, 0.8);
   padding: 10px 20px;
   border-radius: 20px;

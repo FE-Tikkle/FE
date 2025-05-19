@@ -571,7 +571,7 @@ export const getUserData = async (): Promise<UserData> => {
 }
 
 interface UpdateUniversityData {
-  university: string
+  // university: string
   department: string
   subscribe_notices: string[]
 }
