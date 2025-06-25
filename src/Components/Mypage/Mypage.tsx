@@ -7,7 +7,7 @@ import Recruit from './Recruit/Recruit'
 import Activites from './Activites/Activites'
 import Contest from './Contest/Contest'
 import DoLogin from './DoLogin'
-import Loading from '../Loading'
+import Loading from '../Loading/Loading'
 import { getUserData, UserData } from '../../api'
 import * as Sentry from '@sentry/react';
 import { getStorageData, removeStorageData } from '../../util/storage'
@@ -68,8 +68,8 @@ const selecterData = [
   },
 ]
 
-const Mypageinfo = lazy(() => import('../modal/Mypageinfomodal'))
-const LoginModal2 = lazy(() => import('../modal/Loginmodal2'))
+const Mypageinfo = lazy(() => import('../modal/MyPage/Mypageinfomodal'))
+const LoginModal2 = lazy(() => import('../modal/LoginModal/Loginmodal2'))
 
 const MyPageModal: React.FC<MyPageModalProps> = ({
   isOpen,

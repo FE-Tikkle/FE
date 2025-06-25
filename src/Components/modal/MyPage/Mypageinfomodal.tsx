@@ -1,15 +1,15 @@
 import React, { useState, Suspense, lazy } from 'react'
-import Modal from './modal'
+import Modal from '../modal'
 import { motion } from 'framer-motion'
 import './Mypage.css'
 
-// 각 섹션 컴포넌트들을 lazy loading으로 변경
-const Announcement = lazy(() => import('./Mypage/announcement'))
-const Help = lazy(() => import('./Mypage/help'))
-const Recommend = lazy(() => import('./Mypage/recommend'))
-const Service = lazy(() => import('./Mypage/service'))
-const Getout = lazy(() => import('./Mypage/getout'))
-import Loading from '../Loading'
+// 각 섹션 컴포넌트들을 lazy loading
+const Announcement = lazy(() => import('./Components/announcement'))
+const Help = lazy(() => import('./Components/help'))
+const Recommend = lazy(() => import('./Components/recommend'))
+const Service = lazy(() => import('./Components/service'))
+const Getout = lazy(() => import('./Components/getout'))
+import Loading from '../../Loading/Loading'
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void

@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal from './modal'
+import Modal from '../modal'
 import { motion } from 'framer-motion'
 import './Mypage.css'
 

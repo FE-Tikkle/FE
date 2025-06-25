@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import LoginModal2 from '../modal/Loginmodal2'
+import LoginModal2 from '../modal/LoginModal/Loginmodal2'
 import TikkeulNotice from '../tikkeulNotice/TikkeulNotice'
 import { useState, useEffect } from 'react'
 import { getStorageData } from '../../util/storage'

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './Mypagemodal.css'
-import {deleteUser} from '../../../api'
+import {deleteUser} from '../../../../api'
 import * as Sentry from '@sentry/react';
-import {removeStorageData } from '../../../util/storage'
+import {removeStorageData } from '../../../../util/storage'
 const Getout: React.FC = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false)
 

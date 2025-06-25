@@ -1,6 +1,6 @@
 import React from 'react'
 import './Mypagemodal.css'
-import { KAKAO_SDK_ID } from '../../../store/slices/constant'
+import { KAKAO_SDK_ID } from '../../../../store/slices/constant'
 import * as Sentry from '@sentry/react';
 declare global {
   interface Window {

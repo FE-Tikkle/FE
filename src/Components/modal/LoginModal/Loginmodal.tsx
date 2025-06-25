@@ -1,8 +1,8 @@
 import React from 'react'
-import Modal from './modal'
+import Modal from '../modal'
 import { motion } from 'framer-motion'
 import './modal.css'
-import DataListener from '../Login/DataListener'
+import DataListener from '../../Login/DataListener'
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void

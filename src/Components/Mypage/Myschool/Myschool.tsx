@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Loading from '../../Loading';
+import Loading from '../../Loading/Loading';
 import { 
   fetchSchools, 
   fetchDepartments, 

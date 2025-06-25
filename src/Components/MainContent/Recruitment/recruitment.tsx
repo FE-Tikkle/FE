@@ -5,7 +5,7 @@ import { fetchRecruitments, toggleBookmark2 } from '../../../api'
 import './recruitment.css'
 import { Recruitment } from '../../../store/Rec'
 import * as Sentry from '@sentry/react';
-import Loading from '../../Loading';
+import Loading from '../../Loading/Loading';
 interface RecruitmentContainerProps {
   searchTerm: string
   selectedJob: string | null

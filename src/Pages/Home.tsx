@@ -1,7 +1,7 @@
 //홈 화면 구성 
 import React, { useState, useEffect } from 'react'
 import Header from '../Components/Header/Header'
-import Loading from '../Components/Loading'
+import Loading from '../Components/Loading/Loading'
 import Footer from '../Components/Footer/Footer'
 import AuthHandler from '../Components/Login/AuthHandler'
 import Search from '../Components/Search/Searchbar'
