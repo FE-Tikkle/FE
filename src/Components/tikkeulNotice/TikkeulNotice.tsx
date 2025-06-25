@@ -1,3 +1,4 @@
+// 티끌 공지사항 컴포넌트
 import React, { useState, useEffect, useRef } from 'react';
 import './TikkeulNotice.css';
 import TikkeulNoticeItem from './TikkeulNoticeItem';
@@ -36,7 +37,6 @@ const TikkeulNotice: React.FC<TikkeulNoticeProps> = ({ isOpen, onClose }) => {
     
     document.addEventListener('mousedown', handleClickOutside);
     
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };

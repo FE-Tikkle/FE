@@ -1,3 +1,4 @@
+// 공모전 , 폐기 예정 
 import './competition.css'
 
 const Competition = () => {

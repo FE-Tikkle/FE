@@ -1,3 +1,4 @@
+// 대외활동 페이지, 버전 4 이후 폐기 예정 
 import React from 'react'
 // import ActivityCard from './activitesCard'
 // import { activitiesData } from './activitesData'

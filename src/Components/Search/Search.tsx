@@ -1,11 +1,12 @@
-import React from 'react'
+// 참조되는 곳 없음 
+// import React from 'react'
 
-const Search: React.FC = () => {
-  return (
-    <div>
-      <p>로그인 중입니다. 잠시만 기다려주세요...</p>
-    </div>
-  )
-}
+// const Search: React.FC = () => {
+//   return (
+//     <div>
+//       <p>로그인 중입니다. 잠시만 기다려주세요...</p>
+//     </div>
+//   )
+// }
 
-export default Search
+// export default Search

@@ -1,3 +1,4 @@
+// 장학 , 폐기 예정 
 import React from 'react'
 import './scholarshop.css'
 // interface NoticeData {
