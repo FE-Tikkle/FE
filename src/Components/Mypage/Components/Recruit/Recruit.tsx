@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Recruit.css'
 import { toast } from 'react-toastify'
-import { getSaraminTags, getUserData, updateUserSaraminSubscriptions } from '../../../api'
+import { getSaraminTags, getUserData, updateUserSaraminSubscriptions } from '../../../../api'
 import * as Sentry from '@sentry/react';
 interface FieldSelection {
   field: string

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import './History.css'
 import MypageContentSelector from './MypageContentSelector'
-import { getBookmarkStats, BookmarkStats } from '../../../api'
+import { getBookmarkStats, BookmarkStats } from '../../../../api'
 import * as Sentry from '@sentry/react';
 const History: React.FC = () => {
   const [bookmarkStats, setBookmarkStats] = useState<BookmarkStats | null>(null);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './History.css';
-import { getBookmarkedNotices, BookmarkedNotice,toggleBookmark } from '../../../api';
-import { getBookmarkedSaramin, BookmarkedSaramin,toggleBookmark2 } from '../../../api';
+import { getBookmarkedNotices, BookmarkedNotice,toggleBookmark } from '../../../../api';
+import { getBookmarkedSaramin, BookmarkedSaramin,toggleBookmark2 } from '../../../../api';
 import * as Sentry from '@sentry/react';
 
 interface Item {
