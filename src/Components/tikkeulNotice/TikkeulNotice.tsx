@@ -1,7 +1,7 @@
 // 티끌 공지사항 컴포넌트
 import React, { useState, useEffect, useRef } from 'react';
 import './TikkeulNotice.css';
-import TikkeulNoticeItem from './TikkeulNoticeItem';
+import TikkeulNoticeItem from './Components/TikkeulNoticeItem/TikkeulNoticeItem';
 import { getTikkeulNotice } from '../../api';
 import type { TikkeulNotice as TikkeulNoticeType } from '../../api';
 

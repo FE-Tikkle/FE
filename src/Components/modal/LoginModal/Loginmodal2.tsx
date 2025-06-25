@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from '../modal'
 import { motion } from 'framer-motion'
-import './Mypage.css'
+import './Loginmodal.css'
 
 interface LoginModalProps {
   isOpen: boolean
@@ -23,7 +23,7 @@ const LoginModal2: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <motion.div
-        className="Mypage2-modal-content"
+        className="LoginModal-contetnt"
         variants={container}
         initial="hidden"
         animate="visible"

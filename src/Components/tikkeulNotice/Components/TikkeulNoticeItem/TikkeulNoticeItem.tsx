@@ -1,5 +1,5 @@
 // 티끌 공지사항 아이템 컴포넌트
-import './TikkeulNotice.css';
+import './TikkeulNoticeItem.css';
 
 const handleClick = (url: string) => {
     if(url !== "") {
