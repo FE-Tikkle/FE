@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './notice.css'
-import { toggleBookmark, postContentsRequest } from '../../../api'
+import { toggleBookmark, postContentsRequest } from '../../../../api'
 import * as Sentry from '@sentry/react';
 
 interface Notice {

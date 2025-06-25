@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { Notice } from '../../../api'
+import { Notice } from '../../../../api'
 
 interface NoticeState {
   notices: Notice[]

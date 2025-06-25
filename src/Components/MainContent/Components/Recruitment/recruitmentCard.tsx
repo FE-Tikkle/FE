@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './recruitment.css'
-import { postContentsRequest } from '../../../api'
+import { postContentsRequest } from '../../../../api'
 import { motion } from 'framer-motion'
 import * as Sentry from '@sentry/react';
 interface RecruitmentCardProps {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Department.css'
-import { getStorageData, setStorageData } from '../../../util/storage'
+import { getStorageData, setStorageData } from '../../../../util/storage'
 interface DepartmentProps {
   departments: string[]
   onDepartmentSelect: (department: string) => void // Prop to notify parent about the selected department

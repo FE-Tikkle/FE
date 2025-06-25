@@ -5,9 +5,9 @@ import {
   getNoticeFiltered,
   NoticeResponse,
   Notice as NoticeType,
-} from '../../../api'
+} from '../../../../api'
 import * as Sentry from '@sentry/react';
-import Loading from '../../Loading/Loading';
+import Loading from '../../../Loading/Loading';
 interface NoticemainProps {
   activeTab: string
   onTagListUpdate: (tagList: string[]) => void

@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import RecruitmentCard from './recruitmentCard'
 import useRecruitmentStore from './recruitStore'
-import { fetchRecruitments, toggleBookmark2 } from '../../../api'
+import { fetchRecruitments, toggleBookmark2 } from '../../../../api'
 import './recruitment.css'
-import { Recruitment } from '../../../store/Rec'
+import { Recruitment } from '../../../../store/Rec'
 import * as Sentry from '@sentry/react';
-import Loading from '../../Loading/Loading';
+import Loading from '../../../Loading/Loading';
 interface RecruitmentContainerProps {
   searchTerm: string
   selectedJob: string | null

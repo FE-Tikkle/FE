@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import { Recruitment } from '../../../store/Rec'
+import { Recruitment } from '../../../../store/Rec'
 
 interface RecruitmentState {
   recruitments: Recruitment[]

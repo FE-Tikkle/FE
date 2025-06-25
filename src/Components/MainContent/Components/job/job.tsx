@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import './job.css'
-import { getStorageData, setStorageData } from '../../../util/storage'
+import { getStorageData, setStorageData } from '../../../../util/storage'
 interface JobProps {
   subscribeSaramin?: string[]
   onJobSelect: (selectedJob: string ) => void
