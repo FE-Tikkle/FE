@@ -1,5 +1,5 @@
 import React from 'react'
-import './DoLogin.css'
+
 const DoLogin: React.FC = () => {
   return (
     <div className="DoLogin">
