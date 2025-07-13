@@ -11,7 +11,7 @@ import {
 } from '../../api'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { getStorageData, setStorageData} from '../../util/storage'
+// import { getStorageData, setStorageData} from '../../util/storage'
 interface InfoModalProps {
   isOpen: boolean
   onClose: () => void
@@ -64,15 +64,15 @@ const InfoModal: React.FC<InfoModalProps> = ({
     { field: '', subField: '' },
   ])
   const [tags, setTags] = useState<Record<string, string[]>>({})
-  const [accessToken, setAccessToken] = useState<string | null>(null)
+  // const [accessToken, setAccessToken] = useState<string | null>(null)
 
-  useEffect(() => {
-    const getToken = async () => {
-      const token = await getStorageData('access_token')
-      setAccessToken(token)
-    }
-    getToken()
-  }, [])
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     const token = await getStorageData('access_token')
+  //     // setAccessToken(token)
+  //   }
+  //   getToken()
+  // }, [])
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -233,7 +233,7 @@ const InfoModal: React.FC<InfoModalProps> = ({
     console.log(userData);
     try {
       await postUserData(userData)
-      setStorageData('is_new', 'false')
+      // setStorageData('is_new', 'false')
       toast.success('사용자 정보가 성공적으로 등록되었습니다.')
       onSubmit()
       onClose()
