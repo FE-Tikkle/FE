@@ -204,7 +204,6 @@ export const postgoogleAuth = (googleAuthData: GoogleAuthBody) => {
 
 export const postUserData = async (userData: {
   name: string
-  university: string
   department: string
   subscribe_notices: string[]
   // terms_of_service_agreement: boolean
@@ -571,7 +570,7 @@ export const getUserData = async (): Promise<UserData> => {
 }
 
 interface UpdateUniversityData {
-  university: string
+  // university: string
   department: string
   subscribe_notices: string[]
 }
