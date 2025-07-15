@@ -1,0 +1,499 @@
+.History-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 1012.09px;
+}
+.History-title {
+  background-color: #E4EFFC;
+  padding: 12px 32px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 50px;
+}
+.History-title-num{
+  font-size: 20px;
+  font-weight: bold;
+  color: #101B49;
+}
+
+.History-title-name{
+  font-size: 20px;
+  font-weight: bold;
+  color: #101B49;
+}
+
+.History-boxs {
+  display: flex;
+  gap: 60px;
+}
+.History-box {
+  width: 207.536px;
+  height: 46.039px;
+  border-radius: 9.478px;
+  background: #edf5ff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.History-item {
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  gap: 50px;
+}
+.History-category {
+  color: #6f6f6f;
+  width: 60px;
+}
+.History-count {
+  color: #101b49;
+}
+.Mypage-selector {
+  display: flex;
+  flex-direction: column;
+  color: #101b49;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 70px;
+}
+.Mypage-Selector-main2 {
+  display: flex;
+  font-weight: 700;
+}
+.Mypage-main2 .tab {
+  width: 160px;
+  padding: 20px;
+  border-bottom: 3px solid transparent;
+}
+.Mypage-main2 .tab.active {
+  border-bottom: 3px solid #101b49;
+}
+.history-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.date-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: end;
+  margin-top: 30px;
+}
+
+.delete-button {
+  color: rgb(0, 0, 0);
+  border: none;
+
+  cursor: pointer;
+  border-radius: 4px;
+  background: none;
+  font-family: pretendard;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6f6f6f;
+}
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Pretendard;
+}
+
+.history-table th,
+.history-table td {
+  padding: 8px;
+  text-align: center;
+}
+
+.history-table th {
+  background-color: rgba(240, 241, 243, 0.86);
+  color: #6f6f6f;
+  font-size: 12px;
+  font-weight: 500;
+}
+.history-table td {
+  color: #101b49;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-bottom: 1px solid #d9d9d9;
+  height: 45px;
+}
+.pagination1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.page-button {
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+.page-number {
+  font-size: 14px;
+  color: #101b49;
+  font-weight: 400;
+  cursor: pointer;
+  opacity: 0.3;
+  padding: 10px;
+  margin-bottom: 3px;
+}
+
+.page-number.active {
+  color: #101b49;
+  text-decoration: none;
+  opacity: 1;
+  font-weight: 400;
+}
+.pagination1 img {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination1 img.disabled {
+  opacity: 0.3;
+}
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.checkbox-container input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-container .custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f2f3f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  margin-top: 5px;
+}
+
+.checkbox-container input[type='checkbox']:checked + .custom-checkbox {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.checkbox-container input[type='checkbox']:checked + .custom-checkbox::after {
+  opacity: 1;
+}
+
+.date-picker {
+  position: relative;
+  width: 120px;
+  display: flex;
+}
+
+.date-picker input[type='date'] {
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  background-color: white;
+  color: #6f6f6f;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.date-picker input[type='date']::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  color: transparent;
+  background: transparent;
+}
+
+.date-picker input[type='date']::-webkit-datetime-edit-year-field,
+.date-picker input[type='date']::-webkit-datetime-edit-month-field,
+.date-picker input[type='date']::-webkit-datetime-edit-day-field {
+  display: inline;
+}
+
+@media (min-width: 1571px) and (min-height: 901px) {
+  .Mypage-selector {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1570px) and (min-height: 901px) {
+  .History-Container {
+    margin-top: 8px;
+    width: 823.8px;
+  }
+  .History-title {
+    font-size: 17px;
+    margin-top: 25px;
+  }
+  .History-boxs {
+    display: flex;
+    gap: 20px;
+  }
+  .History-box {
+    width: 190.536px;
+    height: 46.039px;
+  }
+  .History-item {
+    font-size: 17px;
+    font-weight: 700;
+    display: flex;
+    gap: 40px;
+  }
+  .History-category {
+    width: 60px;
+  }
+  .History-count {
+    color: #101b49;
+  }
+  .Mypage-selector {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  .Mypage-Selector-main2 {
+    display: flex;
+    font-weight: 700;
+  }
+
+  .date-header {
+    justify-content: end;
+    margin-top: 10px;
+  }
+  .history-table th,
+  .history-table td {
+    padding: 1px;
+  }
+  .history-table th {
+    font-size: 12px;
+  }
+  .history-table td {
+    font-size: 13px;
+    height: 45px;
+  }
+  .pagination1 {
+    margin-top: 10px;
+  }
+  .page-number {
+    font-size: 13px;
+    opacity: 0.3;
+    padding: 8px;
+    margin-bottom: 3px;
+  }
+  .checkbox-container {
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .Mypage-main2 .tab {
+    width: 133px;
+    padding: 8px;
+    border-bottom: 3px solid transparent;
+  }
+  .date-picker input[type='date'] {
+    font-size: 12px;
+  }
+  .delete-button {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+@media (max-height: 900px) {
+  .History-Container {
+    margin-top: 15px;
+    width: 823.8px;
+  }
+  .History-title {
+    font-size: 17px;
+    margin-top: 25px;
+  }
+  .History-boxs {
+    display: flex;
+    gap: 20px;
+  }
+  .History-box {
+    width: 190.536px;
+    height: 46.039px;
+  }
+  .History-item {
+    font-size: 17px;
+    font-weight: 700;
+    display: flex;
+    gap: 40px;
+  }
+  .History-category {
+    width: 60px;
+  }
+  .History-count {
+    color: #101b49;
+  }
+  .Mypage-selector {
+    font-size: 14px;
+    margin-top: 30px;
+  }
+  .Mypage-Selector-main2 {
+    display: flex;
+    font-weight: 700;
+  }
+
+  .date-header {
+    justify-content: end;
+    margin-top: 10px;
+  }
+  .history-table th,
+  .history-table td {
+    padding: 1px;
+  }
+  .history-table th {
+    font-size: 12px;
+  }
+  .history-table td {
+    font-size: 13px;
+    height: 45px;
+  }
+  .pagination1 {
+    margin-top: 10px;
+  }
+  .page-number {
+    font-size: 13px;
+    opacity: 0.3;
+    padding: 8px;
+    margin-bottom: 3px;
+  }
+  .checkbox-container {
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .Mypage-main2 .tab {
+    width: 133px;
+    padding: 8px;
+    margin-left: 6px;
+    border-bottom: 3px solid transparent;
+  }
+  .date-picker input[type='date'] {
+    font-size: 12px;
+  }
+  .delete-button {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+@media (max-height: 800px) {
+  .History-Container {
+    margin-top: 15px;
+    width: 692.31px;
+  }
+  .History-title {
+    background-color: #E4EFFC;
+    padding: 12px 16px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .History-title-num{
+    font-size: 16px;
+    font-weight: bold;
+    color: #101B49;
+  }
+  
+  .History-title-name{
+    font-size: 16px;
+    font-weight: bold;
+    color: #101B49;
+  }
+  .History-boxs {
+    gap: 30px;
+  }
+  .History-box {
+    width: 150.536px;
+    height: 40.039px;
+  }
+  .History-item {
+    font-size: 13px;
+    font-weight: 700;
+    gap: 20px;
+  }
+  .History-category {
+    width: 60px;
+  }
+  .Mypage-selector {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .Mypage-Selector-main2 {
+    display: flex;
+    font-weight: 700;
+  }
+  .date-header {
+    margin-top: 5px;
+  }
+  .history-table th,
+  .history-table td {
+    padding: 1px;
+  }
+  .history-table th {
+    font-size: 12px;
+  }
+  .history-table td {
+    font-size: 11px;
+    height: 35px;
+  }
+  .pagination1 {
+    margin-top: 5px;
+  }
+  .page-number {
+    font-size: 12px;
+    opacity: 0.3;
+    padding: 5px;
+    margin-bottom: 3px;
+  }
+  .checkbox-container {
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .Mypage-main2 .tab {
+    width: 107px;
+    padding: 15px;
+    border-bottom: 3px solid transparent;
+  }
+  .date-picker {
+    position: relative;
+    width: 120px;
+    display: flex;
+  }
+
+  .date-picker input[type='date'] {
+    font-size: 12px;
+  }
+  .delete-button {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}

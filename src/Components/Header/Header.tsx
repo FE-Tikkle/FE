@@ -1,7 +1,7 @@
 import React, { useState, Suspense, lazy } from 'react'
 import './Header.css'
 import AuthHandler from '../Login/AuthHandler'
-import Loading from '../Loading'
+import Loading from '../Loading/Loading'
 const MyPageModal = lazy(() => import('../Mypage/Mypage'))
 // import { KAKAO_SDK_ID } from '../../store/slices/constant'
 import { UserData } from '../../api'
@@ -80,13 +80,13 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
 
   const IntroLink = () => {
     window.open(
-      'https://campusnow.notion.site/ccc5e7ddd888426387eac41537ca58b3',
+      'https://tikkeul-service.notion.site/ccc5e7ddd888426387eac41537ca58b3',
       '_blank'
     )
   }
 
   // useEffect(() => {
-  //   const accessToken = localStorage.getItem('access_token')
+  //   const accessToken = chrome.storage.local.get('access_token')
   //   if (accessToken) {
   //     setIsAuthTokenPresent(true)
   //     // console.log(accessToken)

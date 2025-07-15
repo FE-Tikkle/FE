@@ -1,0 +1,164 @@
+.recruitment-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 30px;
+  column-gap: 4px;
+  grid-auto-rows: 200px;
+  height: 740px;
+  overflow-y: auto;
+  margin-top: 10px;
+  width: 1096px;
+  cursor: pointer;
+}
+
+.recruitment-mainBox {
+  width: 352px;
+  height: 206.617px;
+  border-radius: 30px;
+  background: #fff;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+}
+.recruitment-Box1 {
+  display: flex;
+  margin-left: 15px;
+}
+.recruitment-company {
+  width: 95.743px;
+  height: 56.35px;
+  border-radius: 10px;
+  background: rgb(224, 224, 224);
+  margin-right: 20px;
+  box-shadow: 0px 1.044px 3.435px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.company-logo {
+  object-fit: cover;
+  width: 100%;
+}
+.recruitment-dday {
+  width: 70.96px;
+  height: 19.827px;
+  border-radius: 5px;
+  background: #101b49;
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 3px;
+}
+.bookmark-icon1 {
+  margin-left: 90px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.recruitment-Box2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.recruitment-title {
+  color: #484848;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: -7px;
+  width: 280px;
+}
+.recruitment-Box3 {
+  display: flex;
+  gap: 15px;
+  margin-left: 10px;
+}
+
+.recruitment-tag-summary {
+  font-size: 0.9em;
+  color: #666;
+}
+.recruitment-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100.67px;
+  height: 22.827px;
+  border-radius: 5px;
+  background: rgba(153, 197, 255, 0.25);
+  color: #335cff;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recruitment-Box4 {
+  display: flex;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.recruitment-info {
+  display: flex;
+  gap: 12px;
+}
+.recruitment-info-conaniner {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.recruitment-info1,
+.recruitment-info2 {
+  color: #3c332b;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recruitment-info2 {
+  font-weight: 400;
+}
+.recruitment-container::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 10px;
+}
+
+.recruitment-container::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 5px;
+}
+.recruitment-container::-webkit-scrollbar-thumb {
+  background-color: var(--Srollbar);
+  border-radius: 5px;
+}
+.bookmark-icon1.updating {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media (max-width: 1100px) {
+  .recruitment-container {
+    grid-template-columns: 1fr 1fr;
+    padding-right: 0px;
+    width: 790px;
+  }
+}

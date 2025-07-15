@@ -5,11 +5,11 @@ import '../../App.css'
 import { UserData } from '../../api'
 import { updateBookmark } from '../../api'
 import * as Sentry from '@sentry/react'
-import Bell from './Bell'
-import Loading from '../Loading'
+import Bell from '../Bell/Bell'
+import Loading from '../Loading/Loading'
 
 // Modal을 lazy loading으로 변경
-const Modal = lazy(() => import('../modal/modal'))
+const Modal = lazy(() => import('../Modal/modal'))
 
 interface Platform {
   name: string
@@ -57,10 +57,17 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
-        searchTerm
-      )}`
-      window.open(searchUrl, '_blank')
+      // Chrome Search API 사용
+      if (chrome?.search) {
+        chrome.search.query({
+          text: searchTerm,
+          disposition: 'NEW_TAB'  // 새 탭에서 검색 결과 열기
+        });
+      } else {
+        // 개발 환경이나 Chrome Search API를 사용할 수 없는 경우의 폴백
+        const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`
+        window.open(searchUrl, '_blank')
+      }
     }
   }
 
@@ -129,7 +136,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ userData }) => {
   }
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
       handleSearch()
     }
   }
