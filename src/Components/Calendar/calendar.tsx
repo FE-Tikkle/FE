@@ -31,19 +31,20 @@ const Calendar: React.FC<{
 
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1)
   const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
+    'January',
+    'February',
+    'March',
+    'April',
     'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  
 
   const changeMonth = (offset: number) => {
     setCurrentDate(prevDate => {
@@ -145,7 +146,7 @@ const Calendar: React.FC<{
         </button>
         <div className="month-text">
           <span className="month">{months[currentDate.getMonth()]}</span>
-          <span className="year">{currentDate.getFullYear()}</span>
+          {/* <span className="year">{currentDate.getFullYear()}</span> */}
         </div>
         <button onClick={() => changeMonth(1)} className="next-button">
           &gt;
