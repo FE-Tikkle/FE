@@ -1,33 +1,38 @@
-.Contetn-selecter {
+/* .Contetn-selecter {
   display: flex;
   flex-direction: column;
-}
-.Content-Selector-main {
+} */
+.Content-Selector-main { /*채용공고 거기*/
   display: flex;
-  width: 1090px;
-  height: 52px;
-  justify-content: center;
+  width: 1110px;
+  height: 57px;
+  justify-content: space-between;
   align-items: center;
-  gap: 30px;
   flex-shrink: 0;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.57);
-  margin-left: 20px;
+  background: #ffffff;
+  padding: 10px 10px;
+  gap: 20px;
+  border-radius: 8px; 
+  box-sizing: border-box;
+  margin-top: 30px;
+  
 }
+
+
 .Content-Selector-sector {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 187.75px;
-  height: 38.899px;
+  width: 200.75px;
+  height: 36.899px;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 8px;
   background: none;
   color: #3c332b;
   font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
   transition: background-color 0.3s;
   cursor: pointer;
