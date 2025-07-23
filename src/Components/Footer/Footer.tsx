@@ -16,10 +16,11 @@ const Footer: React.FC = () => {
           <div className="Footer-Logo">2024 티끌. AII RIGHT RESERVED.</div>
           <div className="Footer-text">
             <div>service.tikkeul@gmail.com</div>
+            <div className="Footer-address">인천광역시 미추홀구 인하로 100</div>
           </div>
         </div>
         <div className="Footer-up" onClick={scrollToTop}>
-          <img src="img/up.svg" alt="Up" />
+          <img src="img/up2.svg" alt="Up" />
         </div>
       </div>
     </div>

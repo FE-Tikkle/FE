@@ -2,31 +2,42 @@
   width: 100%;
   height: 305px;
   flex-shrink: 0;
-  background: #191818;
+  background: #31353D;
   display: flex;
 }
 .Footer-Logo {
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: 32px;
-  color: var(--blue, #ffede1);
+  color: var(--blue, #EEF6FF);
 }
 .Footer-text {
   color: var(--gray1, #878787);
   font-family: Pretendard;
-  font-size: 15px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 28px;
+  display: flex;           
+  flex-direction: column; 
 }
+.Footer-address {
+  margin-top: 5px;  
+}
+
+
 .Footer-Container {
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 50px;
-  margin-left: 150px;
+  margin-left: 100px;  
   margin-top: 70px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: baseline
+  
 }
 .Footer-up {
   position: absolute;
