@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import LoginModal2 from '../Modal/LoginModal/Loginmodal2'
-import TikkeulNotice from '../TikkeulNotice/TikkeulNotice'
+import LoginModal2 from '../modal/LoginModal/Loginmodal2'// Adjusted path to match the correct module location
+import TikkeulNotice from '../tikkeulNotice/TikkeulNotice'
 import { useState, useEffect } from 'react'
 import { getStorageData } from '../../util/storage'
 import './Bell.css'

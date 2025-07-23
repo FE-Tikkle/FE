@@ -17,14 +17,34 @@
 .Header-right {
   display: flex;
   align-items: center;
-  color: #6f6f6f;
-  text-align: center;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  gap: 2vw;
+  gap: 20px;
 }
+
+.Header-button {
+  padding: 2px 20px;
+  border: 1px solid #c2c2c2;
+  border-radius: 9999px;
+  background-color: white;
+  color: #9fa1a6;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.Header-button:hover {
+  background-color: #f5f5f5;
+}
+
+@media (max-width: 700px) {
+  .Header-intro {
+    display: none;
+  }
+}
+
+
 .Header-text {
   color: #6f6f6f;
   font-size: 20px;
@@ -40,9 +60,6 @@
   height: 19px;
 }
 
-.Header-intro {
-  cursor: pointer;
-}
 .Header-profile-img {
   width: 34.688px;
   height: 34.688px;
@@ -56,11 +73,4 @@
   margin-right: 20px;
   gap: 1vw;
 }
-.Header-mypage {
-  cursor: pointer;
-}
-@media (max-width: 700px) {
-  .Header-intro {
-    display: none;
-  }
-}
+

@@ -1,7 +1,7 @@
 // 마이페이지 내부 정보 전달 모달 컴포넌트
 // 이 컴포넌트는 마이페이지에서 설정을 눌렀을 경우 나타남
 import React, { useState, Suspense, lazy } from 'react'
-import Modal from '../modal'
+import Modal from '../../modal/modal'
 import { motion } from 'framer-motion'
 import './Mypage.css'
 

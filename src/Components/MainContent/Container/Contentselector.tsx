@@ -10,12 +10,11 @@ import Department from '../Components/Department/Department'
 import RecruitmentContainer from '../Components/Recruitment/recruitment'
 import Job from '../Components/job/job'
 import { UserData } from '../../../api'
-import Mypageinfo from '../../Modal/MyPageInfoModal/Mypageinfomodal'
+import Mypageinfo from '../../modal/MyPageInfoModal/Mypageinfomodal'
 import { getStorageData, setStorageData } from '../../../util/storage'
 interface ContentSelectorProps {
   userData: UserData | null
 }
-
 const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const [selectedNotice, setSelectedNotice] = useState('공지사항')
   const [activeTab, setActiveTab] = useState('전체')

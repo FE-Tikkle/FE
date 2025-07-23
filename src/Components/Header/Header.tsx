@@ -105,15 +105,16 @@ const Header: React.FC<HeaderProps> = ({ userData }) => {
         </div>
       </div>
       <div className="Header-right">
-        <div className="Header-intro">
+        {/* <div className="Header-intro">
           {userData ? `${userData.name}님 반가워요!` : '게스트님 반가워요!'}
-        </div>
-        <div className="Header-intro" onClick={IntroLink}>
-          티끌 소개
-        </div>
-        <div className="Header-mypage" onClick={() => openModal(0)}>
-          마이페이지
-        </div>
+        </div> */}
+       <div className="Header-button Header-intro" onClick={IntroLink}>
+         티끌 소개
+       </div>
+       <div className="Header-button Header-mypage" onClick={() => openModal(0)}>
+         마이페이지
+       </div>  
+
         {/* <div className="Header-intro" onClick={shareToKakao}>
           공유하기
         </div> */}
