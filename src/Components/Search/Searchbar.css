@@ -56,7 +56,7 @@
 }
 .Search-Each-button,
 .Search-Each-button_add {
-  width: 74px;
+  width: 100px;
   height: 74px;
   flex-shrink: 0;
   border-radius: 20px;
@@ -66,7 +66,7 @@
   color: #484848;
   text-align: center;
   font-family: 'Pretendard';
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -97,22 +97,22 @@
 }
 
 .Platform-icon {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 .Favicon-icon {
-  width: 20px;
-  height: 20px;
-  margin-top: 8px;
-  margin-bottom: 1px;
+  width: 23px;
+  height: 23px;
+  margin-top: 6px;
+  margin-bottom: 2px;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
 .Delete-button {
   position: absolute;
-  top: 7px;
-  right: 0;
+  top: 10px;
+  right: 8px;
 
   background: none;
   border: none;

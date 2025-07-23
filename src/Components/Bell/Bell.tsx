@@ -45,7 +45,7 @@ const Bell = () => {
         }}
         onClick={handleBellClick}
       >
-        <img src="img/bell3.svg" alt="bell" className='Bell-img'/>
+        <img src="img/bell4.svg" alt="bell" className='Bell-img'/>
       </motion.div>
 
       <LoginModal2
