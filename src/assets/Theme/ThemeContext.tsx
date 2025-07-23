@@ -32,7 +32,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       '--button-background-color': '#fff',
       '--button-border': '1px solid #D9D9D9',
       '--main-container-background':
-        'linear-gradient(112deg, #F9FBFF -9.21%, #FFE5D4 27.95%, #DBECEF 63.6%, #F3F4F4 97.17%)',
+      'linear-gradient(to bottom, #A3CEFF, #E4F0FF)',
+
       '--Schedule-recnet-icon-color': '#ffb281',
       '--Schedule-text-icon-color': '#3c332b',
       '--Search-new-platform': '#ffeee3',
@@ -45,7 +46,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       '--button-background-color': '#FFFFFF',
       '--button-border': '1px solid #D9D9D9',
       '--main-container-background':
-        'linear-gradient(107deg, #EEEEFD 11.23%, #DDE7F4 40.83%, #E9F2FF 65.36%)',
+      'linear-gradient(to bottom, #A3CEFF, #E4F0FF)',
+
       '--Schedule-recnet-icon-color': '#E4EFFC',
       '--Schedule-text-icon-color': '#101B49',
       '--Search-new-platform': '#E4EFFC',
