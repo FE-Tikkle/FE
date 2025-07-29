@@ -1,71 +1,45 @@
 .Footer-main {
   width: 100%;
-  height: 305px;
+  height: 20rem;
   flex-shrink: 0;
   background: #31353D;
   display: flex;
+  position: relative;
 }
-.Footer-Logo {
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 32px;
-  color: var(--blue, #EEF6FF);
-}
-.Footer-text {
-  color: var(--gray1, #878787);
-  font-family: Pretendard;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 28px;
-  display: flex;           
-  flex-direction: column; 
-}
-.Footer-address {
-  margin-top: 5px;  
-}
-
 
 .Footer-Container {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  gap: 50px;
-  margin-left: 100px;  
-  margin-top: 70px;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: baseline
-  
+  align-items: baseline;
+
+  /* gap: clamp(1rem, 3vw, 3rem);  */
+  margin-left: clamp(1rem, 6vw, 5rem); 
+  margin-top: 4rem; 
+  max-width: 90rem; 
+
 }
+
+.Footer-Logo {
+  font-family: Pretendard;
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  color: var(--blue, #EEF6FF);
+}
+
 .Footer-up {
-  position: absolute;
-  right: 50px;
-  margin-top: 50px;
+  position: absolute; 
+  right: clamp(3.25rem,3vw, 4rem);
+  bottom: 12.5rem;
   cursor: pointer;
+  z-index: 9999; /*겹침방지*/
 }
 
 .Footer-up img {
-  width: 70px;
-  height: 70px;
-}
+  width: 4rem;
+  height: 4rem;
 
-@media (max-width: 1100px) {
-  .Footer-Container {
-    margin-left: 100px;
-  }
-}
-@media (max-width: 900px) {
-  .Footer-Container {
-    margin-left: 50px;
-  }
-  .Footer-up {
-    margin-top: 150px;
-  }
-}
-@media (max-width: 700px) {
-  .Footer-Container {
-    margin-left: 20px;
-  }
 }
