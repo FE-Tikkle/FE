@@ -14,10 +14,9 @@
   justify-content: flex-start;
   align-items: baseline;
 
-  /* gap: clamp(1rem, 3vw, 3rem);  */
-  margin-left: clamp(1rem, 6vw, 5rem); 
+  margin-left: clamp(3.25rem, 3vw,4rem); 
   margin-top: 4rem; 
-  max-width: 90rem; 
+  max-width: 90rem; /*1440px*/
 
 }
 

@@ -1,6 +1,8 @@
 import React, { useState} from 'react'
 // import { gapi} from 'gapi-script'
 import './calendar.css'
+import CalendarNavbar from './calendarNavbar'
+import Timetable from "../Timetable/Timetable"
 // import { GOOGLE_API_KEY, GOOGLE_ID } from '../../store/slices/constant'
 // import * as Sentry from '@sentry/react';
 // const CLIENT_ID = GOOGLE_ID
@@ -18,6 +20,10 @@ const Calendar: React.FC<{
   // const [events, setEvents] = useState<any[]>([])
   // const [isSignedIn, setIsSignedIn] = useState(false)
 
+  // 탭 상태 추가: calendar / timetable
+  const [selectedTab, setSelectedTab] = useState<'calendar' | 'timetable'>('calendar')
+  
+  
   const daysInMonth = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth() + 1,
@@ -130,73 +136,71 @@ const Calendar: React.FC<{
     // const eventsForDay = events.filter(
     //   event => new Date(event.start.dateTime).getDate() === day
     // )
-    setSelectedEvents([]) // 임시로 빈 배열 전달
+    setSelectedEvents([]) // 임시로 빈 배열 전달 나중에 여기 수정하면 됨
   }
-
   return (
-    <div className="Calendar-Container">
-      {/* {!isSignedIn && (
-        <button className="Calendar-button" onClick={handleAuthClick}>
-          구글 캘린더 연동
-        </button>
-      )} */}
-      <div className="month-header">
-        <button onClick={() => changeMonth(-1)} className="prev-button">
-          &lt;
-        </button>
-        <div className="month-text">
-          <span className="month">{months[currentDate.getMonth()]}</span>
-          {/* <span className="year">{currentDate.getFullYear()}</span> */}
-        </div>
-        <button onClick={() => changeMonth(1)} className="next-button">
-          &gt;
-        </button>
-      </div>
-      <div className="week-days">
-        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
-          <div 
-            key={day} 
-            className={`week-day ${index === 0 ? 'sunday' : ''} ${index === 6 ? 'saturday' : ''}`}
-          >
-            {day}
-          </div>
-        ))}
-      </div>
-      <div className="days-grid">
-        {Array(firstDayOfMonth)
-          .fill(null)
-          .map((_, index) => (
-            <div key={`empty-${index}`} className="empty-day" />
-          ))}
-        {days.map((day, index) => {
-          const isToday =
-            day === new Date().getDate() &&
-            currentDate.getMonth() === new Date().getMonth() &&
-            currentDate.getFullYear() === new Date().getFullYear()
-
-          // 첫 줄에 있는 날짜인지 확인
-          const isFirstRow = index + firstDayOfMonth < 7
-
-          return (
-            <div
-              key={day}
-              className={`day ${isToday ? 'today' : ''} ${isFirstRow ? 'first-row' : ''}`}
-              onClick={() => handleDayClick(day)}
-            >
-              <div className="day-number">{day}</div>
-              {/* <div
-                className={`event-count ${isToday ? 'no-background' : ''} ${
-                  eventCount === 0 ? 'empty' : ''
-                }`}
-              >
-                + {eventCount}
-              </div> */}
+    <div>
+      {/* 탭 네비게이션 */}
+      <CalendarNavbar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+  
+      {/* 탭에 따라 달라지는 화면 */}
+      {selectedTab === 'calendar' ? (
+        <div className="Calendar-Container">
+          <div className="month-header">
+            <button onClick={() => changeMonth(-1)} className="prev-button">
+              &lt;
+            </button>
+            <div className="month-text">
+              <span className="month">{months[currentDate.getMonth()]}</span>
             </div>
-          )
-        })}
-      </div>
+            <button onClick={() => changeMonth(1)} className="next-button">
+              &gt;
+            </button>
+          </div>
+  
+          <div className="week-days">
+            {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+              <div
+                key={day}
+                className={`week-day ${index === 0 ? 'sunday' : ''} ${index === 6 ? 'saturday' : ''}`}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+  
+          <div className="days-grid">
+            {Array(firstDayOfMonth)
+              .fill(null)
+              .map((_, index) => (
+                <div key={`empty-${index}`} className="empty-day" />
+              ))}
+            {days.map((day, index) => {
+              const isToday =
+                day === new Date().getDate() &&
+                currentDate.getMonth() === new Date().getMonth() &&
+                currentDate.getFullYear() === new Date().getFullYear()
+  
+              const isFirstRow = index + firstDayOfMonth < 7
+  
+              return (
+                <div
+                  key={day}
+                  className={`day ${isToday ? 'today' : ''} ${isFirstRow ? 'first-row' : ''}`}
+                  onClick={() => handleDayClick(day)}
+                >
+                  <div className="day-number">{day}</div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="timetable-container">
+          <Timetable/>
+        </div>
+      )}
     </div>
   )
 }
-
 export default Calendar
