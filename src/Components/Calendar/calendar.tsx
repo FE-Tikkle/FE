@@ -139,7 +139,7 @@ const Calendar: React.FC<{
     setSelectedEvents([]) // 임시로 빈 배열 전달 나중에 여기 수정하면 됨
   }
   return (
-    <div>
+    <div className= "calendar-box">
       {/* 탭 네비게이션 */}
       <CalendarNavbar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
   

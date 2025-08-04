@@ -24,6 +24,9 @@ const Timetable: React.FC = () => {
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   return (
+
+    <div className="timetable-container">
+        
     <div className="timetable-grid">
       {/* 요일 헤더 */}
       <div className="empty-cell" />
@@ -56,6 +59,8 @@ const Timetable: React.FC = () => {
           {cls.name}
         </div>
       ))}
+    </div>
+
     </div>
   )
 }

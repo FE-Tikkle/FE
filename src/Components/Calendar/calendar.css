@@ -1,23 +1,24 @@
 .Calendar-Container {
-  width: 305.825px;
-  height: 420.518px;
-  border-radius: 8px;
+  width: 17rem;
+  height: 24.5rem;
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0.5rem;
   background: #fff;
-  margin-left: 40px;
   position: relative;
-  margin-top: 30px;
+  overflow: hidden; 
+  flex-wrap: wrap;
+
 }
 .calendar-wrapper {
-  width: 300px;
+  width: 100%;
   border: 1px solid hsl(0, 0%, 88%);
-
   overflow: hidden;
   font-family: Arial, sans-serif;
   background-color: white;
 }
 
 .month-header {
-  padding: 55px;
+  padding:2.5rem;
   text-align: center;
   display: flex;
   align-items: center;
@@ -25,9 +26,6 @@
   position: relative;
 }
 .month-header div {
-  position: absolute;
-  top: 20px;
-  left: 20px;
   font-family: Pretendard;
   font-size: 30px;
   font-style: normal;
