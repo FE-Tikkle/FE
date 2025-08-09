@@ -147,15 +147,17 @@ const Calendar: React.FC<{
       {selectedTab === 'calendar' ? (
         <div className="Calendar-Container">
           <div className="month-header">
-            <button onClick={() => changeMonth(-1)} className="prev-button">
-              &lt;
-            </button>
             <div className="month-text">
               <span className="month">{months[currentDate.getMonth()]}</span>
             </div>
+            <div className="nav-buttons">
+            <button onClick={() => changeMonth(-1)} className="prev-button">
+              &lt;
+            </button>
             <button onClick={() => changeMonth(1)} className="next-button">
               &gt;
             </button>
+            </div>
           </div>
   
           <div className="week-days">
