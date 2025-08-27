@@ -220,7 +220,7 @@ export const postUserData = async (userData: {
 }
 export const refreshToken = async (refreshToken: string) => {
   const response = await axios.post(
-    'https://api.tikkeul.site/auth/refresh',
+    `${BASE_URL}/auth/refresh`,
     {},
     {
       headers: {

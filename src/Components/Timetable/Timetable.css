@@ -1,61 +1,65 @@
 .timetable-container {
     display: flex;
     position: relative;
-    width: 16em;
-    height: 20.5rem;
-    padding: 5rem 1.5rem 1.5rem 1.5rem;
+    width: 18rem;
+    height: 26rem;
+    padding: 0rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
     background-color: #fff;
-    border-radius: 0 0.5rem 0.5rem 0.5rem; 
 ;
+  }
+  .tt-term{
+    position:relative;
+    display: flex;
+    color: #101b49;
+    font-family: Pretendard, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
   }
   
   .timetable-grid {
     display: grid;
-    grid-template-columns: 4rem repeat(7, 1fr); /* 시간 + 요일 7개 */
-    grid-template-rows: 2.5rem repeat(13, 1fr); /* 요일 라벨 + 13시간 */
-    gap: 0.1rem;
-    background-color: #e0e0e0;
-    border: 1px solid #ccc;
-    border-radius: 0.75rem;
-    overflow: hidden;
+    grid-template-columns: 1rem repeat(7, 1fr); /* 시간 + 요일 7개 */
+    grid-template-rows: 1rem repeat(13, 1fr); /* 요일 라벨 + 13시간 */
+    background-color: #ffffff;
+    overflow: cover;
   }
   
   /* 시간 라벨 */
   .timetable-grid > .hour-label {
     grid-column: 1;
-    background-color: #f5f5f5;
     text-align: right;
-    padding-right: 0.5rem;
     font-size: 0.75rem;
-    color: #666;
+    font-weight: 400;
     display: flex;
-    align-items: center;
+    color: #b8b8b8;
+    align-items: space-between;
     justify-content: flex-end;
-  }
   
-  /* 요일 라벨 */
-  .timetable-grid > .day-label {
-    grid-row: 1;
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.85rem;
-    background-color: #eaeaea;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
   }
+  /* 요일 라벨 */
+  .day-header {
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #b8b8b8;
+    margin-left: 1rem;
+    margin-bottom: 0.75rem;
+  } 
   
   /* 수업 블록 */
   .class-block {
-    color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
+    color: rgb(0, 0, 0);
+    font-weight: 300;
+    font-size: 0.5rem;
     text-align: center;
-    padding: 0.4rem;
-    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     word-break: break-word;
-    line-height: 1.2;
+    line-height: 1.7;
   }
   

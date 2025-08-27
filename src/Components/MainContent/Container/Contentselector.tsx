@@ -24,7 +24,7 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
     null
   ) // Correctly type as string | null
   // const [tagList, setTagList] = useState<string[]>([]) // Keep this if needed
-  const notices = ['공지사항', '채용공고', '장학', '대외활동', '공모전']
+  const notices = ['공지사항', '채용공고']
   const [selectedJob, setSelectedJob] = useState<string | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -98,6 +98,10 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
   const renderContent = () => {
     switch (selectedNotice) {
       case '공지사항':
+      if (activeTab === '장학') return <Scholarship /> 
+      if (activeTab === '대외활동') return <Activities /> 
+      if (activeTab === '공모전') return <Competition /> 
+
         return (
           <>
             {userData && (
@@ -118,20 +122,20 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
         )
       case '장학':
         return <Scholarship />
-      case '채용공고':
-        const jobList = userData?.subscribe_saramin
-          ? Object.values(userData.subscribe_saramin).flat()
-          : []
-        return (
-          <>
-            <Job subscribeSaramin={jobList} onJobSelect={handleJobSelect} />
-            <SearchBox onSearch={handleSearch} />
-            <RecruitmentContainer
-              searchTerm={searchTerm}
-              selectedJob={selectedJob}
-            />
-          </>
-        )
+      // case '채용공고':
+      //   const jobList = userData?.subscribe_saramin
+      //     ? Object.values(userData.subscribe_saramin).flat()
+      //     : []
+      //   return (
+      //     <>
+      //       <Job subscribeSaramin={jobList} onJobSelect={handleJobSelect} />
+      //       <SearchBox onSearch={handleSearch} />
+      //       <RecruitmentContainer
+      //         searchTerm={searchTerm}
+      //         selectedJob={selectedJob}
+      //       />
+      //     </>
+      //   )
       case '대외활동':
         return <Activities />
       case '공모전':
@@ -163,7 +167,7 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
       <div className="Counter-main2">
         {selectedNotice === '공지사항' && (
           <div className="Content-Selector-main2">
-            {tabs.map(tab => (
+            {[ ...tabs, '장학', '대외활동', '공모전'].map(tab => (
               <div
                 key={tab}
                 className={`tab ${activeTab === tab ? 'active' : ''}`}
@@ -178,7 +182,7 @@ const ContentSelector: React.FC<ContentSelectorProps> = ({ userData }) => {
           </div>
         )}
       </div>
-      <div className={`Contents ${selectedNotice === '채용공고'||'공지사항' ? 'align-left' : ''}`}>
+      <div className={`Contents ${selectedNotice === '채용공고' || selectedNotice === '공지사항' ? 'align-left' : ''}`}>
         {renderContent()}
       </div>
     </div>
