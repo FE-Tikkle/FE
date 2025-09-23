@@ -10,7 +10,7 @@ import Department from '../Components/Department/Department'
 import RecruitmentContainer from '../Components/Recruitment/recruitment'
 import Job from '../Components/job/job'
 import { UserData } from '../../../api'
-import Mypageinfo from '../../Modal/MyPageInfoModal/Mypageinfomodal'
+import Mypageinfo from '../../modal/MyPageInfoModal/Mypageinfomodal'
 import { getStorageData, setStorageData } from '../../../util/storage'
 interface ContentSelectorProps {
   userData: UserData | null
