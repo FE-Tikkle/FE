@@ -9,7 +9,7 @@ import Bell from '../Bell/Bell'
 import Loading from '../Loading/Loading'
 
 // Modal을 lazy loading으로 변경
-const Modal = lazy(() => import('../Modal/modal'))
+const Modal = lazy(() => import('../modal/modal'))
 
 interface Platform {
   name: string
